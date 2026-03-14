@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Broadcast Bracket Web</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="toolbar-left">
+        <button id="tabGroupsBtn" class="tab-btn active">Groups</button>
+        <button id="tabPlayoffsBtn" class="tab-btn">Playoffs</button>
+      </div>
+      <div class="toolbar-right">
+        <button id="saveStateBtn">Save JSON</button>
+        <button id="loadStateBtn">Load JSON</button>
+        <input id="loadStateInput" type="file" accept=".json" hidden />
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="main-stage">
+        <section id="groupsView" class="view active">
+          <div class="header-strip">
+            <div id="groupsHeaderLeft" class="header-left"></div>
+            <div id="groupsHeaderTitle" class="header-title"></div>
+            <div id="groupsHeaderRight" class="header-right"></div>
+          </div>
+          <div id="groupsGrid" class="groups-grid"></div>
+        </section>
+
+        <section id="playoffsView" class="view">
+          <div class="header-strip">
+            <div id="playoffsHeaderLeft" class="header-left"></div>
+            <div id="playoffsHeaderTitle" class="header-title"></div>
+            <div id="playoffsHeaderRight" class="header-right"></div>
+          </div>
+          <div class="playoffs-shell">
+            <div class="playoffs-bg-logo" id="playoffsBgLogo"></div>
+            <div class="playoffs-canvas">
+              <div class="section-label upper" id="upperBracketLabel"></div>
+              <div class="section-label lower" id="lowerBracketLabel"></div>
+              <svg id="bracketSvg" class="bracket-svg" viewBox="0 0 2400 1400" preserveAspectRatio="xMidYMid meet"></svg>
+              <div id="bracketCards" class="bracket-cards"></div>
+            </div>
+            <div id="footerText" class="footer-strip"></div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="settings-panel">
+        <div class="settings-title">Tournament Settings</div>
+        <label>Groups Title<input id="groupsTitleInput" type="text" /></label>
+        <label>Groups Left<input id="groupsLeftInput" type="text" /></label>
+        <label>Groups Right<input id="groupsRightInput" type="text" /></label>
+        <label>Playoffs Title<input id="playoffsTitleInput" type="text" /></label>
+        <label>Playoffs Left<input id="playoffsLeftInput" type="text" /></label>
+        <label>Playoffs Right<input id="playoffsRightInput" type="text" /></label>
+        <label>Upper Bracket Label<input id="upperLabelInput" type="text" /></label>
+        <label>Lower Bracket Label<input id="lowerLabelInput" type="text" /></label>
+        <label>Footer Text<input id="footerTextInput" type="text" /></label>
+        <label>Background Logo<input id="bgLogoInput" type="file" accept="image/*" /></label>
+        <label>Team Logo<select id="teamLogoSelect"></select><input id="teamLogoInput" type="file" accept="image/*" /></label>
+        <div class="settings-hint">Built for GitHub Pages. Upload logos directly in the browser and save the whole state as JSON.</div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-title" id="modalTitle">Edit Match</div>
+      <div class="modal-body">
+        <label><span id="modalTeam1Label"></span><input id="modalScore1" type="number" min="0" max="99" /></label>
+        <label><span id="modalTeam2Label"></span><input id="modalScore2" type="number" min="0" max="99" /></label>
+      </div>
+      <div class="modal-actions">
+        <button id="modalCancelBtn">Cancel</button>
+        <button id="modalSaveBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
