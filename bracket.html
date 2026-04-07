@@ -867,6 +867,8 @@
   // ══════════════════════════════════════════════════
   const _tooltip = document.getElementById('player-tooltip');
   let _hideTimer = null;
+  _tooltip.addEventListener('mouseenter', () => clearTimeout(_hideTimer));
+  _tooltip.addEventListener('mouseleave', hideTooltip);
 
   function buildTooltipHtml(teamKey) {
     const entry = _roster[teamKey];
@@ -897,7 +899,7 @@
   }
 
   function hideTooltip() {
-    _hideTimer = setTimeout(() => _tooltip.classList.remove('visible'), 120);
+    _hideTimer = setTimeout(() => _tooltip.classList.remove('visible'), 800);
   }
 
   function positionTooltip(el) {
