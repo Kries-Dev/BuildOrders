@@ -656,12 +656,18 @@
       if (!teams || !teams.length) return;
 
       // Sort by standings; teams with no scores keep their original order
-      // (Python preserves insertion order in JSON)
+      const _placeholder = /^[A-D] Team \d+$/;
       const hasScores = teams.some(t => t.wins || t.losses || t.pts);
       const sorted = hasScores
-        ? [...teams].sort((a, b) =>
-            (b.pts - a.pts) || ((b.maps_won - b.maps_lost) - (a.maps_won - a.maps_lost)) || (b.maps_won - a.maps_won) || a.name.localeCompare(b.name)
-          )
+        ? [...teams].sort((a, b) => {
+            const aIsPlaceholder = !a.name || _placeholder.test(a.name.trim()) ? 1 : 0;
+            const bIsPlaceholder = !b.name || _placeholder.test(b.name.trim()) ? 1 : 0;
+            if (aIsPlaceholder !== bIsPlaceholder) return aIsPlaceholder - bIsPlaceholder;
+            return (b.pts - a.pts)
+              || ((b.wins - b.losses) - (a.wins - a.losses))
+              || (b.wins - a.wins)
+              || a.name.localeCompare(b.name);
+          })
         : [...teams];  // preserve entry order when no scores yet
 
       html += `<div class="group-card">
@@ -677,7 +683,8 @@
           <tbody>`;
 
       sorted.forEach((team, i) => {
-        const qualified  = i < 2;
+        const isPlaceholder = !team.name || _placeholder.test(team.name.trim());
+        const qualified  = i < 2 && !isPlaceholder;
         const seedNum    = team.seed || 0;
         const seedLabel  = seedNum ? seedNum : '';
         const seedClass  = seedNum ? 'seed-badge has-seed' : 'seed-badge';
