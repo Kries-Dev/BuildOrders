@@ -322,19 +322,17 @@
     background: #0f0f0f;
     border: 1px solid rgba(204,31,31,0.5);
     border-radius: 10px;
-    /* NO pointer-events:none — links must be clickable */
-    padding: 14px 14px 10px;   /* extra top padding bridges the gap */
-    margin-top: -8px;           /* pull tooltip up to overlap trigger element */
-    min-width: 180px;
-    max-width: 260px;
+    padding: 12px 14px;
+    min-width: 200px;
+    max-width: 280px;
     opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.15s, transform 0.15s;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    transform: translateX(-4px);
+    transition: opacity 0.12s, transform 0.12s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
   }
   .player-tooltip.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
   .tooltip-header {
     font-size: 10px; font-weight: 900; letter-spacing: 0.1em;
@@ -835,8 +833,9 @@
   // ══════════════════════════════════════════════════
   const _tooltip = document.getElementById('player-tooltip');
   let _hideTimer = null;
+  let _currentKey = null;
 
-  // Keep tooltip alive when mouse moves onto it
+  // Keep tooltip alive when mouse is over it
   _tooltip.addEventListener('mouseenter', () => clearTimeout(_hideTimer));
   _tooltip.addEventListener('mouseleave', () => scheduleHide());
 
@@ -860,43 +859,74 @@
   }
 
   function showTooltip(el, teamKey) {
+    if (!_roster[teamKey]) return;
     const html = buildTooltipHtml(teamKey);
     if (!html) return;
     clearTimeout(_hideTimer);
+    _currentKey = teamKey;
     _tooltip.innerHTML = html;
     _tooltip.classList.add('visible');
     positionTooltip(el);
   }
 
   function scheduleHide() {
-    _hideTimer = setTimeout(() => _tooltip.classList.remove('visible'), 300);
+    _hideTimer = setTimeout(() => {
+      _tooltip.classList.remove('visible');
+      _currentKey = null;
+    }, 2000);
   }
 
   function positionTooltip(el) {
-    const r  = el.getBoundingClientRect();
-    const tw = 260;
-    const th = _tooltip.offsetHeight || 200;
-    let left = r.left;
-    let top  = r.bottom + 2;   // 2px gap — tooltip's margin-top:-8px bridges the visual gap
-    if (left + tw > window.innerWidth - 8)  left = window.innerWidth - tw - 8;
-    if (top  + th > window.innerHeight - 8) top  = r.top - th - 2;
+    const r   = el.getBoundingClientRect();
+    const tw  = _tooltip.offsetWidth  || 240;
+    const th  = _tooltip.offsetHeight || 200;
+    const pad = 10;
+
+    // Try right of element first, fall back to left
+    let left = r.right + pad;
+    if (left + tw > window.innerWidth - pad) left = r.left - tw - pad;
+
+    // Vertically align with top of element, clamp to viewport
+    let top = r.top;
+    if (top + th > window.innerHeight - pad) top = window.innerHeight - th - pad;
+    if (top < pad) top = pad;
+
     _tooltip.style.left = left + 'px';
     _tooltip.style.top  = top  + 'px';
   }
 
   function attachHoverListeners() {
-    document.querySelectorAll('.team-name, .team-cell').forEach(el => {
+    // Attach to the whole .team-row in bracket so the full row is the trigger zone
+    document.querySelectorAll('.team-row, .team-cell').forEach(el => {
       if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
 
       el.addEventListener('mouseenter', () => {
-        const raw = (el.querySelector('.team-name') || el).textContent.trim();
+        // Find the team name text within this element
+        const nameEl = el.querySelector('.team-name');
+        if (!nameEl) return;
+        const raw = nameEl.textContent.trim();
         if (!raw || raw === 'TBD') return;
+        if (!_roster[raw]) return;   // only show if we have roster data
         showTooltip(el, raw);
-        el.style.cursor = Object.keys(_roster).includes(raw) ? 'help' : 'default';
+        el.style.cursor = 'help';
       });
 
-      el.addEventListener('mousemove', () => positionTooltip(el));
+      el.addEventListener('mouseleave', () => scheduleHide());
+    });
+
+    // Groups table: attach to .team-name spans directly (inside .team-cell)
+    document.querySelectorAll('.team-name').forEach(el => {
+      if (el.dataset.hoverBound) return;
+      el.dataset.hoverBound = '1';
+
+      el.addEventListener('mouseenter', () => {
+        const raw = el.textContent.trim();
+        if (!raw || raw === 'TBD' || !_roster[raw]) return;
+        showTooltip(el, raw);
+        el.style.cursor = 'help';
+      });
+
       el.addEventListener('mouseleave', () => scheduleHide());
     });
   }
