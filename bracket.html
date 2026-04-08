@@ -116,7 +116,6 @@
   .group-table tr:last-child td { border-bottom: none; }
   .group-table tr.qualified td:first-child { color: var(--accent); font-weight: 700; }
 
-  /* seed badge in group table */
   .seed-badge {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 22px; height: 22px; padding: 0 4px;
@@ -198,7 +197,6 @@
   .team-row.loser  { opacity: 0.45; }
   .team-row.tbd    { opacity: 0.35; }
 
-  /* seed pill inside bracket match cards */
   .bracket-seed {
     font-size: 10px; font-weight: 900;
     color: var(--accent);
@@ -218,13 +216,11 @@
   }
   .team-row.winner .team-score { color: var(--accent); }
 
-  /* ── Grand final highlight ── */
   .round.grand-final .match-card {
     border-color: var(--accent);
     box-shadow: 0 0 16px rgba(204,31,31,0.15);
   }
 
-  /* ── Upper/Lower labels ── */
   .bracket-section-label {
     font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
     color: var(--muted); text-transform: uppercase;
@@ -326,10 +322,11 @@
     background: #0f0f0f;
     border: 1px solid rgba(204,31,31,0.5);
     border-radius: 10px;
-    padding: 10px 14px;
+    /* NO pointer-events:none — links must be clickable */
+    padding: 14px 14px 10px;   /* extra top padding bridges the gap */
+    margin-top: -8px;           /* pull tooltip up to overlap trigger element */
     min-width: 180px;
     max-width: 260px;
-    pointer-events: none;
     opacity: 0;
     transform: translateY(4px);
     transition: opacity 0.15s, transform 0.15s;
@@ -347,7 +344,7 @@
   }
   .tooltip-player {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 3px 0; gap: 8px;
+    padding: 4px 0; gap: 8px;
   }
   .tooltip-player-name {
     font-size: 12px; font-weight: 700; color: var(--white);
@@ -361,8 +358,9 @@
   }
   .tooltip-player a {
     font-size: 10px; color: #4a9eff; text-decoration: none; flex-shrink: 0;
+    padding: 2px 4px;   /* bigger click target */
   }
-  .tooltip-player a:hover { text-decoration: underline; }
+  .tooltip-player a:hover { text-decoration: underline; color: #7ab8ff; }
 
   /* ── Team Management tab ── */
   .tm-table-wrap { overflow-x: auto; }
@@ -453,7 +451,7 @@
   <div id="teams-content" style="display:none"></div>
 </div>
 
-<!-- Player hover tooltip (shared, moved by JS) -->
+<!-- Player hover tooltip -->
 <div class="player-tooltip" id="player-tooltip"></div>
 
 <div class="last-updated" id="last-updated"></div>
@@ -498,7 +496,6 @@
       return;
     }
     setStatus(true);
-    // renderGroups first — it builds _seedMap used by renderBracket
     renderGroups(data.groups   || {}, data.settings || {});
     renderBracket(data.matches || {});
     renderUpcoming(data.upcoming || []);
@@ -530,8 +527,6 @@
   // ══════════════════════════════════════════════════
   //  BRACKET RENDERER
   // ══════════════════════════════════════════════════
-
-  // Build a lookup: teamName → seed number, sourced from groups data
   function buildSeedMap(groups) {
     const map = {};
     Object.values(groups).forEach(teams => {
@@ -544,7 +539,7 @@
 
   let _seedMap = {};
 
-  function renderBracket(matches, groups) {
+  function renderBracket(matches) {
     const loading = document.getElementById('bracket-loading');
     const content = document.getElementById('bracket-content');
     loading.style.display = 'none';
@@ -603,7 +598,6 @@
     const t2 = m.team2 || 'TBD';
     const s1 = (t1 === 'TBD') ? '' : m.score1;
     const s2 = (t2 === 'TBD') ? '' : m.score2;
-    // Seed numbers from the global map (only shown if non-zero)
     const seed1 = (t1 !== 'TBD' && _seedMap[t1]) ? _seedMap[t1] : '';
     const seed2 = (t2 !== 'TBD' && _seedMap[t2]) ? _seedMap[t2] : '';
 
@@ -641,7 +635,6 @@
     loading.style.display = 'none';
     content.style.display = 'block';
 
-    // Build global seed map for use in bracket renderer too
     _seedMap = buildSeedMap(groups);
 
     const groupNames = Object.keys(groups).sort();
@@ -655,20 +648,19 @@
       const teams = groups[gName];
       if (!teams || !teams.length) return;
 
-      // Sort by standings; teams with no scores keep their original order
       const _placeholder = /^[A-D] Team \d+$/;
       const hasScores = teams.some(t => t.wins || t.losses || t.pts);
       const sorted = hasScores
         ? [...teams].sort((a, b) => {
-            const aIsPlaceholder = !a.name || _placeholder.test(a.name.trim()) ? 1 : 0;
-            const bIsPlaceholder = !b.name || _placeholder.test(b.name.trim()) ? 1 : 0;
-            if (aIsPlaceholder !== bIsPlaceholder) return aIsPlaceholder - bIsPlaceholder;
+            const aP = !a.name || _placeholder.test(a.name.trim()) ? 1 : 0;
+            const bP = !b.name || _placeholder.test(b.name.trim()) ? 1 : 0;
+            if (aP !== bP) return aP - bP;
             return (b.pts - a.pts)
               || ((b.wins - b.losses) - (a.wins - a.losses))
               || (b.wins - a.wins)
               || a.name.localeCompare(b.name);
           })
-        : [...teams];  // preserve entry order when no scores yet
+        : [...teams];
 
       html += `<div class="group-card">
         <div class="group-header">Group ${gName}</div>
@@ -684,14 +676,12 @@
 
       sorted.forEach((team, i) => {
         const isPlaceholder = !team.name || _placeholder.test(team.name.trim());
-        const qualified  = i < 2 && !isPlaceholder;
-        const seedNum    = team.seed || 0;
-        const seedLabel  = seedNum ? seedNum : '';
-        const seedClass  = seedNum ? 'seed-badge has-seed' : 'seed-badge';
+        const qualified = i < 2 && !isPlaceholder;
+        const seedNum   = team.seed || 0;
+        const seedLabel = seedNum ? seedNum : '';
+        const seedClass = seedNum ? 'seed-badge has-seed' : 'seed-badge';
         html += `<tr class="${qualified ? 'qualified' : ''}">
-          <td style="text-align:center">
-            <span class="${seedClass}">${seedLabel}</span>
-          </td>
+          <td style="text-align:center"><span class="${seedClass}">${seedLabel}</span></td>
           <td>
             <div class="team-cell">
               <span class="rank-badge${qualified ? ' top' : ''}">${i + 1}</span>
@@ -721,10 +711,7 @@
     loading.style.display = 'none';
     content.style.display = 'block';
 
-    // upcoming can be an array or a Firebase object (integer keys)
-    const items = Array.isArray(upcoming)
-      ? upcoming
-      : Object.values(upcoming);
+    const items = Array.isArray(upcoming) ? upcoming : Object.values(upcoming);
 
     if (!items.length) {
       content.innerHTML = `<div class="upcoming-empty">
@@ -746,14 +733,10 @@
     items.forEach(game => {
       if (!game) return;
       const { title='', date='', team1='', team2='', description='', image='' } = game;
-
-      // Banner
       const banner = image
         ? `<img class="upcoming-card-banner" src="${image}" alt="${title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
            <div class="upcoming-card-banner-placeholder" style="display:none">${calIcon}</div>`
         : `<div class="upcoming-card-banner-placeholder">${calIcon}</div>`;
-
-      // Matchup row (only shown when both teams are set)
       let matchupHtml = '';
       if (team1 || team2) {
         const t1Logo = team1 ? `<img class="upcoming-card-team-logo" src="Logos/${slugify(team1)}.png" alt="${team1}" data-jpg="Logos/${slugify(team1)}.jpg" onerror="handleLogoError(this)">` : '';
@@ -764,10 +747,7 @@
           <div class="upcoming-card-team">${t2Logo}<span class="upcoming-card-team-name">${team2}</span></div>
         </div>`;
       }
-
-      const descHtml = description
-        ? `<div class="upcoming-card-desc">${description}</div>` : '';
-
+      const descHtml = description ? `<div class="upcoming-card-desc">${description}</div>` : '';
       html += `<div class="upcoming-card">
         ${banner}
         <div class="upcoming-card-body">
@@ -782,12 +762,10 @@
     content.innerHTML = html;
   }
 
-  // _seedMap is populated by renderGroups() on every Firebase update
-
   // ══════════════════════════════════════════════════
   //  ROSTER — global store & Team Management renderer
   // ══════════════════════════════════════════════════
-  let _roster = {};   // keyed by team_key e.g. "KeeN A"
+  let _roster = {};
 
   function renderRoster(roster) {
     _roster = roster || {};
@@ -800,12 +778,10 @@
     const keys = Object.keys(_roster).sort();
     if (!keys.length) {
       content.innerHTML = '<p style="color:var(--muted);padding:32px">No roster data yet. Import an .xlsx and push from the Python app.</p>';
-      // still re-attach hover listeners in case bracket/groups already rendered
       attachHoverListeners();
       return;
     }
 
-    // Search bar
     let html = `<div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
       <input class="tm-search" id="tm-search" type="text" placeholder="🔍  Search player or team…" oninput="filterTmTable(this.value)">
       <span style="color:var(--muted);font-size:12px" id="tm-count"></span>
@@ -813,14 +789,9 @@
     <div class="tm-table-wrap">
     <table class="tm-table" id="tm-table">
       <thead><tr>
-        <th>Clan Tag</th>
-        <th>Clan Name</th>
-        <th>Team</th>
-        <th>Team Captain</th>
-        <th>Player Name</th>
-        <th>AoM Profile</th>
-      </tr></thead>
-      <tbody>`;
+        <th>Clan Tag</th><th>Clan Name</th><th>Team</th>
+        <th>Team Captain</th><th>Player Name</th><th>AoM Profile</th>
+      </tr></thead><tbody>`;
 
     let totalPlayers = 0;
     keys.forEach(key => {
@@ -843,12 +814,9 @@
     html += `</tbody></table></div>`;
     content.innerHTML = html;
     document.getElementById('tm-count').textContent = `${totalPlayers} players · ${keys.length} teams`;
-
-    // Re-attach hover listeners now that bracket/groups DOM is stable
     attachHoverListeners();
   }
 
-  // ── Team Management search filter ──
   window.filterTmTable = function(query) {
     const q = query.toLowerCase();
     const rows = document.querySelectorAll('#tm-table tbody tr');
@@ -867,23 +835,25 @@
   // ══════════════════════════════════════════════════
   const _tooltip = document.getElementById('player-tooltip');
   let _hideTimer = null;
+
+  // Keep tooltip alive when mouse moves onto it
   _tooltip.addEventListener('mouseenter', () => clearTimeout(_hideTimer));
-  _tooltip.addEventListener('mouseleave', hideTooltip);
+  _tooltip.addEventListener('mouseleave', () => scheduleHide());
 
   function buildTooltipHtml(teamKey) {
     const entry = _roster[teamKey];
     if (!entry || !entry.players || !entry.players.length) return null;
-
     const captain = entry.captain || '';
     let html = `<div class="tooltip-header">${teamKey} — ROSTER</div>`;
     entry.players.forEach(p => {
       const isCap = p.name === captain;
       const profileLink = p.url
-        ? `<a href="${p.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Profile ↗</a>`
+        ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer"
+             onclick="event.stopPropagation()">Profile ↗</a>`
         : '';
       html += `<div class="tooltip-player${isCap ? ' captain' : ''}">
         <span class="tooltip-player-name">${p.name}</span>
-        ${isCap ? '<span class="tooltip-captain-badge">CAP</span>' : profileLink ? profileLink : ''}
+        ${isCap ? '<span class="tooltip-captain-badge">CAP</span>' : profileLink}
       </div>`;
     });
     return html;
@@ -898,32 +868,28 @@
     positionTooltip(el);
   }
 
-  function hideTooltip() {
-    _hideTimer = setTimeout(() => _tooltip.classList.remove('visible'), 800);
+  function scheduleHide() {
+    _hideTimer = setTimeout(() => _tooltip.classList.remove('visible'), 300);
   }
 
   function positionTooltip(el) {
-    const r = el.getBoundingClientRect();
-    const tw = 260, th = _tooltip.offsetHeight || 200;
+    const r  = el.getBoundingClientRect();
+    const tw = 260;
+    const th = _tooltip.offsetHeight || 200;
     let left = r.left;
-    let top  = r.bottom + 6;
-    // Keep within viewport
-    if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
-    if (top + th > window.innerHeight - 8) top = r.top - th - 6;
+    let top  = r.bottom + 2;   // 2px gap — tooltip's margin-top:-8px bridges the visual gap
+    if (left + tw > window.innerWidth - 8)  left = window.innerWidth - tw - 8;
+    if (top  + th > window.innerHeight - 8) top  = r.top - th - 2;
     _tooltip.style.left = left + 'px';
     _tooltip.style.top  = top  + 'px';
   }
 
   function attachHoverListeners() {
-    // Target .team-name spans inside bracket match cards and group table cells
     document.querySelectorAll('.team-name, .team-cell').forEach(el => {
-      if (el.dataset.hoverBound) return;   // don't double-bind
+      if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
 
-      el.style.cursor = 'default';
-
       el.addEventListener('mouseenter', () => {
-        // Extract team name text — strip seed/logo noise
         const raw = (el.querySelector('.team-name') || el).textContent.trim();
         if (!raw || raw === 'TBD') return;
         showTooltip(el, raw);
@@ -931,8 +897,7 @@
       });
 
       el.addEventListener('mousemove', () => positionTooltip(el));
-
-      el.addEventListener('mouseleave', hideTooltip);
+      el.addEventListener('mouseleave', () => scheduleHide());
     });
   }
 </script>
