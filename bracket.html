@@ -341,24 +341,37 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
   .tooltip-player {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 4px 0; gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    padding: 3px 0;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
   }
+  .tooltip-player:last-child { border-bottom: none; }
   .tooltip-player-name {
-    font-size: 12px; font-weight: 700; color: var(--white);
+    font-size: 12px; font-weight: 700;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .tooltip-player.captain .tooltip-player-name { color: var(--accent); }
-  .tooltip-captain-badge {
-    font-size: 9px; font-weight: 900; color: var(--accent);
-    background: rgba(204,31,31,0.15); border-radius: 3px;
-    padding: 1px 5px; flex-shrink: 0; letter-spacing: 0.06em;
+  .tooltip-elig {
+    font-size: 10px; color: var(--muted);
+    white-space: nowrap; flex-shrink: 0;
   }
   .tooltip-player a {
     font-size: 10px; color: #4a9eff; text-decoration: none; flex-shrink: 0;
-    padding: 2px 4px;   /* bigger click target */
+    padding: 2px 4px;
   }
   .tooltip-player a:hover { text-decoration: underline; color: #7ab8ff; }
+  .tooltip-col-headers {
+    display: grid; grid-template-columns: 1fr auto auto;
+    gap: 6px; padding: 0 0 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    margin-bottom: 4px;
+  }
+  .tooltip-col-headers span {
+    font-size: 9px; font-weight: 900; letter-spacing: 0.08em;
+    color: var(--muted); text-transform: uppercase;
+  }
 
   /* ── Team Management tab ── */
   .tm-table-wrap { overflow-x: auto; }
@@ -799,16 +812,37 @@
       totalPlayers += players.length;
       players.forEach(p => {
         const isCaptain = p.name === entry.captain;
-        const guestStyle = p.guest_player === 'Yes' ? 'color:var(--accent);font-weight:700' : 'color:var(--muted)';
-        html += `<tr class="${isCaptain ? 'captain-row' : ''}" data-search="${(entry.clan_tag + ' ' + entry.clan_name + ' ' + entry.team + ' ' + entry.captain + ' ' + p.name).toLowerCase()}">
+        const isGuest   = (p.guest_player || '').toLowerCase() === 'yes';
+        const eligible  = isEligible(p.eligibility || '');
+
+        // Name colour — same logic as tooltip
+        let nameColor;
+        if (isCaptain) {
+          nameColor = '#ff8c00';
+        } else if (isGuest && eligible) {
+          nameColor = '#6ab0f5';
+        } else if (isGuest && !eligible) {
+          nameColor = '#cc1f1f';
+        } else if (eligible) {
+          nameColor = '#2ecc71';
+        } else {
+          nameColor = '#cc1f1f';
+        }
+
+        const eligColor  = eligible ? '#2ecc71' : '#cc1f1f';
+        const guestColor = isGuest
+          ? (eligible ? '#6ab0f5' : '#cc1f1f')
+          : 'var(--muted)';
+
+        html += `<tr data-search="${(entry.clan_tag + ' ' + entry.clan_name + ' ' + entry.team + ' ' + entry.captain + ' ' + p.name).toLowerCase()}">
           <td><span class="tm-clan-tag">${entry.clan_tag || ''}</span></td>
           <td>${entry.clan_name || ''}</td>
           <td>${key}</td>
           <td>${entry.captain || ''}</td>
-          <td>${p.name}${isCaptain ? ' <span style="font-size:10px;color:var(--accent)">(C)</span>' : ''}</td>
+          <td><span style="color:${nameColor};font-weight:700">${p.name}${isCaptain ? ' ★' : ''}</span></td>
           <td>${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">Profile ↗</a>` : '—'}</td>
-          <td>${p.eligibility || '—'}</td>
-          <td style="${p.guest_player ? guestStyle : ''}">${p.guest_player || '—'}</td>
+          <td style="color:${eligColor};font-weight:700">${p.eligibility || '—'}</td>
+          <td style="color:${guestColor};font-weight:700">${p.guest_player || '—'}</td>
         </tr>`;
       });
     });
@@ -843,20 +877,63 @@
   _tooltip.addEventListener('mouseenter', () => clearTimeout(_hideTimer));
   _tooltip.addEventListener('mouseleave', () => scheduleHide());
 
+  // ── Eligibility helper ──
+  function isEligible(eligStr) {
+    // Blank / empty / '-' → eligible (no restriction)
+    if (!eligStr || eligStr.trim() === '' || eligStr.trim() === '-') return true;
+    // Parse DD/MM/YYYY
+    const parts = eligStr.trim().split('/');
+    if (parts.length === 3) {
+      const d = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+      if (!isNaN(d.getTime())) {
+        return d <= new Date();   // past or today → eligible (restriction has passed)
+      }
+    }
+    return true;
+  }
+
   function buildTooltipHtml(teamKey) {
     const entry = _roster[teamKey];
     if (!entry || !entry.players || !entry.players.length) return null;
     const captain = entry.captain || '';
+
     let html = `<div class="tooltip-header">${teamKey} — ROSTER</div>`;
+    html += `<div class="tooltip-col-headers">
+      <span>Player</span><span>Eligibility</span><span>Profile</span>
+    </div>`;
+
     entry.players.forEach(p => {
-      const isCap = p.name === captain;
+      const isCap    = p.name === captain;
+      const isGuest  = (p.guest_player || '').toLowerCase() === 'yes';
+      const eligible = isEligible(p.eligibility || '');
+      const eligStr  = (p.eligibility && p.eligibility.trim() && p.eligibility.trim() !== '-')
+                       ? p.eligibility : '✓';
+
+      // Colour priority: captain = orange, guest+eligible = blue, guest+ineligible = red,
+      // eligible = green, ineligible = red
+      let nameColor;
+      if (isCap) {
+        nameColor = '#ff8c00';          // bright orange
+      } else if (isGuest && eligible) {
+        nameColor = '#6ab0f5';          // light blue
+      } else if (isGuest && !eligible) {
+        nameColor = '#cc1f1f';          // red
+      } else if (eligible) {
+        nameColor = '#2ecc71';          // green
+      } else {
+        nameColor = '#cc1f1f';          // red
+      }
+
+      const eligColor = eligible ? '#2ecc71' : '#cc1f1f';
       const profileLink = p.url
         ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer"
-             onclick="event.stopPropagation()">Profile ↗</a>`
-        : '';
-      html += `<div class="tooltip-player${isCap ? ' captain' : ''}">
-        <span class="tooltip-player-name">${p.name}</span>
-        ${isCap ? '<span class="tooltip-captain-badge">CAP</span>' : profileLink}
+             onclick="event.stopPropagation()">↗</a>`
+        : '<span style="color:var(--muted)">—</span>';
+
+      html += `<div class="tooltip-player">
+        <span class="tooltip-player-name" style="color:${nameColor}">${p.name}${isCap ? ' ★' : ''}</span>
+        <span class="tooltip-elig" style="color:${eligColor}">${eligStr}</span>
+        ${profileLink}
       </div>`;
     });
     return html;
