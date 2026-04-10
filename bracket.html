@@ -406,6 +406,43 @@
     outline: none;
   }
   .tm-search:focus { border-color: rgba(204,31,31,0.5); }
+
+  /* ── Stats & Recs ── */
+  .stats-table-wrap { overflow-x: auto; }
+  .stats-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  .stats-table th {
+    padding: 10px 14px; text-align: left;
+    font-size: 11px; font-weight: 900; letter-spacing: 0.08em;
+    color: var(--accent); text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: var(--bg); z-index: 2;
+  }
+  .stats-table td {
+    padding: 9px 14px; border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .stats-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .stats-table .score-cell { font-weight: 900; color: var(--white); }
+  .stats-dl-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(46,204,113,0.12); color: #2ecc71;
+    border: 1px solid rgba(46,204,113,0.3); border-radius: 5px;
+    padding: 3px 10px; font-size: 11px; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .stats-dl-btn:hover { background: rgba(46,204,113,0.22); }
+  .stats-filter-row {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .stats-filter {
+    background: var(--surface); color: var(--white);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 12px; font-size: 13px; outline: none;
+  }
+  .stats-filter:focus { border-color: rgba(204,31,31,0.5); }
 </style>
 </head>
 <body>
@@ -428,6 +465,7 @@
   <button class="tab active" onclick="showTab('groups')">Groups</button>
   <button class="tab"        onclick="showTab('upcoming')">Upcoming Games</button>
   <button class="tab"        onclick="showTab('teams')">Team Management</button>
+  <button class="tab"        onclick="showTab('stats')">Stats &amp; Recs</button>
 </div>
 
 <div id="bracket-page" class="page">
@@ -460,6 +498,14 @@
     <span>Loading roster…</span>
   </div>
   <div id="teams-content" style="display:none"></div>
+</div>
+
+<div id="stats-page" class="page">
+  <div class="loading" id="stats-loading">
+    <div class="spinner"></div>
+    <span>Loading stats…</span>
+  </div>
+  <div id="stats-content" style="display:none"></div>
 </div>
 
 <!-- Player hover tooltip -->
@@ -511,6 +557,7 @@
     renderBracket(data.matches || {});
     renderUpcoming(data.upcoming || []);
     renderRoster(data.roster   || {});
+    renderStats(data.game_records || []);
     document.getElementById('last-updated').textContent =
       'Last updated: ' + new Date().toLocaleTimeString();
   }, (error) => {
@@ -864,6 +911,87 @@
     });
     const el = document.getElementById('tm-count');
     if (el) el.textContent = visible + ' players shown';
+  };
+
+  // ══════════════════════════════════════════════════
+  //  STATS & RECS RENDERER
+  // ══════════════════════════════════════════════════
+  function renderStats(records) {
+    const loading = document.getElementById('stats-loading');
+    const content = document.getElementById('stats-content');
+    loading.style.display = 'none';
+    content.style.display = 'block';
+
+    const items = Array.isArray(records) ? records : Object.values(records);
+
+    if (!items.length) {
+      content.innerHTML = '<p style="color:var(--muted);padding:32px">No game records yet. Import an .xlsx from the Python app and push to Firebase.</p>';
+      return;
+    }
+
+    // Collect unique rounds and groups for filter dropdowns
+    const rounds = [...new Set(items.map(r => r.round).filter(Boolean))].sort();
+    const groups = [...new Set(items.map(r => r.group).filter(Boolean))].sort();
+
+    let html = `<div class="stats-filter-row">
+      <input class="stats-filter" id="stats-search" type="text" placeholder="🔍  Search team…"
+             oninput="filterStats()" style="min-width:200px">
+      <select class="stats-filter" id="stats-round" onchange="filterStats()">
+        <option value="">All Rounds</option>
+        ${rounds.map(r => `<option value="${r}">${r}</option>`).join('')}
+      </select>
+      <select class="stats-filter" id="stats-group" onchange="filterStats()">
+        <option value="">All Groups</option>
+        ${groups.map(g => `<option value="${g}">${g}</option>`).join('')}
+      </select>
+      <span style="color:var(--muted);font-size:12px;align-self:center" id="stats-count">${items.length} games</span>
+    </div>
+    <div class="stats-table-wrap">
+    <table class="stats-table" id="stats-table">
+      <thead><tr>
+        <th>Round</th><th>Group</th><th>Team 1</th><th>Team 2</th><th>Score</th><th>Rec</th>
+      </tr></thead><tbody>`;
+
+    items.forEach(r => {
+      const search = `${r.round} ${r.group} ${r.team1} ${r.team2}`.toLowerCase();
+      const recUrls = Array.isArray(r.rec_urls) ? r.rec_urls
+                    : (r.rec_urls ? Object.values(r.rec_urls) : []);
+      const dlBtns = recUrls.length
+        ? recUrls.map((url, i) => {
+            const label = `G${i + 1}`;
+            return `<a class="stats-dl-btn" href="${url}" download target="_blank" rel="noopener">⬇ ${label}</a>`;
+          }).join(' ')
+        : '<span style="color:var(--muted);font-size:12px">—</span>';
+      html += `<tr data-search="${search}" data-round="${(r.round||'').toLowerCase()}" data-group="${(r.group||'').toLowerCase()}">
+        <td>${r.round || ''}</td>
+        <td>${r.group || ''}</td>
+        <td>${r.team1 || ''}</td>
+        <td>${r.team2 || ''}</td>
+        <td class="score-cell">${r.score || ''}</td>
+        <td>${dlBtns}</td>
+      </tr>`;
+    });
+
+    html += '</tbody></table></div>';
+    content.innerHTML = html;
+  }
+
+  window.filterStats = function() {
+    const q     = (document.getElementById('stats-search')?.value || '').toLowerCase();
+    const round = (document.getElementById('stats-round')?.value  || '').toLowerCase();
+    const group = (document.getElementById('stats-group')?.value  || '').toLowerCase();
+    const rows  = document.querySelectorAll('#stats-table tbody tr');
+    let visible = 0;
+    rows.forEach(row => {
+      const matchSearch = !q     || row.dataset.search.includes(q);
+      const matchRound  = !round || row.dataset.round  === round;
+      const matchGroup  = !group || row.dataset.group  === group;
+      const show = matchSearch && matchRound && matchGroup;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    const el = document.getElementById('stats-count');
+    if (el) el.textContent = visible + ' games';
   };
 
   // ══════════════════════════════════════════════════
