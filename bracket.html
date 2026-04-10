@@ -789,6 +789,7 @@
       <thead><tr>
         <th>Clan Tag</th><th>Clan Name</th><th>Team</th>
         <th>Team Captain</th><th>Player Name</th><th>AoM Profile</th>
+        <th>Eligibility</th><th>Guest Player</th>
       </tr></thead><tbody>`;
 
     let totalPlayers = 0;
@@ -798,6 +799,7 @@
       totalPlayers += players.length;
       players.forEach(p => {
         const isCaptain = p.name === entry.captain;
+        const guestStyle = p.guest_player === 'Yes' ? 'color:var(--accent);font-weight:700' : 'color:var(--muted)';
         html += `<tr class="${isCaptain ? 'captain-row' : ''}" data-search="${(entry.clan_tag + ' ' + entry.clan_name + ' ' + entry.team + ' ' + entry.captain + ' ' + p.name).toLowerCase()}">
           <td><span class="tm-clan-tag">${entry.clan_tag || ''}</span></td>
           <td>${entry.clan_name || ''}</td>
@@ -805,6 +807,8 @@
           <td>${entry.captain || ''}</td>
           <td>${p.name}${isCaptain ? ' <span style="font-size:10px;color:var(--accent)">(C)</span>' : ''}</td>
           <td>${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">Profile ↗</a>` : '—'}</td>
+          <td>${p.eligibility || '—'}</td>
+          <td style="${p.guest_player ? guestStyle : ''}">${p.guest_player || '—'}</td>
         </tr>`;
       });
     });
