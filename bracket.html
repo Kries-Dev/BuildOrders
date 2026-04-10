@@ -922,7 +922,9 @@
     loading.style.display = 'none';
     content.style.display = 'block';
 
-    const items = Array.isArray(records) ? records : Object.values(records);
+    // Firebase converts arrays to {0:…,1:…} objects — normalise both levels
+    const items = Array.isArray(records) ? records : Object.values(records || {});
+    console.log('[Stats] game_records count:', items.length, items.slice(0,2));
 
     if (!items.length) {
       content.innerHTML = '<p style="color:var(--muted);padding:32px">No game records yet. Import an .xlsx from the Python app and push to Firebase.</p>';
