@@ -961,7 +961,7 @@
       const dlBtns = recUrls.length
         ? recUrls.map((url, i) => {
             const label = `G${i + 1}`;
-            return `<a class="stats-dl-btn" href="${url}" target="_blank" rel="noopener">⬇ ${label}</a>`;
+            return `<a class="stats-dl-btn" href="#" onclick="forceDownload('${url}', '${label}'); return false;">⬇ ${label}</a>`;
           }).join(' ')
         : '<span style="color:var(--muted);font-size:12px">—</span>';
       html += `<tr data-search="${search}" data-round="${(r.round||'').toLowerCase()}" data-group="${(r.group||'').toLowerCase()}">
@@ -1150,6 +1150,29 @@
     } else {
       img.classList.add('hidden');
     }
+  }
+
+  function forceDownload(url, label) {
+    // Fetch the file and trigger a real Save As dialog via a blob URL
+    fetch(url)
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.blob();
+      })
+      .then(blob => {
+        // Extract filename from URL
+        const filename = decodeURIComponent(url.split('/').pop());
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      })
+      .catch(err => {
+        // Fallback: open in new tab if fetch fails (e.g. CORS)
+        window.open(url, '_blank');
+      });
   }
 
   function showTab(name) {
