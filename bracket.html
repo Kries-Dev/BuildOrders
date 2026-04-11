@@ -961,7 +961,7 @@
       const dlBtns = recUrls.length
         ? recUrls.map((url, i) => {
             const label = `G${i + 1}`;
-            return `<a class="stats-dl-btn" href="${url}" download target="_blank" rel="noopener">⬇ ${label}</a>`;
+            return `<a class="stats-dl-btn" href="${url}" target="_blank" rel="noopener">⬇ ${label}</a>`;
           }).join(' ')
         : '<span style="color:var(--muted);font-size:12px">—</span>';
       html += `<tr data-search="${search}" data-round="${(r.round||'').toLowerCase()}" data-group="${(r.group||'').toLowerCase()}">
