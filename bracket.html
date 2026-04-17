@@ -380,11 +380,12 @@
     font-size: 9px; font-weight: 900; letter-spacing: 0.08em;
     color: var(--muted); text-transform: uppercase;
   }
-  /* Make team names look clickable */
   .team-name-clickable {
     cursor: pointer;
-    border-bottom: 1px dotted rgba(204,31,31,0.4);
+    text-decoration: underline dotted rgba(204,31,31,0.5);
+    text-underline-offset: 3px;
     transition: color 0.15s;
+    display: inline;
   }
   .team-name-clickable:hover { color: var(--accent); }
 
