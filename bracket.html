@@ -1121,17 +1121,17 @@
   });
 
   function attachHoverListeners() {
-    // Bracket: attach click to .team-row
+    // Bracket: attach click to .team-row — always bind, check roster at click time
     document.querySelectorAll('.team-row').forEach(el => {
       if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
-      const nameEl = el.querySelector('.team-name');
-      if (!nameEl) return;
-      const raw = nameEl.textContent.trim();
-      if (!raw || raw === 'TBD' || !_roster[raw]) return;
-      nameEl.classList.add('team-name-clickable');
-      el.dataset.panelTrigger = '1';
       el.addEventListener('click', (e) => {
+        const nameEl = el.querySelector('.team-name');
+        if (!nameEl) return;
+        const raw = nameEl.textContent.trim();
+        if (!raw || raw === 'TBD') return;
+        if (!_roster[raw]) return;
+        nameEl.classList.add('team-name-clickable');
         e.stopPropagation();
         openPanel(el, raw);
       });
@@ -1141,14 +1141,22 @@
     document.querySelectorAll('.team-name').forEach(el => {
       if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
-      const raw = el.textContent.trim();
-      if (!raw || raw === 'TBD' || !_roster[raw]) return;
-      el.classList.add('team-name-clickable');
-      el.dataset.panelTrigger = '1';
       el.addEventListener('click', (e) => {
+        const raw = el.textContent.trim();
+        if (!raw || raw === 'TBD') return;
+        if (!_roster[raw]) return;
+        el.classList.add('team-name-clickable');
         e.stopPropagation();
         openPanel(el, raw);
       });
+    });
+
+    // Update cursor and underline for any already-known roster teams
+    document.querySelectorAll('.team-name').forEach(el => {
+      const raw = el.textContent.trim();
+      if (raw && raw !== 'TBD' && _roster[raw]) {
+        el.classList.add('team-name-clickable');
+      }
     });
   }
 </script>
