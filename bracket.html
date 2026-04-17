@@ -320,31 +320,39 @@
     position: fixed;
     z-index: 9999;
     background: #0f0f0f;
-    border: 1px solid rgba(204,31,31,0.5);
-    border-radius: 10px;
-    padding: 12px 14px;
-    min-width: 200px;
-    max-width: 280px;
+    border: 1px solid rgba(204,31,31,0.6);
+    border-radius: 12px;
+    padding: 14px 16px;
+    min-width: 220px;
+    max-width: 300px;
     opacity: 0;
-    transform: translateX(-4px);
-    transition: opacity 0.12s, transform 0.12s;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+    pointer-events: none;
+    transform: scale(0.96);
+    transition: opacity 0.15s, transform 0.15s;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.85);
   }
   .player-tooltip.visible {
     opacity: 1;
-    transform: translateX(0);
+    pointer-events: auto;
+    transform: scale(1);
   }
   .tooltip-header {
     font-size: 10px; font-weight: 900; letter-spacing: 0.1em;
     color: var(--accent); text-transform: uppercase;
     margin-bottom: 8px; padding-bottom: 6px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: space-between;
   }
+  .tooltip-close {
+    cursor: pointer; color: var(--muted); font-size: 14px; line-height: 1;
+    padding: 0 2px;
+  }
+  .tooltip-close:hover { color: var(--white); }
   .tooltip-player {
     display: grid;
     grid-template-columns: 1fr auto auto;
     align-items: center;
-    padding: 3px 0;
+    padding: 4px 0;
     gap: 6px;
     border-bottom: 1px solid rgba(255,255,255,0.04);
   }
@@ -372,6 +380,13 @@
     font-size: 9px; font-weight: 900; letter-spacing: 0.08em;
     color: var(--muted); text-transform: uppercase;
   }
+  /* Make team names look clickable */
+  .team-name-clickable {
+    cursor: pointer;
+    border-bottom: 1px dotted rgba(204,31,31,0.4);
+    transition: color 0.15s;
+  }
+  .team-name-clickable:hover { color: var(--accent); }
 
   /* ── Team Management tab ── */
   .tm-table-wrap { overflow-x: auto; }
@@ -1004,27 +1019,18 @@
   };
 
   // ══════════════════════════════════════════════════
-  //  PLAYER HOVER TOOLTIP
+  //  PLAYER CLICK PANEL
   // ══════════════════════════════════════════════════
   const _tooltip = document.getElementById('player-tooltip');
-  let _hideTimer = null;
   let _currentKey = null;
-
-  // Keep tooltip alive when mouse is over it
-  _tooltip.addEventListener('mouseenter', () => clearTimeout(_hideTimer));
-  _tooltip.addEventListener('mouseleave', () => scheduleHide());
 
   // ── Eligibility helper ──
   function isEligible(eligStr) {
-    // Blank / empty / '-' → eligible (no restriction)
     if (!eligStr || eligStr.trim() === '' || eligStr.trim() === '-') return true;
-    // Parse DD/MM/YYYY
     const parts = eligStr.trim().split('/');
     if (parts.length === 3) {
       const d = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
-      if (!isNaN(d.getTime())) {
-        return d <= new Date();   // past or today → eligible (restriction has passed)
-      }
+      if (!isNaN(d.getTime())) return d <= new Date();
     }
     return true;
   }
@@ -1034,7 +1040,10 @@
     if (!entry || !entry.players || !entry.players.length) return null;
     const captain = entry.captain || '';
 
-    let html = `<div class="tooltip-header">${teamKey} — ROSTER</div>`;
+    let html = `<div class="tooltip-header">
+      <span>${teamKey} — ROSTER</span>
+      <span class="tooltip-close" onclick="closePanel()">✕</span>
+    </div>`;
     html += `<div class="tooltip-col-headers">
       <span>Player</span><span>Eligibility</span><span>Profile</span>
     </div>`;
@@ -1046,20 +1055,12 @@
       const eligStr  = (p.eligibility && p.eligibility.trim() && p.eligibility.trim() !== '-')
                        ? p.eligibility : '✓';
 
-      // Colour priority: captain = orange, guest+eligible = blue, guest+ineligible = red,
-      // eligible = green, ineligible = red
       let nameColor;
-      if (isCap) {
-        nameColor = '#ff8c00';          // bright orange
-      } else if (isGuest && eligible) {
-        nameColor = '#6ab0f5';          // light blue
-      } else if (isGuest && !eligible) {
-        nameColor = '#cc1f1f';          // red
-      } else if (eligible) {
-        nameColor = '#2ecc71';          // green
-      } else {
-        nameColor = '#cc1f1f';          // red
-      }
+      if (isCap)                        nameColor = '#ff8c00';
+      else if (isGuest && eligible)     nameColor = '#6ab0f5';
+      else if (isGuest && !eligible)    nameColor = '#cc1f1f';
+      else if (eligible)                nameColor = '#2ecc71';
+      else                              nameColor = '#cc1f1f';
 
       const eligColor = eligible ? '#2ecc71' : '#cc1f1f';
       const profileLink = p.url
@@ -1076,76 +1077,78 @@
     return html;
   }
 
-  function showTooltip(el, teamKey) {
+  function openPanel(el, teamKey) {
     if (!_roster[teamKey]) return;
+    // Toggle — click same team again to close
+    if (_currentKey === teamKey && _tooltip.classList.contains('visible')) {
+      closePanel();
+      return;
+    }
     const html = buildTooltipHtml(teamKey);
     if (!html) return;
-    clearTimeout(_hideTimer);
     _currentKey = teamKey;
     _tooltip.innerHTML = html;
     _tooltip.classList.add('visible');
-    positionTooltip(el);
+    positionPanel(el);
   }
 
-  function scheduleHide() {
-    _hideTimer = setTimeout(() => {
-      _tooltip.classList.remove('visible');
-      _currentKey = null;
-    }, 2000);
+  function closePanel() {
+    _tooltip.classList.remove('visible');
+    _currentKey = null;
   }
 
-  function positionTooltip(el) {
+  function positionPanel(el) {
     const r   = el.getBoundingClientRect();
-    const tw  = _tooltip.offsetWidth  || 240;
+    const tw  = _tooltip.offsetWidth  || 260;
     const th  = _tooltip.offsetHeight || 200;
     const pad = 10;
-
-    // Try right of element first, fall back to left
     let left = r.right + pad;
     if (left + tw > window.innerWidth - pad) left = r.left - tw - pad;
-
-    // Vertically align with top of element, clamp to viewport
     let top = r.top;
     if (top + th > window.innerHeight - pad) top = window.innerHeight - th - pad;
     if (top < pad) top = pad;
-
     _tooltip.style.left = left + 'px';
     _tooltip.style.top  = top  + 'px';
   }
 
+  // Close panel when clicking outside it
+  document.addEventListener('click', (e) => {
+    if (_tooltip.classList.contains('visible') &&
+        !_tooltip.contains(e.target) &&
+        !e.target.closest('[data-panel-trigger]')) {
+      closePanel();
+    }
+  });
+
   function attachHoverListeners() {
-    // Attach to the whole .team-row in bracket so the full row is the trigger zone
-    document.querySelectorAll('.team-row, .team-cell').forEach(el => {
+    // Bracket: attach click to .team-row
+    document.querySelectorAll('.team-row').forEach(el => {
       if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
-
-      el.addEventListener('mouseenter', () => {
-        // Find the team name text within this element
-        const nameEl = el.querySelector('.team-name');
-        if (!nameEl) return;
-        const raw = nameEl.textContent.trim();
-        if (!raw || raw === 'TBD') return;
-        if (!_roster[raw]) return;   // only show if we have roster data
-        showTooltip(el, raw);
-        el.style.cursor = 'help';
+      const nameEl = el.querySelector('.team-name');
+      if (!nameEl) return;
+      const raw = nameEl.textContent.trim();
+      if (!raw || raw === 'TBD' || !_roster[raw]) return;
+      nameEl.classList.add('team-name-clickable');
+      el.dataset.panelTrigger = '1';
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPanel(el, raw);
       });
-
-      el.addEventListener('mouseleave', () => scheduleHide());
     });
 
-    // Groups table: attach to .team-name spans directly (inside .team-cell)
+    // Groups table: attach click to .team-name spans
     document.querySelectorAll('.team-name').forEach(el => {
       if (el.dataset.hoverBound) return;
       el.dataset.hoverBound = '1';
-
-      el.addEventListener('mouseenter', () => {
-        const raw = el.textContent.trim();
-        if (!raw || raw === 'TBD' || !_roster[raw]) return;
-        showTooltip(el, raw);
-        el.style.cursor = 'help';
+      const raw = el.textContent.trim();
+      if (!raw || raw === 'TBD' || !_roster[raw]) return;
+      el.classList.add('team-name-clickable');
+      el.dataset.panelTrigger = '1';
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPanel(el, raw);
       });
-
-      el.addEventListener('mouseleave', () => scheduleHide());
     });
   }
 </script>
