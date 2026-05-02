@@ -315,6 +315,25 @@
   }
   .upcoming-empty svg { opacity: 0.2; display: block; margin: 0 auto 16px; }
 
+  /* ── Timezone selector ── */
+  .tz-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .tz-label { font-size: 13px; color: var(--muted); }
+  .tz-select {
+    background: var(--surface); color: var(--white);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 12px; font-size: 13px; outline: none; cursor: pointer;
+  }
+  .tz-select:focus { border-color: rgba(204,31,31,0.5); }
+  .tz-local-btn {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 7px 12px; font-size: 12px; cursor: pointer;
+  }
+  .tz-local-btn:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+
   /* ── Player hover tooltip ── */
   .player-tooltip {
     position: fixed;
@@ -777,6 +796,95 @@
   }
 
   // ══════════════════════════════════════════════════
+  //  TIMEZONE CONVERSION
+  // ══════════════════════════════════════════════════
+  let _upcomingItems = [];   // raw items cached for re-render on tz change
+  let _selectedTz = Intl.DateTimeFormat().resolvedOptions().timeZone;  // default: user's local tz
+
+  const TIMEZONES = [
+    { label: 'GMT (UTC+0)',         value: 'Etc/GMT' },
+    { label: 'CET (UTC+1)',         value: 'Europe/Paris' },
+    { label: 'EET (UTC+2)',         value: 'Europe/Helsinki' },
+    { label: 'MSK (UTC+3)',         value: 'Europe/Moscow' },
+    { label: 'GST (UTC+4)',         value: 'Asia/Dubai' },
+    { label: 'IST (UTC+5:30)',      value: 'Asia/Kolkata' },
+    { label: 'CST China (UTC+8)',   value: 'Asia/Shanghai' },
+    { label: 'JST (UTC+9)',         value: 'Asia/Tokyo' },
+    { label: 'AEST (UTC+10)',       value: 'Australia/Sydney' },
+    { label: 'EST (UTC-5)',         value: 'America/New_York' },
+    { label: 'CST (UTC-6)',         value: 'America/Chicago' },
+    { label: 'MST (UTC-7)',         value: 'America/Denver' },
+    { label: 'PDT (UTC-7)',         value: 'America/Los_Angeles' },
+    { label: 'BRT (UTC-3)',         value: 'America/Sao_Paulo' },
+  ];
+
+  function parseGmtDate(dateStr) {
+    /**
+     * Parse strings like:
+     *   "Sunday 12 Apr · 18:00 GMT"
+     *   "Fri 10 Apr · 00:30 GMT"
+     *   "Saturday 11-Apr · 16:00 GMT"
+     * Returns a Date object (UTC) or null if unparseable.
+     */
+    if (!dateStr) return null;
+    // Extract time HH:MM
+    const timeMatch = dateStr.match(/(\d{1,2}):(\d{2})\s*GMT/i);
+    if (!timeMatch) return null;
+    const hh = parseInt(timeMatch[1]);
+    const mm = parseInt(timeMatch[2]);
+
+    // Extract day number and month abbreviation
+    const dayMatch  = dateStr.match(/(\d{1,2})[\s\-]*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i);
+    if (!dayMatch) return null;
+    const day = parseInt(dayMatch[1]);
+    const mon = dayMatch[2];
+
+    // Use current year (or next year if date appears to be past)
+    const months = { jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,sep:8,oct:9,nov:10,dec:11 };
+    const month = months[mon.toLowerCase()];
+    if (month === undefined) return null;
+
+    const now = new Date();
+    let year = now.getFullYear();
+    const candidate = new Date(Date.UTC(year, month, day, hh, mm));
+    // If more than 2 months in the past, try next year
+    if (candidate < new Date(now - 60 * 24 * 3600 * 1000)) {
+      candidate.setUTCFullYear(year + 1);
+    }
+    return candidate;
+  }
+
+  function formatInTz(dateUtc, tz) {
+    try {
+      return new Intl.DateTimeFormat('en-GB', {
+        timeZone: tz,
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      }).format(dateUtc);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function convertDateStr(dateStr, tz) {
+    const d = parseGmtDate(dateStr);
+    if (!d) return dateStr;   // unparseable — return as-is
+    const converted = formatInTz(d, tz);
+    if (!converted) return dateStr;
+    // Append tz abbreviation
+    let tzAbbr = tz;
+    try {
+      tzAbbr = new Intl.DateTimeFormat('en', { timeZone: tz, timeZoneName: 'short' })
+        .formatToParts(d).find(p => p.type === 'timeZoneName')?.value || tz;
+    } catch (e) {}
+    return `${converted} ${tzAbbr}`;
+  }
+
+  // ══════════════════════════════════════════════════
   //  UPCOMING GAMES RENDERER
   // ══════════════════════════════════════════════════
   function renderUpcoming(upcoming) {
@@ -785,16 +893,46 @@
     loading.style.display = 'none';
     content.style.display = 'block';
 
-    const items = Array.isArray(upcoming) ? upcoming : Object.values(upcoming);
+    _upcomingItems = Array.isArray(upcoming) ? upcoming : Object.values(upcoming);
+    _renderUpcomingCards();
+  }
+
+  function _renderUpcomingCards() {
+    const content = document.getElementById('upcoming-content');
+    const items   = _upcomingItems;
+
+    // Build tz selector options
+    const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const localLabel = (() => {
+      try {
+        const abbr = new Intl.DateTimeFormat('en', { timeZone: localTz, timeZoneName: 'short' })
+          .formatToParts(new Date()).find(p => p.type === 'timeZoneName')?.value;
+        return `My Timezone (${abbr})`;
+      } catch { return 'My Timezone'; }
+    })();
+
+    const tzOptions = TIMEZONES.map(tz =>
+      `<option value="${tz.value}" ${_selectedTz === tz.value ? 'selected' : ''}>${tz.label}</option>`
+    ).join('');
+
+    let html = `<div class="tz-bar">
+      <span class="tz-label">🕐 Show times in:</span>
+      <select class="tz-select" id="tz-select" onchange="onTzChange(this.value)">
+        <option value="${localTz}" ${_selectedTz === localTz ? 'selected' : ''}>${localLabel}</option>
+        ${tzOptions}
+      </select>
+      <button class="tz-local-btn" onclick="onTzChange('${localTz}')">Reset to local</button>
+    </div>`;
 
     if (!items.length) {
-      content.innerHTML = `<div class="upcoming-empty">
+      html += `<div class="upcoming-empty">
         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
           <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
         </svg>
         No upcoming games scheduled yet.
       </div>`;
+      content.innerHTML = html;
       return;
     }
 
@@ -803,14 +941,19 @@
       <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
     </svg>`;
 
-    let html = '<div class="upcoming-grid">';
+    html += '<div class="upcoming-grid">';
     items.forEach(game => {
       if (!game) return;
       const { title='', date='', team1='', team2='', description='', image='' } = game;
+
+      // Convert date to selected timezone
+      const displayDate = convertDateStr(date, _selectedTz);
+
       const banner = image
         ? `<img class="upcoming-card-banner" src="${image}" alt="${title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
            <div class="upcoming-card-banner-placeholder" style="display:none">${calIcon}</div>`
         : `<div class="upcoming-card-banner-placeholder">${calIcon}</div>`;
+
       let matchupHtml = '';
       if (team1 || team2) {
         const t1Logo = team1 ? `<img class="upcoming-card-team-logo" src="Logos/${slugify(team1)}.png" alt="${team1}" data-jpg="Logos/${slugify(team1)}.jpg" onerror="handleLogoError(this)">` : '';
@@ -821,11 +964,13 @@
           <div class="upcoming-card-team">${t2Logo}<span class="upcoming-card-team-name">${team2}</span></div>
         </div>`;
       }
+
       const descHtml = description ? `<div class="upcoming-card-desc">${description}</div>` : '';
+
       html += `<div class="upcoming-card">
         ${banner}
         <div class="upcoming-card-body">
-          ${date ? `<div class="upcoming-card-date">${date}</div>` : ''}
+          ${displayDate ? `<div class="upcoming-card-date">${displayDate}</div>` : ''}
           ${title ? `<div class="upcoming-card-title">${title}</div>` : ''}
           ${matchupHtml}
           ${descHtml}
@@ -835,6 +980,11 @@
     html += '</div>';
     content.innerHTML = html;
   }
+
+  window.onTzChange = function(tz) {
+    _selectedTz = tz;
+    _renderUpcomingCards();
+  };
 
   // ══════════════════════════════════════════════════
   //  ROSTER — global store & Team Management renderer
