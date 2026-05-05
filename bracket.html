@@ -1522,8 +1522,8 @@
       ${days.map(d => `<th>${d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}</th>`).join('')}
     </tr></thead><tbody>`;
 
-    // Only show hours 6:00–23:45
-    for (let h = 6; h < 24; h++) {
+    // All 24 hours, 15-min slots
+    for (let h = 0; h < 24; h++) {
       for (let m = 0; m < 60; m += 15) {
         html += `<tr>`;
         html += `<td class="sched-time-label">${m === 0 ? `${String(h).padStart(2,'0')}:00` : ''}</td>`;
@@ -1534,18 +1534,62 @@
           const theirs  = !!theirAvail[key];
           const isConf  = Object.values(confirmed).some(g => g.datetime === key);
           let cls = 'empty';
-          if (isConf)         cls = 'confirmed';
+          if (isConf)              cls = 'confirmed';
           else if (mine && theirs) cls = 'overlap';
-          else if (mine)      cls = 'mine';
-          else if (theirs)    cls = 'theirs';
-          const tip = isConf ? 'Confirmed game' : cls === 'overlap' ? 'Both available!' : '';
-          html += `<td class="sched-slot ${cls}" data-key="${key}" title="${tip}" onclick="schedToggleSlot('${key}','${myTeam}')"></td>`;
+          else if (mine)           cls = 'mine';
+          else if (theirs)         cls = 'theirs';
+          const tip = isConf ? 'Confirmed game' : cls === 'overlap' ? 'Both available!' : 'Click to toggle availability';
+          html += `<td class="sched-slot ${cls}" data-key="${key}" data-team="${myTeam}" title="${tip}"></td>`;
         }
         html += `</tr>`;
       }
     }
     html += '</tbody></table>';
     wrap.innerHTML = html;
+
+    // Use event delegation — avoids inline onclick module scope issues
+    wrap.addEventListener('click', (e) => {
+      const slot = e.target.closest('.sched-slot');
+      if (!slot) return;
+      const key  = slot.dataset.key;
+      const team = slot.dataset.team;
+      if (key && team) schedToggleSlot(key, team);
+    }, { once: false });
+
+    // Re-attach on every render by replacing the node's listener
+    const newWrap = wrap.cloneNode(true);
+    wrap.parentNode.replaceChild(newWrap, wrap);
+    newWrap.addEventListener('click', (e) => {
+      const slot = e.target.closest('.sched-slot');
+      if (!slot) return;
+      const key  = slot.dataset.key;
+      const team = slot.dataset.team;
+      if (key && team) window.schedToggleSlot(key, team);
+    });
+
+    // Drag to select multiple slots
+    let _dragging = false;
+    let _dragAction = null;  // 'add' or 'remove'
+    newWrap.addEventListener('mousedown', (e) => {
+      const slot = e.target.closest('.sched-slot');
+      if (!slot) return;
+      e.preventDefault();
+      _dragging = true;
+      _dragAction = slot.classList.contains('mine') ? 'remove' : 'add';
+    });
+    newWrap.addEventListener('mousemove', (e) => {
+      if (!_dragging) return;
+      const slot = e.target.closest('.sched-slot');
+      if (!slot) return;
+      const key  = slot.dataset.key;
+      const team = slot.dataset.team;
+      if (!key || !team) return;
+      const myAvail = _schedData.availability?.[team] || {};
+      const alreadyOn = !!myAvail[key];
+      if (_dragAction === 'add' && !alreadyOn)    window.schedToggleSlot(key, team);
+      if (_dragAction === 'remove' && alreadyOn)  window.schedToggleSlot(key, team);
+    });
+    document.addEventListener('mouseup', () => { _dragging = false; _dragAction = null; }, { once: false });
   }
 
   window.schedToggleSlot = async function(key, myTeam) {
