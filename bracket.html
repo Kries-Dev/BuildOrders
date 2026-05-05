@@ -403,7 +403,7 @@
     display: table-cell;
   }
   .sched-slot:hover { background: rgba(255,255,255,0.06) !important; }
-  .sched-slot.mine      { background: rgba(204,31,31,0.45); }
+  .sched-slot.mine      { background: rgba(255,20,20,0.75); }
   .sched-slot.theirs    { background: rgba(74,158,255,0.35); }
   .sched-slot.overlap   { background: rgba(46,204,113,0.55); }
   .sched-slot.confirmed { background: rgba(255,165,0,0.6); }
@@ -1331,9 +1331,21 @@
   let _schedSession = null;   // { teamKey, isAdmin }
   let _schedWeekOffset = 0;
   let _schedMatchup = null;   // { team1, team2, round, group }
+  let _schedWriting = false;  // suppress Firebase echo re-renders during writes
 
   function schedUpdateData(data) {
-    _schedData = data;
+    // Don't overwrite local optimistic state while a write is in flight
+    if (_schedWriting) {
+      // Only update non-availability parts
+      _schedData = {
+        ...data,
+        availability: _schedData.availability,  // keep our optimistic version
+      };
+      // Don't re-render during a write — avoid flickering
+      return;
+    } else {
+      _schedData = data;
+    }
     if (_schedSession) _renderSchedMain();
   }
 
@@ -1381,6 +1393,7 @@
     _schedSession = null;
     _schedMatchup = null;
     _schedWeekOffset = 0;
+    _pendingAvailChanges = {};
     _renderSchedLogin();
   };
 
@@ -1474,6 +1487,11 @@
         <button onclick="schedWeek(-1)">◀ Prev</button>
         <span class="sched-week-label" id="sched-week-lbl"></span>
         <button onclick="schedWeek(1)">Next ▶</button>
+        <button id="sched-save-btn" onclick="schedSaveAvailability()"
+          style="margin-left:16px;background:#0a2a0a;color:#2ecc71;border:1px solid #1a5a1a;
+                 border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;">
+          💾 Save Availability
+        </button>
       </div>
       <div class="sched-cal-wrap" id="sched-cal-wrap"></div>
       <div class="sched-overlap-list" id="sched-overlaps"></div>
@@ -1487,6 +1505,7 @@
   window.schedSelectMatchup = function(val) {
     const [t1, t2, round, group] = val.split('|||');
     _schedMatchup = { team1: t1, team2: t2, round, group };
+    _pendingAvailChanges = {};
     _renderSchedMain();
   };
 
@@ -1588,11 +1607,13 @@
     document.onmouseup = () => { _dragging = false; _dragAction = null; };
   }
 
-  window.schedToggleSlot = async function(key, myTeam) {
+  let _pendingAvailChanges = {};  // slots changed but not yet saved
+
+  window.schedToggleSlot = function(key, myTeam) {
     console.log('[Sched] toggleSlot', key, myTeam);
-    // Optimistic local update first so UI responds immediately
     if (!_schedData.availability) _schedData.availability = {};
     if (!_schedData.availability[myTeam]) _schedData.availability[myTeam] = {};
+
     const isOn = !!_schedData.availability[myTeam][key];
     if (isOn) {
       delete _schedData.availability[myTeam][key];
@@ -1600,7 +1621,11 @@
       _schedData.availability[myTeam][key] = true;
     }
 
-    // Re-render calendar immediately
+    // Track pending changes
+    if (!_pendingAvailChanges[myTeam]) _pendingAvailChanges[myTeam] = {};
+    _pendingAvailChanges[myTeam][key] = !isOn;  // true=added, false=removed
+
+    // Re-render calendar immediately (local only)
     const sess = _schedSession || {};
     const teamKey = sess.teamKey;
     if (!teamKey) return;
@@ -1610,30 +1635,78 @@
     _renderCalendar(teamKey, otherTeam);
     _renderOverlaps(teamKey, otherTeam);
 
-    // Sanitise keys for Firebase path (replace non-alphanumeric with _)
-    const safeTeam = myTeam.replace(/[^a-zA-Z0-9]/g, '_');
-    const safeKey  = key.replace(/[^a-zA-Z0-9]/g, '_');
-    const path = `tournament/availability/${safeTeam}/${safeKey}`;
+    // Update save button state
+    _updateSaveBtn();
+  };
 
-    const auditEntry = {
-      team: myTeam,
-      action: isOn ? 'removed' : 'added',
-      slot: key,
-      timestamp: new Date().toISOString(),
-    };
+  function _updateSaveBtn() {
+    const btn = document.getElementById('sched-save-btn');
+    if (!btn) return;
+    const count = Object.values(_pendingAvailChanges)
+      .reduce((n, slots) => n + Object.keys(slots).length, 0);
+    if (count > 0) {
+      btn.textContent = `💾 Save Availability (${count} change${count !== 1 ? 's' : ''})`;
+      btn.style.background = '#cc1f1f';
+      btn.style.color = 'white';
+      btn.style.borderColor = '#cc1f1f';
+    } else {
+      btn.textContent = '💾 Save Availability';
+      btn.style.background = '#0a2a0a';
+      btn.style.color = '#2ecc71';
+      btn.style.borderColor = '#1a5a1a';
+    }
+  }
+
+  window.schedSaveAvailability = async function() {
+    const sess = _schedSession || {};
+    const myTeam = sess.teamKey;
+    if (!myTeam) return;
+
+    const changes = _pendingAvailChanges[myTeam] || {};
+    const entries = Object.entries(changes);
+    if (!entries.length) return;
+
+    const btn = document.getElementById('sched-save-btn');
+    if (btn) { btn.textContent = '⏳ Saving…'; btn.disabled = true; }
+
+    const safeTeam = myTeam.replace(/[^a-zA-Z0-9]/g, '_');
+    const writes = [];
 
     try {
-      await fbSet(fbRef(database, path), isOn ? null : true);
-      await fbPush(fbRef(database, 'tournament/audit_log'), auditEntry);
-    } catch(e) {
-      console.error('Firebase write error:', e);
-      // Revert local state if Firebase write failed
-      if (isOn) {
-        _schedData.availability[myTeam][key] = true;
-      } else {
-        delete _schedData.availability[myTeam][key];
+      _schedWriting = true;
+      for (const [key, added] of entries) {
+        const safeKey = key.replace(/[^a-zA-Z0-9]/g, '_');
+        const path = `tournament/availability/${safeTeam}/${safeKey}`;
+        writes.push(fbSet(fbRef(database, path), added ? true : null));
       }
-      _renderCalendar(teamKey, otherTeam);
+      // Single audit entry for the batch
+      writes.push(fbPush(fbRef(database, 'tournament/audit_log'), {
+        team: myTeam,
+        action: 'batch_availability_update',
+        slots_added:   entries.filter(([,v]) =>  v).map(([k]) => k),
+        slots_removed: entries.filter(([,v]) => !v).map(([k]) => k),
+        timestamp: new Date().toISOString(),
+      }));
+      await Promise.all(writes);
+      _pendingAvailChanges[myTeam] = {};
+      if (btn) {
+        btn.textContent = '✓ Saved!';
+        btn.style.background = '#0a2a0a';
+        btn.style.color = '#2ecc71';
+        btn.style.borderColor = '#1a5a1a';
+        btn.disabled = false;
+        setTimeout(() => _updateSaveBtn(), 2000);
+      }
+    } catch(e) {
+      console.error('Save error:', e);
+      if (btn) {
+        btn.textContent = '✗ Save Failed — retry';
+        btn.disabled = false;
+        btn.style.background = '#2a0000';
+        btn.style.borderColor = '#cc1f1f';
+      }
+    } finally {
+      setTimeout(() => { _schedWriting = false; }, 1500);
     }
   };
 
