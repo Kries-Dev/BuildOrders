@@ -1547,37 +1547,28 @@
     html += '</tbody></table>';
     wrap.innerHTML = html;
 
-    // Use event delegation — avoids inline onclick module scope issues
-    wrap.addEventListener('click', (e) => {
-      const slot = e.target.closest('.sched-slot');
-      if (!slot) return;
-      const key  = slot.dataset.key;
-      const team = slot.dataset.team;
-      if (key && team) schedToggleSlot(key, team);
-    }, { once: false });
-
-    // Re-attach on every render by replacing the node's listener
-    const newWrap = wrap.cloneNode(true);
-    wrap.parentNode.replaceChild(newWrap, wrap);
-    newWrap.addEventListener('click', (e) => {
+    // Clear any old listeners by replacing innerHTML (already done above)
+    // Attach single delegated click listener
+    wrap._schedBound = true;
+    wrap.onclick = (e) => {
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
       const key  = slot.dataset.key;
       const team = slot.dataset.team;
       if (key && team) window.schedToggleSlot(key, team);
-    });
+    };
 
     // Drag to select multiple slots
     let _dragging = false;
-    let _dragAction = null;  // 'add' or 'remove'
-    newWrap.addEventListener('mousedown', (e) => {
+    let _dragAction = null;
+    wrap.onmousedown = (e) => {
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
       e.preventDefault();
       _dragging = true;
       _dragAction = slot.classList.contains('mine') ? 'remove' : 'add';
-    });
-    newWrap.addEventListener('mousemove', (e) => {
+    };
+    wrap.onmousemove = (e) => {
       if (!_dragging) return;
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
@@ -1586,19 +1577,36 @@
       if (!key || !team) return;
       const myAvail = _schedData.availability?.[team] || {};
       const alreadyOn = !!myAvail[key];
-      if (_dragAction === 'add' && !alreadyOn)    window.schedToggleSlot(key, team);
-      if (_dragAction === 'remove' && alreadyOn)  window.schedToggleSlot(key, team);
-    });
-    document.addEventListener('mouseup', () => { _dragging = false; _dragAction = null; }, { once: false });
+      if (_dragAction === 'add'    && !alreadyOn) window.schedToggleSlot(key, team);
+      if (_dragAction === 'remove' &&  alreadyOn) window.schedToggleSlot(key, team);
+    };
+    document.onmouseup = () => { _dragging = false; _dragAction = null; };
   }
 
   window.schedToggleSlot = async function(key, myTeam) {
-    const avail = _schedData.availability?.[myTeam] || {};
-    const isOn  = !!avail[key];
-    const safeKey = myTeam.replace(/[^a-zA-Z0-9_]/g, '_');
-    const path = `tournament/availability/${safeKey}/${key.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+    // Optimistic local update first so UI responds immediately
+    if (!_schedData.availability) _schedData.availability = {};
+    if (!_schedData.availability[myTeam]) _schedData.availability[myTeam] = {};
+    const isOn = !!_schedData.availability[myTeam][key];
+    if (isOn) {
+      delete _schedData.availability[myTeam][key];
+    } else {
+      _schedData.availability[myTeam][key] = true;
+    }
 
-    // Audit entry
+    // Re-render calendar immediately
+    const { teamKey } = _schedSession || {};
+    const otherTeam = _schedMatchup
+      ? (_schedMatchup.team1 === teamKey ? _schedMatchup.team2 : _schedMatchup.team1)
+      : null;
+    _renderCalendar(teamKey, otherTeam);
+    _renderOverlaps(teamKey, otherTeam);
+
+    // Sanitise keys for Firebase path (replace non-alphanumeric with _)
+    const safeTeam = myTeam.replace(/[^a-zA-Z0-9]/g, '_');
+    const safeKey  = key.replace(/[^a-zA-Z0-9]/g, '_');
+    const path = `tournament/availability/${safeTeam}/${safeKey}`;
+
     const auditEntry = {
       team: myTeam,
       action: isOn ? 'removed' : 'added',
@@ -1611,6 +1619,13 @@
       await fbPush(fbRef(database, 'tournament/audit_log'), auditEntry);
     } catch(e) {
       console.error('Firebase write error:', e);
+      // Revert local state if Firebase write failed
+      if (isOn) {
+        _schedData.availability[myTeam][key] = true;
+      } else {
+        delete _schedData.availability[myTeam][key];
+      }
+      _renderCalendar(teamKey, otherTeam);
     }
   };
 
