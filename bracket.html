@@ -327,6 +327,141 @@
     padding: 7px 12px; font-size: 13px; outline: none; cursor: pointer;
   }
   .tz-select:focus { border-color: rgba(204,31,31,0.5); }
+
+  /* ── Scheduling tab ── */
+  .sched-login {
+    max-width: 420px; margin: 60px auto; text-align: center;
+  }
+  .sched-login h2 { font-size: 22px; font-weight: 900; margin-bottom: 8px; }
+  .sched-login p { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+  .sched-input {
+    width: 100%; background: var(--surface); color: var(--white);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 16px; font-size: 15px; outline: none;
+    margin-bottom: 12px; text-align: center; letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .sched-input:focus { border-color: rgba(204,31,31,0.6); }
+  .sched-btn {
+    width: 100%; background: var(--accent); color: white; border: none;
+    border-radius: 8px; padding: 12px; font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .sched-btn:hover { background: #e02222; }
+  .sched-error { color: var(--accent); font-size: 13px; margin-top: 8px; }
+
+  .sched-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .sched-team-badge {
+    background: rgba(204,31,31,0.15); color: var(--accent);
+    border: 1px solid rgba(204,31,31,0.3); border-radius: 8px;
+    padding: 6px 14px; font-size: 13px; font-weight: 900;
+    letter-spacing: 0.04em;
+  }
+  .sched-logout {
+    background: transparent; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 12px; font-size: 12px; cursor: pointer;
+  }
+  .sched-logout:hover { color: var(--white); }
+
+  .sched-matchup-select {
+    background: var(--surface); color: var(--white);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 14px; font-size: 13px; outline: none; cursor: pointer;
+    margin-left: auto;
+  }
+
+  /* Calendar */
+  .sched-cal-wrap { overflow-x: auto; }
+  .sched-cal {
+    min-width: 700px; border-collapse: collapse; width: 100%;
+    font-size: 12px;
+  }
+  .sched-cal th {
+    padding: 8px 4px; text-align: center;
+    color: var(--muted); font-size: 11px; font-weight: 700;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: var(--bg); z-index: 2;
+  }
+  .sched-cal td {
+    padding: 0; border: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top; min-width: 90px;
+  }
+  .sched-time-label {
+    padding: 4px 8px; color: var(--muted); font-size: 11px;
+    white-space: nowrap; text-align: right; width: 56px;
+    vertical-align: middle; border-right: 1px solid var(--border);
+  }
+  .sched-slot {
+    height: 28px; cursor: pointer;
+    transition: background 0.1s;
+    position: relative;
+  }
+  .sched-slot:hover { filter: brightness(1.3); }
+  .sched-slot.mine      { background: rgba(204,31,31,0.45); }
+  .sched-slot.theirs    { background: rgba(74,158,255,0.35); }
+  .sched-slot.overlap   { background: rgba(46,204,113,0.55); }
+  .sched-slot.confirmed { background: rgba(255,165,0,0.6); }
+  .sched-slot.empty     { background: transparent; }
+
+  .sched-legend {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 14px; font-size: 12px; align-items: center;
+  }
+  .sched-legend-item { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+  .sched-legend-dot {
+    width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0;
+  }
+
+  .sched-week-nav {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .sched-week-nav button {
+    background: var(--surface); color: var(--white);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 14px; font-size: 13px; cursor: pointer;
+  }
+  .sched-week-nav button:hover { border-color: var(--accent); }
+  .sched-week-label { font-size: 14px; font-weight: 700; color: var(--white); }
+
+  .sched-overlap-list {
+    margin-top: 20px;
+  }
+  .sched-overlap-list h3 {
+    font-size: 14px; font-weight: 900; color: var(--white);
+    margin-bottom: 10px; letter-spacing: 0.04em;
+  }
+  .sched-overlap-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 16px; margin-bottom: 8px;
+  }
+  .sched-overlap-time { font-size: 13px; font-weight: 700; color: #2ecc71; flex: 1; }
+  .sched-confirm-btn {
+    background: rgba(46,204,113,0.15); color: #2ecc71;
+    border: 1px solid rgba(46,204,113,0.4); border-radius: 6px;
+    padding: 5px 14px; font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  .sched-confirm-btn:hover { background: rgba(46,204,113,0.25); }
+  .sched-confirm-btn.confirmed {
+    background: rgba(255,165,0,0.15); color: #ffa500;
+    border-color: rgba(255,165,0,0.4);
+  }
+
+  .sched-audit {
+    margin-top: 20px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+  }
+  .sched-audit h3 { font-size: 13px; font-weight: 900; color: var(--accent);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; }
+  .sched-audit-entry {
+    font-size: 12px; color: var(--muted); padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .sched-audit-entry:last-child { border-bottom: none; }
+  .sched-audit-team { color: var(--white); font-weight: 700; }
   .tz-local-btn {
     background: transparent; color: var(--muted);
     border: 1px solid var(--border); border-radius: 8px;
@@ -501,6 +636,7 @@
   <button class="tab"        onclick="showTab('upcoming')">Upcoming Games</button>
   <button class="tab"        onclick="showTab('teams')">Team Management</button>
   <button class="tab"        onclick="showTab('stats')">Stats &amp; Recs</button>
+  <button class="tab"        onclick="showTab('scheduling')">Scheduling</button>
 </div>
 
 <div id="bracket-page" class="page">
@@ -541,6 +677,10 @@
     <span>Loading stats…</span>
   </div>
   <div id="stats-content" style="display:none"></div>
+</div>
+
+<div id="scheduling-page" class="page">
+  <div id="scheduling-root"></div>
 </div>
 
 <!-- Player hover tooltip -->
@@ -593,6 +733,16 @@
     renderUpcoming(data.upcoming || []);
     renderRoster(data.roster   || {});
     renderStats(data.game_records || []);
+    schedUpdateData({
+      team_codes:      data.team_codes      || {},
+      admin_code:      data.admin_code      || '',
+      availability:    data.availability    || {},
+      scheduled_games: data.scheduled_games || {},
+      game_records:    data.game_records    || [],
+      groups:          data.groups          || {},
+      audit_log:       data.audit_log       || {},
+      upcoming:        data.upcoming        || [],
+    });
     document.getElementById('last-updated').textContent =
       'Last updated: ' + new Date().toLocaleTimeString();
   }, (error) => {
@@ -1168,6 +1318,424 @@
     const el = document.getElementById('stats-count');
     if (el) el.textContent = visible + ' games';
   };
+
+  // ══════════════════════════════════════════════════
+  //  SCHEDULING SYSTEM
+  // ══════════════════════════════════════════════════
+  import { ref as fbRef, set as fbSet, push as fbPush } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  let _schedData = { team_codes:{}, admin_code:'', availability:{}, scheduled_games:{}, game_records:[], groups:{} };
+  let _schedSession = null;   // { teamKey, isAdmin }
+  let _schedWeekOffset = 0;
+  let _schedMatchup = null;   // { team1, team2, round, group }
+
+  function schedUpdateData(data) {
+    _schedData = data;
+    if (_schedSession) _renderSchedMain();
+  }
+
+  // ── Login ───────────────────────────────────────
+  function _renderSchedLogin(errorMsg) {
+    const root = document.getElementById('scheduling-root');
+    root.innerHTML = `
+      <div class="sched-login">
+        <h2>Scheduling</h2>
+        <p>Enter your team access code (provided by the admin) or the admin code to manage scheduling.</p>
+        <input class="sched-input" id="sched-code-input" type="text" placeholder="ENTER CODE"
+               maxlength="20" oninput="this.value=this.value.toUpperCase()">
+        ${errorMsg ? `<div class="sched-error">${errorMsg}</div>` : ''}
+        <button class="sched-btn" onclick="schedLogin()">Enter</button>
+      </div>`;
+    document.getElementById('sched-code-input')?.focus();
+  }
+
+  window.schedLogin = function() {
+    const code = (document.getElementById('sched-code-input')?.value || '').trim().toUpperCase();
+    if (!code) return;
+
+    // Check admin code
+    const adminCode = (_schedData.admin_code || '').toUpperCase();
+    if (adminCode && code === adminCode) {
+      _schedSession = { teamKey: null, isAdmin: true };
+      _renderSchedMain();
+      return;
+    }
+
+    // Check team codes
+    const codes = _schedData.team_codes || {};
+    for (const [team, tc] of Object.entries(codes)) {
+      if ((tc || '').toUpperCase() === code) {
+        _schedSession = { teamKey: team, isAdmin: false };
+        _schedMatchup = _findNextMatchup(team);
+        _renderSchedMain();
+        return;
+      }
+    }
+    _renderSchedLogin('Invalid code. Try again.');
+  };
+
+  window.schedLogout = function() {
+    _schedSession = null;
+    _schedMatchup = null;
+    _schedWeekOffset = 0;
+    _renderSchedLogin();
+  };
+
+  // ── Matchup finder (from game_records) ──────────
+  function _findNextMatchup(teamKey) {
+    const records = Array.isArray(_schedData.game_records)
+      ? _schedData.game_records : Object.values(_schedData.game_records || {});
+    // Unplayed = no rec_urls and no score, involving this team
+    for (const r of records) {
+      const involves = r.team1 === teamKey || r.team2 === teamKey;
+      const played   = (r.rec_urls && r.rec_urls.length) || r.score;
+      if (involves && !played) return r;
+    }
+    return records.find(r => r.team1 === teamKey || r.team2 === teamKey) || null;
+  }
+
+  function _getMatchups(teamKey) {
+    const records = Array.isArray(_schedData.game_records)
+      ? _schedData.game_records : Object.values(_schedData.game_records || {});
+    return records.filter(r => r.team1 === teamKey || r.team2 === teamKey);
+  }
+
+  // ── Week helpers ─────────────────────────────────
+  function _weekStart(offset) {
+    const d = new Date();
+    d.setHours(0,0,0,0);
+    const day = d.getDay();
+    d.setDate(d.getDate() - day + 1 + offset * 7);   // Monday
+    return d;
+  }
+
+  function _slotsForWeek(offset) {
+    const start = _weekStart(offset);
+    const slots = [];
+    for (let d = 0; d < 7; d++) {
+      const day = new Date(start);
+      day.setDate(start.getDate() + d);
+      for (let h = 0; h < 24; h++) {
+        for (let m = 0; m < 60; m += 15) {
+          const dt = new Date(day);
+          dt.setHours(h, m, 0, 0);
+          slots.push(dt);
+        }
+      }
+    }
+    return slots;
+  }
+
+  function _slotKey(dt) {
+    return dt.toISOString().slice(0, 16);   // "2025-04-12T18:00"
+  }
+
+  // ── Main scheduling view ─────────────────────────
+  function _renderSchedMain() {
+    const { teamKey, isAdmin } = _schedSession;
+    const root = document.getElementById('scheduling-root');
+
+    if (isAdmin) {
+      _renderSchedAdmin(root);
+      return;
+    }
+
+    const matchups = _getMatchups(teamKey);
+    if (!_schedMatchup && matchups.length) _schedMatchup = matchups[0];
+
+    const matchupOptions = matchups.map(m => {
+      const opp = m.team1 === teamKey ? m.team2 : m.team1;
+      const label = `${m.round || ''} ${m.group ? '· Gr.' + m.group : ''} — vs ${opp}`.trim();
+      const selected = _schedMatchup && m.team1 === _schedMatchup.team1 && m.team2 === _schedMatchup.team2 ? 'selected' : '';
+      return `<option value="${m.team1}|||${m.team2}|||${m.round||''}|||${m.group||''}" ${selected}>${label}</option>`;
+    }).join('');
+
+    const otherTeam = _schedMatchup
+      ? (_schedMatchup.team1 === teamKey ? _schedMatchup.team2 : _schedMatchup.team1)
+      : null;
+
+    root.innerHTML = `
+      <div class="sched-header">
+        <span class="sched-team-badge">👤 ${teamKey}</span>
+        ${otherTeam ? `<span style="color:var(--muted);font-size:13px">vs <strong style="color:var(--white)">${otherTeam}</strong></span>` : ''}
+        ${matchupOptions ? `<select class="sched-matchup-select" onchange="schedSelectMatchup(this.value)">${matchupOptions}</select>` : ''}
+        <button class="sched-logout" onclick="schedLogout()">Log out</button>
+      </div>
+      <div class="sched-legend">
+        <span class="sched-legend-item"><span class="sched-legend-dot" style="background:rgba(204,31,31,0.45)"></span> My availability</span>
+        <span class="sched-legend-item"><span class="sched-legend-dot" style="background:rgba(74,158,255,0.35)"></span> ${otherTeam || 'Opponent'} availability</span>
+        <span class="sched-legend-item"><span class="sched-legend-dot" style="background:rgba(46,204,113,0.55)"></span> Overlap (both free)</span>
+        <span class="sched-legend-item"><span class="sched-legend-dot" style="background:rgba(255,165,0,0.6)"></span> Confirmed</span>
+      </div>
+      <div class="sched-week-nav">
+        <button onclick="schedWeek(-1)">◀ Prev</button>
+        <span class="sched-week-label" id="sched-week-lbl"></span>
+        <button onclick="schedWeek(1)">Next ▶</button>
+      </div>
+      <div class="sched-cal-wrap" id="sched-cal-wrap"></div>
+      <div class="sched-overlap-list" id="sched-overlaps"></div>
+      <div class="sched-audit" id="sched-audit"></div>`;
+
+    _renderCalendar(teamKey, otherTeam);
+    _renderOverlaps(teamKey, otherTeam);
+    _renderAudit();
+  }
+
+  window.schedSelectMatchup = function(val) {
+    const [t1, t2, round, group] = val.split('|||');
+    _schedMatchup = { team1: t1, team2: t2, round, group };
+    _renderSchedMain();
+  };
+
+  window.schedWeek = function(dir) {
+    _schedWeekOffset += dir;
+    const { teamKey } = _schedSession;
+    const otherTeam = _schedMatchup
+      ? (_schedMatchup.team1 === teamKey ? _schedMatchup.team2 : teamKey === _schedMatchup.team2 ? _schedMatchup.team1 : null)
+      : null;
+    _renderCalendar(teamKey, otherTeam);
+    _renderOverlaps(teamKey, otherTeam);
+  };
+
+  function _renderCalendar(myTeam, otherTeam) {
+    const wrap = document.getElementById('sched-cal-wrap');
+    const lbl  = document.getElementById('sched-week-lbl');
+    if (!wrap) return;
+
+    const ws = _weekStart(_schedWeekOffset);
+    const we = new Date(ws); we.setDate(ws.getDate() + 6);
+    lbl && (lbl.textContent = `${ws.toLocaleDateString('en-GB',{day:'numeric',month:'short'})} – ${we.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}`);
+
+    const myAvail    = _schedData.availability?.[myTeam]    || {};
+    const theirAvail = otherTeam ? (_schedData.availability?.[otherTeam] || {}) : {};
+    const confirmed  = _schedData.scheduled_games || {};
+
+    // Day headers
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(ws); d.setDate(ws.getDate() + i);
+      days.push(d);
+    }
+
+    let html = `<table class="sched-cal"><thead><tr>
+      <th style="width:56px"></th>
+      ${days.map(d => `<th>${d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}</th>`).join('')}
+    </tr></thead><tbody>`;
+
+    // Only show hours 6:00–23:45
+    for (let h = 6; h < 24; h++) {
+      for (let m = 0; m < 60; m += 15) {
+        html += `<tr>`;
+        html += `<td class="sched-time-label">${m === 0 ? `${String(h).padStart(2,'0')}:00` : ''}</td>`;
+        for (let d = 0; d < 7; d++) {
+          const dt  = new Date(days[d]); dt.setHours(h, m, 0, 0);
+          const key = _slotKey(dt);
+          const mine    = !!myAvail[key];
+          const theirs  = !!theirAvail[key];
+          const isConf  = Object.values(confirmed).some(g => g.datetime === key);
+          let cls = 'empty';
+          if (isConf)         cls = 'confirmed';
+          else if (mine && theirs) cls = 'overlap';
+          else if (mine)      cls = 'mine';
+          else if (theirs)    cls = 'theirs';
+          const tip = isConf ? 'Confirmed game' : cls === 'overlap' ? 'Both available!' : '';
+          html += `<td class="sched-slot ${cls}" data-key="${key}" title="${tip}" onclick="schedToggleSlot('${key}','${myTeam}')"></td>`;
+        }
+        html += `</tr>`;
+      }
+    }
+    html += '</tbody></table>';
+    wrap.innerHTML = html;
+  }
+
+  window.schedToggleSlot = async function(key, myTeam) {
+    const avail = _schedData.availability?.[myTeam] || {};
+    const isOn  = !!avail[key];
+    const safeKey = myTeam.replace(/[^a-zA-Z0-9_]/g, '_');
+    const path = `tournament/availability/${safeKey}/${key.replace(/[^a-zA-Z0-9_]/g, '_')}`;
+
+    // Audit entry
+    const auditEntry = {
+      team: myTeam,
+      action: isOn ? 'removed' : 'added',
+      slot: key,
+      timestamp: new Date().toISOString(),
+    };
+
+    try {
+      await fbSet(fbRef(database, path), isOn ? null : true);
+      await fbPush(fbRef(database, 'tournament/audit_log'), auditEntry);
+    } catch(e) {
+      console.error('Firebase write error:', e);
+    }
+  };
+
+  function _renderOverlaps(myTeam, otherTeam) {
+    const el = document.getElementById('sched-overlaps');
+    if (!el || !otherTeam) return;
+
+    const myAvail    = _schedData.availability?.[myTeam]    || {};
+    const theirAvail = _schedData.availability?.[otherTeam] || {};
+    const confirmed  = _schedData.scheduled_games           || {};
+
+    const overlaps = Object.keys(myAvail).filter(k => theirAvail[k]).sort();
+    if (!overlaps.length) { el.innerHTML = ''; return; }
+
+    const myKey    = myTeam.replace(/[^a-zA-Z0-9_]/g, '_');
+    const theirKey = otherTeam.replace(/[^a-zA-Z0-9_]/g, '_');
+    const matchKey = [myKey, theirKey].sort().join('_vs_');
+
+    const confirmedGame = confirmed[matchKey];
+
+    let html = `<div class="sched-overlap-list"><h3>🟢 Available Overlap Slots (${overlaps.length})</h3>`;
+    overlaps.slice(0, 20).forEach(k => {
+      const dt = new Date(k);
+      const label = dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}) + ' · ' +
+                    dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' GMT';
+      const isThisConfirmed = confirmedGame?.datetime === k;
+      const bothConfirmed = confirmedGame?.confirmed_by?.includes(myTeam) && confirmedGame?.confirmed_by?.includes(otherTeam);
+      html += `<div class="sched-overlap-item">
+        <span class="sched-overlap-time">${label}</span>
+        ${isThisConfirmed && bothConfirmed
+          ? `<span style="color:#ffa500;font-size:12px;font-weight:700">✓ CONFIRMED</span>`
+          : `<button class="sched-confirm-btn ${isThisConfirmed ? 'confirmed' : ''}"
+               onclick="schedConfirm('${k}','${myTeam}','${otherTeam}','${matchKey}')">
+               ${isThisConfirmed ? (confirmedGame?.confirmed_by?.includes(myTeam) ? 'Waiting for opponent' : 'Confirm') : 'Propose this slot'}
+             </button>`}
+      </div>`;
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  window.schedConfirm = async function(datetime, myTeam, otherTeam, matchKey) {
+    const existing = _schedData.scheduled_games?.[matchKey] || {};
+    const confirmedBy = existing.confirmed_by || [];
+
+    if (!confirmedBy.includes(myTeam)) confirmedBy.push(myTeam);
+
+    const bothConfirmed = confirmedBy.includes(myTeam) && confirmedBy.includes(otherTeam);
+    const dt = new Date(datetime);
+    const label = dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}) + ' · ' +
+                  dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + ' GMT';
+
+    const gameData = {
+      datetime,
+      team1: _schedMatchup?.team1 || myTeam,
+      team2: _schedMatchup?.team2 || otherTeam,
+      round: _schedMatchup?.round || '',
+      group: _schedMatchup?.group || '',
+      confirmed_by: confirmedBy,
+      proposed_by: existing.proposed_by || myTeam,
+      label,
+      status: bothConfirmed ? 'confirmed' : 'pending',
+    };
+
+    const auditEntry = {
+      team: myTeam,
+      action: bothConfirmed ? 'confirmed_game' : 'proposed_slot',
+      slot: datetime,
+      matchup: `${gameData.team1} vs ${gameData.team2}`,
+      timestamp: new Date().toISOString(),
+    };
+
+    try {
+      await fbSet(fbRef(database, `tournament/scheduled_games/${matchKey}`), gameData);
+      await fbPush(fbRef(database, 'tournament/audit_log'), auditEntry);
+
+      // If both confirmed, push to upcoming games
+      if (bothConfirmed) {
+        const upcoming = Array.isArray(_schedData.upcoming) ? [..._schedData.upcoming] : Object.values(_schedData.upcoming || {});
+        const existingIdx = upcoming.findIndex(u => u._match_key === matchKey);
+        const newEntry = {
+          title: `${gameData.round ? gameData.round + ' — ' : ''}${gameData.team1} vs ${gameData.team2}`,
+          date: label,
+          team1: gameData.team1,
+          team2: gameData.team2,
+          description: `Confirmed by both captains`,
+          image: '',
+          _match_key: matchKey,
+        };
+        if (existingIdx >= 0) upcoming[existingIdx] = newEntry;
+        else upcoming.push(newEntry);
+        await fbSet(fbRef(database, 'tournament/upcoming'), upcoming);
+      }
+    } catch(e) {
+      console.error('Firebase confirm error:', e);
+    }
+  };
+
+  function _renderAudit() {
+    const el = document.getElementById('sched-audit');
+    if (!el) return;
+    const log = _schedData.audit_log || {};
+    const entries = Object.values(log).sort((a,b) => b.timestamp > a.timestamp ? 1 : -1).slice(0, 15);
+    if (!entries.length) { el.innerHTML = ''; return; }
+    let html = '<div class="sched-audit"><h3>Audit Trail</h3>';
+    entries.forEach(e => {
+      const ts = new Date(e.timestamp).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+      const actionLabel = {
+        added: 'marked available',
+        removed: 'removed availability',
+        proposed_slot: 'proposed slot',
+        confirmed_game: 'confirmed game',
+      }[e.action] || e.action;
+      html += `<div class="sched-audit-entry">
+        <span class="sched-audit-team">${e.team}</span> ${actionLabel}
+        ${e.slot ? `<span style="color:#4a9eff"> ${new Date(e.slot).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : ''}
+        ${e.matchup ? `<span> for ${e.matchup}</span>` : ''}
+        <span style="float:right;color:#555">${ts}</span>
+      </div>`;
+    });
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  // Admin view — overview of all scheduled games
+  function _renderSchedAdmin(root) {
+    const games = Object.values(_schedData.scheduled_games || {});
+    const audit  = Object.values(_schedData.audit_log || {}).sort((a,b) => b.timestamp > a.timestamp ? 1:-1).slice(0,30);
+
+    let html = `<div class="sched-header">
+      <span class="sched-team-badge">🔧 ADMIN</span>
+      <button class="sched-logout" onclick="schedLogout()">Log out</button>
+    </div>`;
+
+    // Scheduled games overview
+    html += `<h3 style="font-size:15px;font-weight:900;margin-bottom:12px">Scheduled Games</h3>`;
+    if (!games.length) {
+      html += `<p style="color:var(--muted);font-size:13px;margin-bottom:20px">No games scheduled yet.</p>`;
+    } else {
+      games.forEach(g => {
+        const status = g.status === 'confirmed' ? '✓ CONFIRMED' : '⏳ Pending';
+        const color  = g.status === 'confirmed' ? '#2ecc71' : '#ffa500';
+        html += `<div class="sched-overlap-item">
+          <span class="sched-overlap-time">${g.team1} vs ${g.team2}</span>
+          <span style="color:var(--muted);font-size:12px">${g.label || g.datetime}</span>
+          <span style="color:${color};font-size:12px;font-weight:700">${status}</span>
+        </div>`;
+      });
+    }
+
+    // Audit log
+    html += `<div class="sched-audit" style="margin-top:20px"><h3>Full Audit Trail</h3>`;
+    audit.forEach(e => {
+      const ts = new Date(e.timestamp).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+      const actionLabel = { added:'marked available', removed:'removed availability',
+        proposed_slot:'proposed slot', confirmed_game:'confirmed game' }[e.action] || e.action;
+      html += `<div class="sched-audit-entry">
+        <span class="sched-audit-team">${e.team}</span> ${actionLabel}
+        ${e.matchup ? `<span> for ${e.matchup}</span>` : ''}
+        ${e.slot ? `<span style="color:#4a9eff"> ${new Date(e.slot).toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>` : ''}
+        <span style="float:right;color:#555">${ts}</span>
+      </div>`;
+    });
+    html += '</div>';
+    root.innerHTML = html;
+  }
+
+  // Init scheduling login on load
+  _renderSchedLogin();
 
   // ══════════════════════════════════════════════════
   //  PLAYER CLICK PANEL
