@@ -1601,7 +1601,9 @@
     }
 
     // Re-render calendar immediately
-    const { teamKey } = _schedSession || {};
+    const sess = _schedSession || {};
+    const teamKey = sess.teamKey;
+    if (!teamKey) return;
     const otherTeam = _schedMatchup
       ? (_schedMatchup.team1 === teamKey ? _schedMatchup.team2 : _schedMatchup.team1)
       : null;
