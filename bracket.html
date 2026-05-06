@@ -1569,45 +1569,64 @@
     html += '</tbody></table>';
     wrap.innerHTML = html;
 
-    // Clear any old listeners by replacing innerHTML (already done above)
-    // Attach single delegated click listener
-    wrap._schedBound = true;
+    // Click listener on wrap
     wrap.onclick = (e) => {
-      console.log('[Sched] click on wrap, target:', e.target.className);
+      if (_dragMoved) return;  // ignore click at end of drag
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
       const key  = slot.dataset.key;
       const team = slot.dataset.team;
-      console.log('[Sched] slot click', key, team);
       if (key && team) window.schedToggleSlot(key, team);
     };
 
-    // Drag to select multiple slots
-    let _dragging = false;
-    let _dragAction = null;
+    // Mousedown on wrap to start drag
     wrap.onmousedown = (e) => {
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
       e.preventDefault();
-      _dragging = true;
+      _dragging   = true;
+      _dragMoved  = false;
       _dragAction = slot.classList.contains('mine') ? 'remove' : 'add';
+      _dragTeam   = slot.dataset.team;
+      _dragSeen   = new Set([slot.dataset.key]);
+      // Toggle the first slot immediately
+      window.schedToggleSlot(slot.dataset.key, slot.dataset.team);
     };
-    wrap.onmousemove = (e) => {
-      if (!_dragging) return;
-      const slot = e.target.closest('.sched-slot');
-      if (!slot) return;
-      const key  = slot.dataset.key;
-      const team = slot.dataset.team;
-      if (!key || !team) return;
-      const myAvail = _schedData.availability?.[team] || {};
-      const alreadyOn = !!myAvail[key];
-      if (_dragAction === 'add'    && !alreadyOn) window.schedToggleSlot(key, team);
-      if (_dragAction === 'remove' &&  alreadyOn) window.schedToggleSlot(key, team);
-    };
-    document.onmouseup = () => { _dragging = false; _dragAction = null; };
   }
 
   let _pendingAvailChanges = {};  // slots changed but not yet saved
+
+  // Module-level drag state — survives DOM rebuilds
+  let _dragging   = false;
+  let _dragMoved  = false;
+  let _dragAction = null;   // 'add' | 'remove'
+  let _dragTeam   = null;
+  let _dragSeen   = new Set();
+
+  document.addEventListener('mousemove', (e) => {
+    if (!_dragging) return;
+    const slot = e.target.closest?.('.sched-slot');
+    if (!slot) return;
+    const key  = slot.dataset.key;
+    const team = slot.dataset.team;
+    if (!key || !team || _dragSeen.has(key)) return;
+    _dragSeen.add(key);
+    _dragMoved = true;
+    const myAvail   = _schedData.availability?.[team] || {};
+    const alreadyOn = !!myAvail[key];
+    if (_dragAction === 'add'    && !alreadyOn) window.schedToggleSlot(key, team);
+    if (_dragAction === 'remove' &&  alreadyOn) window.schedToggleSlot(key, team);
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (_dragging) {
+      _dragging  = false;
+      _dragAction = null;
+      _dragTeam   = null;
+      _dragSeen   = new Set();
+      setTimeout(() => { _dragMoved = false; }, 50);  // small delay so click handler sees it
+    }
+  });
 
   window.schedToggleSlot = function(key, myTeam) {
     console.log('[Sched] toggleSlot', key, myTeam);
