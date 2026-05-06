@@ -1342,17 +1342,19 @@
   let _schedWriting = false;  // suppress Firebase echo re-renders during writes
 
   function schedUpdateData(data) {
-    // Don't overwrite local optimistic state while a write is in flight
     if (_schedWriting) {
-      // Only update non-availability parts
       _schedData = {
         ...data,
-        availability: _schedData.availability,  // keep our optimistic version
+        availability:   _schedData.availability,
+        _firebaseAvail: _schedData._firebaseAvail,
       };
-      // Don't re-render during a write — avoid flickering
       return;
     } else {
-      _schedData = data;
+      // Deep-copy availability as the Firebase reference snapshot
+      _schedData = {
+        ...data,
+        _firebaseAvail: JSON.parse(JSON.stringify(data.availability || {})),
+      };
     }
     if (_schedSession) _renderSchedMain();
   }
@@ -1580,9 +1582,9 @@
     html += '</tbody></table>';
     wrap.innerHTML = html;
 
-    // Click listener on wrap
+    // Click listener — handles single clicks only
     wrap.onclick = (e) => {
-      if (_dragMoved) return;  // ignore click at end of drag
+      if (_dragMoved) return;  // was a drag, not a click
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
       const key  = slot.dataset.key;
@@ -1590,7 +1592,7 @@
       if (key && team) window.schedToggleSlot(key, team);
     };
 
-    // Mousedown on wrap to start drag
+    // Mousedown — just starts drag tracking, does NOT toggle yet
     wrap.onmousedown = (e) => {
       const slot = e.target.closest('.sched-slot');
       if (!slot) return;
@@ -1599,9 +1601,7 @@
       _dragMoved  = false;
       _dragAction = slot.classList.contains('mine') ? 'remove' : 'add';
       _dragTeam   = slot.dataset.team;
-      _dragSeen   = new Set([slot.dataset.key]);
-      // Toggle the first slot immediately
-      window.schedToggleSlot(slot.dataset.key, slot.dataset.team);
+      _dragSeen   = new Set();  // empty — first slot toggled on first mousemove
     };
   }
 
@@ -1650,9 +1650,15 @@
       _schedData.availability[myTeam][key] = true;
     }
 
-    // Track pending changes
+    // Track pending changes — remove entry if slot returns to its original Firebase state
     if (!_pendingAvailChanges[myTeam]) _pendingAvailChanges[myTeam] = {};
-    _pendingAvailChanges[myTeam][key] = !isOn;
+    const firebaseState = !!(_schedData._firebaseAvail?.[myTeam]?.[key]);
+    const newState = !isOn;
+    if (newState === firebaseState) {
+      delete _pendingAvailChanges[myTeam][key];  // back to original — cancel the change
+    } else {
+      _pendingAvailChanges[myTeam][key] = newState;
+    }
 
     // Update just this slot's class in-place — no full re-render, drag stays alive
     const otherTeam = _schedMatchup
@@ -1727,6 +1733,9 @@
       }));
       await Promise.all(writes);
       _pendingAvailChanges[myTeam] = {};
+      // Update the Firebase snapshot so undo detection resets
+      if (!_schedData._firebaseAvail) _schedData._firebaseAvail = {};
+      _schedData._firebaseAvail[myTeam] = JSON.parse(JSON.stringify(_schedData.availability?.[myTeam] || {}));
       if (btn) {
         btn.textContent = '✓ Saved!';
         btn.style.background = '#0a2a0a';
