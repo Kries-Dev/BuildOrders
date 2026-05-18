@@ -606,15 +606,6 @@
   }
   .stats-table tr:hover td { background: rgba(255,255,255,0.02); }
   .stats-table .score-cell { font-weight: 900; color: var(--white); }
-  .stats-dl-btn {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: rgba(46,204,113,0.12); color: #2ecc71;
-    border: 1px solid rgba(46,204,113,0.3); border-radius: 5px;
-    padding: 3px 10px; font-size: 11px; font-weight: 700;
-    text-decoration: none; white-space: nowrap;
-    transition: background 0.15s;
-  }
-  .stats-dl-btn:hover { background: rgba(46,204,113,0.22); }
   .stats-filter-row {
     display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;
   }
@@ -1278,19 +1269,11 @@
     <div class="stats-table-wrap">
     <table class="stats-table" id="stats-table">
       <thead><tr>
-        <th>Round</th><th>Group</th><th>Team 1</th><th>Team 2</th><th>Score</th><th>Rec (right-click → save as)</th><th>VOD</th>
+        <th>Round</th><th>Group</th><th>Team 1</th><th>Team 2</th><th>Score</th><th>VOD</th>
       </tr></thead><tbody>`;
 
     items.forEach(r => {
       const search = `${r.round} ${r.group} ${r.team1} ${r.team2}`.toLowerCase();
-      const recUrls = Array.isArray(r.rec_urls) ? r.rec_urls
-                    : (r.rec_urls ? Object.values(r.rec_urls) : []);
-      const dlBtns = recUrls.length
-        ? recUrls.map((url, i) => {
-            const label = `G${i + 1}`;
-            return `<a class="stats-dl-btn" href="${url}" target="_top" rel="noopener">⬇ ${label}</a>`;
-          }).join(' ')
-        : '<span style="color:var(--muted);font-size:12px">—</span>';
       const vodBtn = r.vod_url
         ? `<a href="${r.vod_url}" target="_blank" rel="noopener" title="Watch VOD"
              style="display:inline-flex;align-items:center;gap:4px;color:#ff0000;text-decoration:none;font-size:18px;line-height:1">
@@ -1303,7 +1286,6 @@
         <td>${r.team1 || ''}</td>
         <td>${r.team2 || ''}</td>
         <td class="score-cell">${r.score || ''}</td>
-        <td>${dlBtns}</td>
         <td>${vodBtn}</td>
       </tr>`;
     });
