@@ -2070,6 +2070,8 @@
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     event.target.classList.add('active');
     document.getElementById(name + '-page').classList.add('active');
+    const logo = document.getElementById('bg-logo');
+    if (logo) logo.style.display = (name === 'bracket' || name === 'groups') ? '' : 'none';
   }
 </script>
 </body>
