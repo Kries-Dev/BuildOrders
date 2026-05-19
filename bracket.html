@@ -730,7 +730,7 @@
       return;
     }
     setStatus(true);
-    renderGroups(data.groups   || {}, data.settings || {});
+    renderGroups(data.groups || {}, data.settings || {}, data.group_match_log || []);
     renderBracket(data.matches || {});
     renderUpcoming(data.upcoming || []);
     renderRoster(data.roster   || {});
@@ -874,13 +874,27 @@
   // ══════════════════════════════════════════════════
   //  GROUPS RENDERER
   // ══════════════════════════════════════════════════
-  function renderGroups(groups, settings) {
+  function renderGroups(groups, settings, matchLog) {
     const loading = document.getElementById('groups-loading');
     const content = document.getElementById('groups-content');
     loading.style.display = 'none';
     content.style.display = 'block';
 
     _seedMap = buildSeedMap(groups);
+
+    // Build h2h lookup: "nameA|||nameB" (sorted) -> winner name
+    const h2h = {};
+    (matchLog || []).forEach(gm => {
+      const key = [gm.team1, gm.team2].sort().join('|||');
+      h2h[key] = gm.score1 > gm.score2 ? gm.team1 : gm.team2;
+    });
+
+    function h2hResult(a, b) {
+      const key = [a.name, b.name].sort().join('|||');
+      const winner = h2h[key];
+      if (!winner) return 0;
+      return winner === a.name ? -1 : 1;
+    }
 
     const groupNames = Object.keys(groups).sort();
     if (!groupNames.length) {
@@ -901,6 +915,7 @@
             const bP = !b.name || _placeholder.test(b.name.trim()) ? 1 : 0;
             if (aP !== bP) return aP - bP;
             return (b.pts - a.pts)
+              || h2hResult(a, b)
               || ((b.wins - b.losses) - (a.wins - a.losses))
               || (b.wins - a.wins)
               || a.name.localeCompare(b.name);
