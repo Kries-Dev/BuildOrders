@@ -457,14 +457,8 @@ const BRANCH      = 'main';
 const RAW_BASE    = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${SOUNDS_PATH}/`;
 const API_BASE    = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${SOUNDS_PATH}`;
 
-const PANTHEON_MAP = {
-  JAPANESE:  ['japanese','yamato','izanagi','raijin','susano','tsukuyomi','fujin','amaterasu','hachiman','inari','uzume','benzaiten','oni','tengu','kirin','tanuki','ninja','samurai'],
-  GREEK:     ['greek','zeus','poseidon','hades','athena','apollo','artemis','hermes','ares','hephaestus','dionysus','kronos','oranos','gaia','medusa','cyclops','centaur','hydra','pegasus'],
-  NORSE:     ['norse','odin','thor','loki','freyr','freya','baldr','heimdall','tyr','skadi','valkyrie','einherjar','troll','frost','fire_giant'],
-  EGYPTIAN:  ['egyptian','egypt','ra','isis','osiris','set','horus','thoth','anubis','ptah','sekhmet','nephthys','sobek','pharaoh','sphinx'],
-  ATLANTEAN: ['atlantean','atlantis','prometheus','helios','hekate','oceanus','hyperion','rheia'],
-  CHINESE:   ['chinese','nuwa','fuxi','shennong','dragon','jade','taotie'],
-};
+// Pantheon is determined purely by subfolder name.
+// Flat files (no subfolders) are assumed to be the first/only pantheon uploaded.
 
 let allSounds=[], activePan='all', currentAudio=null, currentBtn=null, volume=0.8;
 
@@ -492,9 +486,11 @@ async function fetchSounds(){
             url:`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${SOUNDS_PATH}/${dir.name}/${f.name}`});
         });
       }
-      files.forEach(f=>sounds.push({name:cleanName(f.name),file:f.name,pantheon:detectPantheon(f.name),url:RAW_BASE+f.name}));
+      // No subfolders — all files are Japanese (current state of repo)
+      files.forEach(f=>sounds.push({name:cleanName(f.name),file:f.name,pantheon:'JAPANESE',url:RAW_BASE+f.name}));
     } else {
-      files.forEach(f=>sounds.push({name:cleanName(f.name),file:f.name,pantheon:detectPantheon(f.name),url:RAW_BASE+f.name}));
+      // No subfolders at all
+      files.forEach(f=>sounds.push({name:cleanName(f.name),file:f.name,pantheon:'JAPANESE',url:RAW_BASE+f.name}));
     }
     allSounds=sounds.sort((a,b)=>a.name.localeCompare(b.name));
     buildTabs();renderGrid();
@@ -519,12 +515,7 @@ function cleanName(f){
     .replace(/\b\w/g,c=>c.toUpperCase()).trim();
 }
 
-function detectPantheon(filename){
-  const l=filename.toLowerCase();
-  for(const [pan,keys] of Object.entries(PANTHEON_MAP))
-    if(keys.some(k=>l.includes(k)))return pan;
-  return 'OTHER';
-}
+
 
 function buildTabs(){
   const pans=[...new Set(allSounds.map(s=>s.pantheon))].sort();
