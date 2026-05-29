@@ -1,10 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
+    <title>Build Order 🚀</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; }
+        select { font-size: 1rem; padding: 0.4rem; margin-top: 0.5rem; min-width: 250px; }
+        #file-list { margin-top: 1.5rem; }
+        #file-list h3 { margin-bottom: 0.5rem; }
+        ul { list-style: none; padding: 0; }
+        ul li { margin: 0.4rem 0; }
+        ul li a { text-decoration: none; font-size: 1rem; }
+        ul li a:hover { text-decoration: underline; }
+        .file-html { color: #0969da; }
+        .file-other { color: #555; }
+        #status { color: #888; font-style: italic; margin-top: 0.5rem; }
+    </style>
 </head>
 <body>
     <h1>Build Order 🚀</h1>
-    <p>This is my first GitHub Pages website.</p>
+    <p>Enjoy bitches.</p>
+
+    <label for="folder-select"><strong>Browse folders:</strong></label><br>
+    <select id="folder-select">
+        <option value="">-- Loading folders... --</option>
+    </select>
+
+    <div id="status"></div>
+
+    <div id="file-list" style="display:none">
+        <h3 id="folder-title"></h3>
+        <ul id="files"></ul>
+    </div>
+
+    <script>
+        const USER = 'Kries-Dev';
+        const REPO = 'BuildOrders';
+        const PAGES_BASE = `https://${USER.toLowerCase()}.github.io/${REPO}`;
+        const API_BASE = `https://api.github.com/repos/${USER}/${REPO}/contents`;
+
+        const select = document.getElementById('folder-select');
+        const fileList = document.getElementById('file-list');
+        const folderTitle = document.getElementById('folder-title');
+        const fileUl = document.getElementById('files');
+        const status = document.getElementById('status');
+
+        // Load folders on page load
+        fetch(`${API_BASE}/`)
+            .then(r => r.json())
+            .then(items => {
+                const folders = items.filter(i => i.type === 'dir');
+                select.innerHTML = '<option value="">-- Select a folder --</option>';
+                folders.forEach(f => {
+                    const opt = document.createElement('option');
+                    opt.value = f.path;
+                    opt.textContent = f.name;
+                    select.appendChild(opt);
+                });
+            })
+            .catch(() => {
+                select.innerHTML = '<option>Could not load folders</option>';
+            });
+
+        // Load files when a folder is selected
+        select.addEventListener('change', () => {
+            const path = select.value;
+            if (!path) {
+                fileList.style.display = 'none';
+                return;
+            }
+
+            status.textContent = 'Loading...';
+            fileUl.innerHTML = '';
+            fileList.style.display = 'none';
+
+            fetch(`${API_BASE}/${encodeURIComponent(path).replace(/%2F/g, '/')}`)
+                .then(r => r.json())
+                .then(items => {
+                    status.textContent = '';
+                    folderTitle.textContent = `📁 ${select.options[select.selectedIndex].text}`;
+                    fileUl.innerHTML = '';
+
+                    const files = items.filter(i => i.type === 'file');
+                    if (files.length === 0) {
+                        fileUl.innerHTML = '<li style="color:#888">No files found.</li>';
+                    } else {
+                        files.forEach(f => {
+                            const isHtml = f.name.toLowerCase().endsWith('.html');
+                            const li = document.createElement('li');
+                            const a = document.createElement('a');
+
+                            if (isHtml) {
+                                // Open as live GitHub Pages URL
+                                a.href = `${PAGES_BASE}/${f.path}`;
+                                a.className = 'file-html';
+                                a.textContent = `🌐 ${f.name}`;
+                                a.title = 'Opens as live web page';
+                            } else {
+                                // Link to raw file on GitHub
+                                a.href = f.html_url;
+                                a.className = 'file-other';
+                                a.textContent = `📄 ${f.name}`;
+                            }
+
+                            a.target = '_blank';
+                            li.appendChild(a);
+                            fileUl.appendChild(li);
+                        });
+                    }
+
+                    fileList.style.display = 'block';
+                })
+                .catch(() => {
+                    status.textContent = 'Could not load files.';
+                });
+        });
+    </script>
 </body>
 </html>
