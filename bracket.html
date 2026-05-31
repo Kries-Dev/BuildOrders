@@ -843,8 +843,8 @@
     const t2 = m.team2 || 'TBD';
     const s1 = (t1 === 'TBD') ? '' : m.score1;
     const s2 = (t2 === 'TBD') ? '' : m.score2;
-    const seed1 = (t1 !== 'TBD' && _seedMap[t1]) ? _seedMap[t1] : '';
-    const seed2 = (t2 !== 'TBD' && _seedMap[t2]) ? _seedMap[t2] : '';
+    const seed1 = (t1 !== 'TBD' && m.seed1) ? m.seed1 : '';
+    const seed2 = (t2 !== 'TBD' && m.seed2) ? m.seed2 : '';
 
     return `<div class="match-card">
       <div class="match-label">${m.label || m.id}</div>
