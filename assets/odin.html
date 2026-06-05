@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odin — Build Orders | Deities of Death</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #c0392b; --red-dim: #8b1a10; --red-glow: rgba(192,57,43,0.12);
+    --gold: #b8952a; --gold-dim: #7a6018;
+    --bg: #080808; --bg-card: #0c0c0c; --bg-hover: #111;
+    --border: #1a1a1a; --border-accent: #252525;
+    --text-primary: #e8e8e8; --text-secondary: #888; --text-muted: #444;
+    --font-display: "Cinzel Decorative","Cinzel",serif;
+    --font-title: "Cinzel",serif;
+    --font-ui: "Barlow",sans-serif;
+    --font-condensed: "Barlow Condensed",sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text-primary); font-family: var(--font-ui); font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+
+  /* HEADER */
+  .header { position: relative; border-bottom: 1px solid #1e1e1e; overflow: hidden; min-height: 260px; }
+  .header-bg { position: absolute; inset: 0; background-size: cover; background-position: center 20%; opacity: 0; transition: opacity 0.8s ease; }
+  .header-bg.ready { opacity: 0.35; }
+  .header-vignette { position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(8,8,8,.55) 0%,rgba(8,8,8,.1) 40%,rgba(8,8,8,.75) 100%), linear-gradient(to right,rgba(8,8,8,.85) 0%,rgba(8,8,8,0) 35%,rgba(8,8,8,0) 65%,rgba(8,8,8,.85) 100%); }
+  .header::before { content:""; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red); z-index:2; }
+  .header-content { position:relative; z-index:3; padding:2.5rem 2.5rem 2rem; display:flex; align-items:center; gap:2rem; min-height:260px; }
+  .god-medallion { flex-shrink:0; width:110px; height:110px; }
+  .god-medallion img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 12px rgba(184,149,42,.25)); }
+  .header-text { flex:1; }
+  .eyebrow { font-family:var(--font-condensed); font-size:10px; letter-spacing:.22em; color:var(--red); text-transform:uppercase; margin-bottom:.5rem; display:flex; align-items:center; gap:8px; }
+  .eyebrow::before { content:""; display:inline-block; width:24px; height:1px; background:var(--red); }
+  .god-name { font-family:var(--font-display); font-size:clamp(2.2rem,5vw,3.8rem); font-weight:700; color:#fff; line-height:1; letter-spacing:.04em; text-shadow:0 2px 20px rgba(0,0,0,.8); }
+  .name-rule { display:flex; align-items:center; gap:10px; margin:.6rem 0 .5rem; }
+  .name-rule-line { height:1px; background:linear-gradient(to right,var(--gold-dim),var(--gold),var(--gold-dim)); width:200px; }
+  .name-rule-diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); flex-shrink:0; }
+  .header-desc { font-size:12px; color:#666; font-weight:300; letter-spacing:.08em; text-transform:uppercase; font-family:var(--font-condensed); }
+  .corner-mark { position:absolute; width:20px; height:20px; z-index:3; }
+  .corner-mark.tl { top:10px; left:10px; border-top:1px solid var(--red); border-left:1px solid var(--red); }
+  .corner-mark.tr { top:10px; right:10px; border-top:1px solid var(--red); border-right:1px solid var(--red); }
+  .corner-mark.bl { bottom:10px; left:10px; border-bottom:1px solid var(--red); border-left:1px solid var(--red); }
+  .corner-mark.br { bottom:10px; right:10px; border-bottom:1px solid var(--red); border-right:1px solid var(--red); }
+
+  /* TOOLBAR */
+  .toolbar { padding:.8rem 2.5rem; display:flex; gap:10px; align-items:center; border-bottom:1px solid var(--border); flex-wrap:wrap; background:rgba(6,6,6,.97); position:sticky; top:0; z-index:10; backdrop-filter:blur(4px); }
+  .toolbar::after { content:""; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--gold-dim) 30%,var(--gold-dim) 70%,transparent); opacity:.3; }
+  .search-wrap { position:relative; flex:1; min-width:180px; max-width:280px; }
+  .search-icon { position:absolute; left:10px; top:50%; transform:translateY(-50%); width:13px; height:13px; stroke:var(--text-muted); fill:none; stroke-width:2; pointer-events:none; }
+  input[type="text"] { width:100%; background:#0a0a0a; border:1px solid var(--border-accent); color:var(--text-primary); padding:7px 10px 7px 30px; font-size:12px; font-family:var(--font-ui); font-weight:300; outline:none; transition:border-color .2s; }
+  input[type="text"]:focus { border-color:var(--red-dim); }
+  .filter-pills { display:flex; gap:6px; flex-wrap:wrap; }
+  .pill { background:transparent; border:1px solid var(--border-accent); color:var(--text-muted); padding:5px 14px; font-size:10px; font-family:var(--font-condensed); letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:all .15s; }
+  .pill:hover { border-color:#3a3a3a; color:var(--text-secondary); }
+  .pill.active { border-color:var(--red); color:#e8e8e8; background:var(--red-glow); }
+  .count-bar { margin-left:auto; font-size:11px; color:var(--text-muted); font-family:var(--font-condensed); letter-spacing:.1em; white-space:nowrap; }
+  .count-bar span { color:var(--red); }
+
+  /* GRID */
+  .grid-container { padding:1.5rem 2.5rem 3rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:var(--border); }
+
+  /* CARD */
+  .card { background:var(--bg-card); text-decoration:none; display:flex; flex-direction:column; cursor:pointer; transition:background .15s; position:relative; overflow:hidden; }
+  .card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--red); transform:scaleY(0); transform-origin:bottom; transition:transform .2s; }
+  .card:hover { background:var(--bg-hover); }
+  .card:hover::before { transform:scaleY(1); }
+  .card:hover .card-arrow { color:var(--red); transform:translate(2px,-2px); }
+  .card:hover .card-thumb-img { opacity:.8; }
+  .card-thumb { width:100%; aspect-ratio:16/9; overflow:hidden; position:relative; background:#080808; border-bottom:1px solid var(--border); }
+  .card-thumb-img { width:100%; height:100%; object-fit:cover; object-position:center 20%; opacity:.55; transition:opacity .3s; display:block; }
+  .card-thumb-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#080808; }
+  .card-thumb-placeholder svg { width:30px; height:30px; stroke:#1e1e1e; fill:none; stroke-width:1; }
+  .type-badge { position:absolute; top:8px; left:8px; font-family:var(--font-condensed); font-size:9px; letter-spacing:.14em; text-transform:uppercase; padding:3px 8px; border:1px solid; font-weight:500; }
+  .type-eco   { border-color:#1f4a2a; color:#4aaa6a; background:rgba(8,20,12,.9); }
+  .type-rush  { border-color:#4a1a1a; color:var(--red); background:rgba(18,5,5,.9); }
+  .type-water { border-color:#1a2a4a; color:#5a7aaa; background:rgba(8,12,22,.9); }
+  .card-medallion { position:absolute; bottom:6px; right:8px; width:32px; height:32px; opacity:.5; }
+  .card-medallion img { width:100%; height:100%; object-fit:contain; }
+  .card-body { padding:13px 16px 9px; flex:1; display:flex; flex-direction:column; gap:3px; }
+  .card-title { font-family:var(--font-title); font-size:14px; font-weight:600; color:var(--text-primary); line-height:1.35; letter-spacing:.03em; }
+  .card-author { font-size:12px; color:var(--red); font-weight:400; font-family:var(--font-condensed); letter-spacing:.04em; }
+  .card-footer { padding:8px 16px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+  .card-tags { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .tag { font-family:var(--font-condensed); font-size:9px; letter-spacing:.1em; color:var(--text-muted); text-transform:uppercase; }
+  .card-arrow { font-size:14px; color:#282828; transition:all .2s; line-height:1; }
+
+  /* STATES */
+  .state-msg { grid-column:1/-1; padding:4rem 2rem; text-align:center; color:var(--text-muted); font-family:var(--font-condensed); font-size:12px; letter-spacing:.15em; text-transform:uppercase; }
+  .state-msg .red { color:var(--red); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .loading-anim { animation:blink 1.4s ease-in-out infinite; }
+
+  /* RESPONSIVE */
+  @media(max-width:640px) {
+    .header-content { padding:2rem 1.25rem 1.5rem; gap:1.25rem; min-height:200px; }
+    .god-medallion { width:80px; height:80px; }
+    .god-name { font-size:2rem; }
+    .toolbar { padding:.75rem 1.25rem; }
+    .grid-container { padding:1rem 0; }
+    .grid { grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }
+    .corner-mark { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-bg" id="headerBg"></div>
+  <div class="header-vignette"></div>
+  <div class="corner-mark tl"></div><div class="corner-mark tr"></div>
+  <div class="corner-mark bl"></div><div class="corner-mark br"></div>
+  <div class="header-content">
+    <div class="god-medallion">
+      <img src="https://kries-dev.github.io/BuildOrders/assets/odin/OdinPortrait.webp" alt="Odin">
+    </div>
+    <div class="header-text">
+      <div class="eyebrow">Deities of Death &nbsp;&middot;&nbsp; Age of Mythology: Retold</div>
+      <div class="god-name">Odin</div>
+      <div class="name-rule"><div class="name-rule-line"></div><div class="name-rule-diamond"></div></div>
+      <div class="header-desc">Build order library &nbsp;&middot;&nbsp; community contributed</div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 L22 22"/></svg>
+    <input type="text" id="searchInput" placeholder="Search builds, authors..." oninput="render()">
+  </div>
+  <div class="filter-pills">
+    <button class="pill active" onclick="setFilter('all',this)">All</button>
+    <button class="pill" onclick="setFilter('eco',this)">Eco</button>
+    <button class="pill" onclick="setFilter('rush',this)">Rush</button>
+    <button class="pill" onclick="setFilter('water',this)">Water</button>
+  </div>
+  <div class="count-bar" id="countBar">&nbsp;</div>
+</div>
+
+<div class="grid-container">
+  <div class="grid" id="grid">
+    <div class="state-msg"><span class="loading-anim">Loading builds</span></div>
+  </div>
+</div>
+
+<script>
+const GITHUB_USER   = "Kries-Dev";
+const GITHUB_REPO   = "BuildOrders";
+const GITHUB_FOLDER = "Build Orders";
+const PAGES_BASE    = "https://kries-dev.github.io/BuildOrders/Build%20Orders/";
+const PORTRAIT_URL  = "https://kries-dev.github.io/BuildOrders/assets/odin/OdinPortrait.webp";
+const BG_URL        = "https://kries-dev.github.io/BuildOrders/assets/Minor_bg.png";
+const CARD_ART      = "https://kries-dev.github.io/BuildOrders/assets/odin/AoMRT_Norse_Odin.webp";
+const GOD           = "Odin";
+
+function parseFilename(filename) {
+  const base  = filename.replace(/\.html$/i, "");
+  const parts = base.split(" - ");
+  if (parts.length < 3) return null;
+  if (parts[0].trim() !== GOD) return null;
+  const author = parts[parts.length - 1].trim();
+  const name   = parts.slice(1, parts.length - 1).join(" - ").trim();
+  const lower  = name.toLowerCase();
+  let type = "eco";
+  if (/water|naval|dock|boom.*water|water.*boom/i.test(lower)) type = "water";
+  else if (/rush|raid|pickaxe|pressure|aggro|fast.*cav|cav.*raid/i.test(lower)) type = "rush";
+  const stopWords = new Set(["by","and","the","into","with","from","fast","standard","early","pop","tc","2tc","1tc"]);
+  const tags = lower.replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(w => w.length > 2 && !stopWords.has(w) && !/^\d+$/.test(w)).slice(0,3);
+  return { name, author, type, tags, url: PAGES_BASE + encodeURIComponent(filename) };
+}
+
+let allBuilds = [];
+let activeFilter = "all";
+
+async function fetchBuilds() {
+  const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${encodeURIComponent(GITHUB_FOLDER)}`;
+  try {
+    const res = await fetch(apiUrl, { headers: { "Accept": "application/vnd.github.v3+json" } });
+    if (!res.ok) throw new Error("GitHub API returned " + res.status);
+    const files = await res.json();
+    allBuilds = files
+      .filter(f => f.type === "file" && f.name.endsWith(".html") && f.name.startsWith(GOD + " - "))
+      .map(f => parseFilename(f.name))
+      .filter(Boolean);
+    render();
+  } catch(err) {
+    document.getElementById("grid").innerHTML = `<div class="state-msg"><span class="red">Failed to load builds</span><br><br>${err.message}</div>`;
+  }
+}
+
+function setFilter(f, el) {
+  activeFilter = f;
+  document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+  el.classList.add("active");
+  render();
+}
+
+const typeLabel = { eco:"Eco", rush:"Rush", water:"Water" };
+
+function render() {
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  const list = allBuilds.filter(b => {
+    const mf = activeFilter === "all" || b.type === activeFilter;
+    const mq = !q || b.name.toLowerCase().includes(q) || b.author.toLowerCase().includes(q);
+    return mf && mq;
+  });
+  document.getElementById("countBar").innerHTML = `<span>${list.length}</span>&thinsp;build${list.length !== 1 ? "s" : ""}`;
+  if (!list.length) {
+    document.getElementById("grid").innerHTML = `<div class="state-msg">No builds match.</div>`;
+    return;
+  }
+  document.getElementById("grid").innerHTML = list.map(b => `
+    <a class="card" href="${b.url}" target="_blank" rel="noopener">
+      <div class="card-thumb">
+        <img class="card-thumb-img" src="${CARD_ART}" alt="${GOD}">
+        <div class="type-badge type-${b.type}">${typeLabel[b.type]}</div>
+        <div class="card-medallion"><img src="${PORTRAIT_URL}" alt=""></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${b.name}</div>
+        <div class="card-author">by ${b.author}</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags">${b.tags.map(t => `<span class="tag">${t}</span>`).join("<span class=\"tag\">&middot;</span>")}</div>
+        <span class="card-arrow">&#8599;</span>
+      </div>
+    </a>
+  `).join("");
+}
+
+fetchBuilds();
+
+(function() {
+  const bg = document.getElementById("headerBg");
+  const img = new Image();
+  img.onload = () => { bg.style.backgroundImage = `url("${BG_URL}")`; bg.classList.add("ready"); };
+  img.onerror = () => console.warn("Header bg failed:", BG_URL);
+  img.src = BG_URL;
+})();
+</script>
+</body>
+</html>
