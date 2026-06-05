@@ -53,11 +53,13 @@
   .header-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://kries-dev.github.io/BuildOrders/assets/Minor_bg.png');
     background-size: cover;
     background-position: center 20%;
-    opacity: 0.35;
+    opacity: 0;
+    transition: opacity 0.8s ease;
   }
+
+  .header-bg.ready { opacity: 0.35; }
 
   /* Vignette: dark at edges, lighter in centre */
   .header-vignette {
@@ -274,7 +276,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1px;
     background: var(--border);
   }
@@ -451,7 +453,7 @@
     .god-name { font-size: 2rem; }
     .toolbar { padding: 0.75rem 1.25rem; }
     .grid-container { padding: 1rem 0; }
-    .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
     .corner-mark { display: none; }
   }
 </style>
@@ -460,7 +462,7 @@
 
 <!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
 <header class="header">
-  <div class="header-bg"></div>
+  <div class="header-bg" id="headerBg"></div>
   <div class="header-vignette"></div>
   <div class="corner-mark tl"></div>
   <div class="corner-mark tr"></div>
@@ -511,6 +513,7 @@ const GITHUB_FOLDER = 'Build Orders';
 const PAGES_BASE    = 'https://kries-dev.github.io/BuildOrders/Build%20Orders/';
 const PORTRAIT_URL  = 'https://kries-dev.github.io/BuildOrders/assets/PoseidonPortrait.webp';
 const BG_URL        = 'https://kries-dev.github.io/BuildOrders/assets/Minor_bg.png';
+const CARD_ART      = 'https://kries-dev.github.io/BuildOrders/assets/AoMRT_Greek_Poseidon.webp';
 const GOD           = 'Poseidon';
 
 // ── Parse filename → build object ──────────────────────────────────────────
@@ -600,7 +603,7 @@ function render() {
   document.getElementById('grid').innerHTML = list.map(b => `
     <a class="card" href="${b.url}" target="_blank" rel="noopener">
       <div class="card-thumb">
-        <img class="card-thumb-img" src="${BG_URL}" alt="${GOD}">
+        <img class="card-thumb-img" src="${CARD_ART}" alt="${GOD}">
         <div class="type-badge type-${b.type}">${typeLabel[b.type]}</div>
         <div class="card-medallion"><img src="${PORTRAIT_URL}" alt=""></div>
       </div>
@@ -617,6 +620,18 @@ function render() {
 }
 
 fetchBuilds();
+
+// Load header background
+(function() {
+  const bg = document.getElementById('headerBg');
+  const img = new Image();
+  img.onload = () => {
+    bg.style.backgroundImage = `url('${BG_URL}')`;
+    bg.classList.add('ready');
+  };
+  img.onerror = () => console.warn('Header bg failed to load:', BG_URL);
+  img.src = BG_URL;
+})();
 </script>
 </body>
 </html>
