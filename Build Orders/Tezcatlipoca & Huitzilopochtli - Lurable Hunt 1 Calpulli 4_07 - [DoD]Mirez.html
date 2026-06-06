@@ -1,219 +1,279 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tezcatlipoca &amp; Huitzilopochtli - Lurable Hunt 1 Calpulli 4:07 - [DoD]Mirez</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ── Reset & base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #0a0c10;
+  --surface:    #111420;
+  --surface2:   #161a26;
+  --border:     #1e2436;
+  --border-hi:  #2a3050;
+  --accent:     #e8303a;
+  --accent2:    #ff6b75;
+  --accent-glow:#e8303a33;
+  --text:       #dde1ee;
+  --text-muted: #8892a8;
+  --text-dim:   #5c6478;
+  --col-a:      #ff7c84;
+  --gold:       #f0c040;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-  margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #0d0f14;
-  color: #e6e8ee;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  /* subtle noise overlay */
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, #1a0d1022 0%, transparent 70%);
 }
 
+/* ── Layout ─────────────────────────────────────────────────────── */
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 50px 30px 80px 30px;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
 }
 
+/* ── Header ─────────────────────────────────────────────────────── */
 .header {
   display: flex;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 50px;
-  border-bottom: 1px solid #1f2330;
-  padding-bottom: 25px;
+  gap: 28px;
+  padding: 36px 0 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 44px;
+  position: relative;
 }
 
-.logo {
-  height: 90px;
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 120px; height: 2px;
+  background: var(--accent);
 }
+
+.logo { height: 72px; flex-shrink: 0; }
+
+.header-text { flex: 1; }
 
 h1 {
-  font-size: 34px;
-  font-weight: 800;
-  margin: 0;
-  color: #ffffff;
-  letter-spacing: 1px;
-}
-
-.section {
-  margin-bottom: 50px;
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #ff4655;
-  text-transform: uppercase;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
   letter-spacing: 1.5px;
-  margin-bottom: 20px;
+  color: #fff;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
+.header-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.json-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: var(--surface2);
+  border: 1px solid var(--border-hi);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+.json-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent2);
+  background: var(--accent-glow);
+}
+
+/* ── Sections ───────────────────────────────────────────────────── */
+.section {
+  margin-bottom: 44px;
+}
+
+.section-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 3px; height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Column header row ──────────────────────────────────────────── */
+.col-headers {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── Data rows ──────────────────────────────────────────────────── */
 .row {
   display: grid;
-  grid-template-columns: 220px 1fr 1fr 1fr;
-  gap: 20px;
-  padding: 18px 20px;
-  background: #131722;
-  border: 1px solid #1c2130;
-  border-radius: 10px;
-  margin-bottom: 12px;
+  grid-template-columns: 200px 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  animation: rowIn 0.25s ease both;
+}
+
+@keyframes rowIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .row:hover {
-  background: #171c28;
+  background: var(--surface2);
+  border-color: var(--border-hi);
 }
 
 .col-a {
   font-weight: 600;
-  color: #ff6b75;
+  color: var(--col-a);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .col-b {
-  color: #e6e8ee;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .col-c {
-  color: #9aa3b2;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .col-d {
-  color: #7a8fa6;
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
+/* ── Icons ──────────────────────────────────────────────────────── */
 .icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   vertical-align: middle;
-  margin: 0 4px;
+  margin: 0 3px;
+  image-rendering: auto;
+  /* subtle glow on hover */
+  transition: filter 0.15s ease;
 }
+.icon:hover { filter: brightness(1.3) drop-shadow(0 0 4px var(--accent2)); }
 
+/* ── YouTube embed ──────────────────────────────────────────────── */
 .youtube-embed {
-  margin-top: 40px;
-  border-top: 1px solid #1f2330;
-  padding-top: 30px;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
 }
 
-.youtube-embed h2 {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ff4655;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 16px;
-}
+.youtube-embed .section-label { margin-bottom: 18px; }
 
 .youtube-embed iframe {
   width: 100%;
-  max-width: 800px;
-  height: 450px;
+  max-width: 840px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   border: none;
   border-radius: 10px;
+  box-shadow: 0 8px 40px #00000080;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .col-headers,
+  .row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .col-headers { display: none; }
+  .col-b, .col-c, .col-d { font-size: 13px; }
+  .header { flex-wrap: wrap; gap: 16px; }
+  .json-btn { order: 3; }
 }
 </style>
 </head>
 <body>
-
 <div class="container">
 
-<div class="header">
-  <img class="logo" src="/BuildOrders/Icons/logo.png">
-  <h1>Tezcatlipoca &amp; Huitzilopochtli - Lurable Hunt 1 Calpulli 4:07 - [DoD]Mirez</h1>
-</div>
+  <header class="header">
+    <img class="logo" src="/BuildOrders/Build%20Orders/Icons/logo.png" alt="DoD logo">
+    <div class="header-text">
+      <h1>Tezcatlipoca &amp; Huitzilopochtli - Lurable Hunt 1 Calpulli 4:07 - [DoD]Mirez</h1>
+      <div class="header-meta">Age of Mythology: Retold — Build Order</div>
+    </div>
+    
+    <a class="json-btn" href="Tezcatlipoca &amp; Huitzilopochtli - Lurable Hunt 1 Calpulli 4_07 - [DoD]Mirez.json" download title="Download JSON">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+           stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      JSON
+    </a>
+  </header>
 
+  <div class="section"><div class="section-label">Archaic</div><div class="col-headers"><span>Phase / Timer</span><span>Action</span><span>Notes</span><span>Detail</span></div><div class="row"><div class="col-a"><img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_food.png" alt="Food" title="Food"> / <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_wood.png" alt="Wood" title="Wood"> / <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_gold.png" alt="Gold" title="Gold"> / <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_favor.png" alt="Favor" title="Favor"></div><div class="col-b"></div><div class="col-c"></div><div class="col-d"></div></div><div class="row"><div class="col-a">1 / 2 / 1 / 0</div><div class="col-b">3 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> build a Calpulli between <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_wood.png" alt="wood" title="wood"> and <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_gold.png" alt="gold" title="gold"><br>1 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> lures <img class="icon" src="/BuildOrders/Build%20Orders/Icons/gazelle_icon.png" alt="hunt" title="hunt"> towards the town center</div><div class="col-c">2 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> go to <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_wood.png" alt="wood" title="wood"><br>1 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> goes to <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_gold.png" alt="gold" title="gold"></div><div class="col-d">Buy a Craft Shop</div></div><div class="row"><div class="col-a">4 / 2 / 1 / 0</div><div class="col-b">3 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_food.png" alt="food" title="food"></div><div class="col-c"></div><div class="col-d"></div></div><div class="row"><div class="col-a">4 / 3 / 1 / 0</div><div class="col-b">1 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> makes a <img class="icon" src="/BuildOrders/Build%20Orders/Icons/house_icon.png" alt="house" title="house"> and goes to <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_wood.png" alt="wood" title="wood"></div><div class="col-c"></div><div class="col-d"></div></div><div class="row"><div class="col-a">10 / 3 / 1 / 0</div><div class="col-b">6 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_food.png" alt="food" title="food"></div><div class="col-c">Build a <img class="icon" src="/BuildOrders/Build%20Orders/Icons/temple_icon.png" alt="temple" title="temple"> with a wood <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"></div><div class="col-d"></div></div><div class="row"><div class="col-a">10 / 3 / 2 / 0</div><div class="col-b">1 <img class="icon" src="/BuildOrders/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_gold.png" alt="gold" title="gold"></div><div class="col-c"></div><div class="col-d"></div></div></div><div class="section"><div class="section-label">Advance (3:07)</div><div class="col-headers"><span>Phase / Timer</span><span>Action</span><span>Notes</span><span>Detail</span></div><div class="row"><div class="col-a"><img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_food.png" alt="Food" title="Food"> / <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_wood.png" alt="Wood" title="Wood"> / <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_gold.png" alt="Gold" title="Gold"> / <img class="icon" src="/BuildOrders/Build%20Orders/Icons/cost_favor.png" alt="Favor" title="Favor"></div><div class="col-b"></div><div class="col-c"></div><div class="col-d"></div></div><div class="row"><div class="col-a">6 / 4 / 5 / 0</div><div class="col-b"></div><div class="col-c"></div><div class="col-d"></div></div></div><div class="section"><div class="section-label">Classical (4:07)</div><div class="col-headers"><span>Phase / Timer</span><span>Action</span><span>Notes</span><span>Detail</span></div><div class="row"><div class="col-a">https://youtu.be/In5_TKjs2hQ?si=5ME40mW9piKENV6f&amp;t=930</div><div class="col-b"></div><div class="col-c"></div><div class="col-d"></div></div></div>
 
-            <div class="section">
-              <div class="section-title">Archaic</div>
-              
-            <div class="row">
-              <div class="col-a"><img class="icon" src="/BuildOrders/Icons/cost_food.png" alt="Food" title="Food"> / <img class="icon" src="/BuildOrders/Icons/cost_wood.png" alt="Wood" title="Wood"> / <img class="icon" src="/BuildOrders/Icons/cost_gold.png" alt="Gold" title="Gold"> / <img class="icon" src="/BuildOrders/Icons/cost_favor.png" alt="Favor" title="Favor"></div>
-              <div class="col-b"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-a">1 / 2 / 1 / 0</div>
-              <div class="col-b">3 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> build a Calpulli between <img class="icon" src="/BuildOrders/Icons/cost_wood.png" alt="wood" title="wood"> and <img class="icon" src="/BuildOrders/Icons/cost_gold.png" alt="gold" title="gold"><br>1 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> lures <img class="icon" src="/BuildOrders/Icons/gazelle_icon.png" alt="hunt" title="hunt"> towards the town center</div>
-              <div class="col-c">2 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> go to <img class="icon" src="/BuildOrders/Icons/cost_wood.png" alt="wood" title="wood"><br>1 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> goes to <img class="icon" src="/BuildOrders/Icons/cost_gold.png" alt="gold" title="gold"></div>
-              <div class="col-d">Buy a Craft Shop</div>
-            </div>
-            
-            <div class="row">
-              <div class="col-a">4 / 2 / 1 / 0</div>
-              <div class="col-b">3 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="icon" src="/BuildOrders/Icons/cost_food.png" alt="food" title="food"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-a">4 / 3 / 1 / 0</div>
-              <div class="col-b">1 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> makes a <img class="icon" src="/BuildOrders/Icons/house_icon.png" alt="house" title="house"> and goes to <img class="icon" src="/BuildOrders/Icons/cost_wood.png" alt="wood" title="wood"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-a">10 / 3 / 1 / 0</div>
-              <div class="col-b">6 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="icon" src="/BuildOrders/Icons/cost_food.png" alt="food" title="food"></div>
-              <div class="col-c">Build a <img class="icon" src="/BuildOrders/Icons/temple_icon.png" alt="temple" title="temple"> with a <img class="icon" src="/BuildOrders/Icons/cost_wood.png" alt="wood" title="wood"> <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-a">10 / 3 / 2 / 0</div>
-              <div class="col-b">1 <img class="icon" src="/BuildOrders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="icon" src="/BuildOrders/Icons/cost_gold.png" alt="gold" title="gold"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            </div>
-            
-            <div class="section">
-              <div class="section-title">Advance (3:07)</div>
-              
-            <div class="row">
-              <div class="col-a"><img class="icon" src="/BuildOrders/Icons/cost_food.png" alt="Food" title="Food"> / <img class="icon" src="/BuildOrders/Icons/cost_wood.png" alt="Wood" title="Wood"> / <img class="icon" src="/BuildOrders/Icons/cost_gold.png" alt="Gold" title="Gold"> / <img class="icon" src="/BuildOrders/Icons/cost_favor.png" alt="Favor" title="Favor"></div>
-              <div class="col-b"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-a">6 / 4 / 5 / 0</div>
-              <div class="col-b"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            </div>
-            
-            <div class="section">
-              <div class="section-title">Classical (4:07)</div>
-              
-            <div class="row">
-              <div class="col-a">https://youtu.be/In5_TKjs2hQ?si=5ME40mW9piKENV6f&amp;t=930</div>
-              <div class="col-b"></div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-            </div>
-            
-            </div>
-            
-
-
+  
   <div class="youtube-embed">
-    <h2>Video Guide</h2>
-    <iframe src="https://www.youtube.com/embed/In5_TKjs2hQ" allowfullscreen></iframe>
+    <div class="section-label">Video Guide</div>
+    <iframe src="https://www.youtube.com/embed/In5_TKjs2hQ" allowfullscreen loading="lazy"></iframe>
   </div>
 
 </div>
-
 </body>
 </html>
