@@ -29,16 +29,6 @@
     overflow-x: hidden;
   }
 
-  #bg-logo {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 180vw; max-width: 2000px;
-    opacity: 0.40;
-    pointer-events: none;
-    z-index: 0;
-    user-select: none;
-  }
 
   .header, .tabs, .page, .last-updated { position: relative; z-index: 1; }
 
@@ -619,7 +609,7 @@
 </head>
 <body>
 
-<img id="bg-logo" src="Logos/DeitiesofDeath.png" alt="" onerror="this.onerror=null;">
+
 
 <div class="header">
   <div class="header-left">
@@ -633,15 +623,15 @@
 </div>
 
 <div class="tabs">
-  <button class="tab"        onclick="showTab('bracket')">Bracket</button>
-  <button class="tab active" onclick="showTab('groups')">Groups</button>
+  <button class="tab active"  onclick="showTab('bracket')">Bracket</button>
+  <button class="tab"        onclick="showTab('groups')">Groups</button>
   <button class="tab"        onclick="showTab('upcoming')">Upcoming Games</button>
   <button class="tab"        onclick="showTab('teams')">Team Management</button>
   <button class="tab"        onclick="showTab('stats')">Stats &amp; Recs</button>
   <button class="tab"        onclick="showTab('scheduling')">Scheduling</button>
 </div>
 
-<div id="bracket-page" class="page">
+<div id="bracket-page" class="page active">
   <div class="loading" id="bracket-loading">
     <div class="spinner"></div>
     <span>Loading bracket…</span>
@@ -649,7 +639,7 @@
   <div id="bracket-content" style="display:none"></div>
 </div>
 
-<div id="groups-page" class="page active">
+<div id="groups-page" class="page">
   <div class="loading" id="groups-loading">
     <div class="spinner"></div>
     <span>Loading groups…</span>
@@ -2085,8 +2075,6 @@
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     event.target.classList.add('active');
     document.getElementById(name + '-page').classList.add('active');
-    const logo = document.getElementById('bg-logo');
-    if (logo) logo.style.display = (name === 'bracket' || name === 'groups') ? '' : 'none';
   }
 </script>
 </body>
