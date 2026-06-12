@@ -160,6 +160,9 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .match-card.tbd-card { opacity: 0.35; pointer-events: none; }
+  .team-name.muted { color: #666; }
+
   .match-card {
     background: #1a1a1a;
     border: 1px solid rgba(255,255,255,0.15);
@@ -784,15 +787,16 @@
       { label: 'Quarter Finals', ids: ['UB1','UB2','UB3','UB4'] },
       { label: 'Semi Finals',    ids: ['UB5','UB6'] },
       { label: 'Finals',         ids: ['UB7'] },
-      { label: 'Quarter Finals', ids: ['LB1','LB2'] },
-      { label: 'Semi Finals',    ids: ['LB3','LB4'] },
-      { label: 'Finals',         ids: ['LB5'] },
+      { label: 'Round 1',        ids: ['LB1','LB2'] },
+      { label: 'Round 2',        ids: ['LB3','LB4'] },
+      { label: 'Round 3',        ids: ['LB5'] },
+      { label: 'Lower Final',    ids: ['LB6'] },
       { label: 'Grand Final',    ids: ['GF'], gf: true },
     ];
 
     const upper = rounds.slice(0, 3);
-    const lower = rounds.slice(3, 6);
-    const grand = rounds.slice(6);
+    const lower = rounds.slice(3, 7);
+    const grand = rounds.slice(7);
 
     let html = `<div class="bracket-section-label">Upper Bracket</div>
     <div class="bracket-scroll"><div class="bracket">`;
@@ -817,7 +821,12 @@
     let inner = '';
     round.ids.forEach(id => {
       const m = matches[id];
-      if (!m) return;
+      if (!m) {
+        inner += `<div class="match-card tbd-card"><div class="match-label">${id}</div>
+          <div class="team-row"><span class="team-name muted">TBD</span></div>
+          <div class="team-row"><span class="team-name muted">TBD</span></div></div>`;
+        return;
+      }
       inner += renderMatch(m);
     });
     return `<div class="round${round.gf ? ' grand-final' : ''}">
