@@ -1,0 +1,64 @@
+name: Generate Build Order HTML
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ExcelUploads/**.xlsx'
+      - 'scripts/convert_excel.py'
+  workflow_dispatch:        # manual trigger from the Actions tab
+
+permissions:
+  contents: write           # allow the workflow to push commits
+
+concurrency:
+  group: bo-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2    # needed to diff against previous commit
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install pandas openpyxl
+
+      - name: Determine changed Excel files
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # Manual run → process everything
+            FILES=$(find ExcelUploads -name '*.xlsx' -not -name '~$*' | tr '\n' ' ')
+          else
+            FILES=$(git diff --name-only HEAD^ HEAD -- 'ExcelUploads/**.xlsx' | tr '\n' ' ')
+          fi
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "Changed files: $FILES"
+
+      - name: Generate HTML
+        if: steps.changed.outputs.files != ''
+        run: |
+          python scripts/convert_excel.py ${{ steps.changed.outputs.files }} --outdir "BO"
+
+      - name: Commit and push generated files
+        if: steps.changed.outputs.files != ''
+        run: |
+          git config user.name "bo-generator[bot]"
+          git config user.email "bo-generator[bot]@users.noreply.github.com"
+          git add BO/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-generate build order HTML [skip ci]"
+            git push
+          fi
