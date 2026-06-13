@@ -27,8 +27,8 @@ import pandas as pd
 # ─────────────────────────────────────────────────────────────────────────────
 # Icon configuration
 # ─────────────────────────────────────────────────────────────────────────────
-ICON_BASE = "https://kries-dev.github.io/BuildOrders/Build%20Orders/Icons/"
-LOGO_URL  = "https://kries-dev.github.io/BuildOrders/Build%20Orders/Icons/DoDLogo.png"
+ICON_BASE = "https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/"
+LOGO_URL  = "https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/DoDLogo.png"
 
 # Age name → icon filename (for section title decoration)
 AGE_ICONS = {
@@ -39,46 +39,45 @@ AGE_ICONS = {
     "wonder":    "wonder_age_icon.png",
 }
 
-# CURATED MAP — keyword/phrase → actual icon filename in the repo.
-# Verified against the real Icons folder contents (June 2026).
-# Multi-word phrases MUST come before their single-word components.
-# All matching is case-insensitive; plural handling is automatic (see iconize).
+# CURATED MAP — verified against the actual Build Orders/Icons folder contents.
 CURATED = {
-    # ── Buildings (multi-word first) ────────────────────────────────────
-    "town center":   "town_center_icon.png",
-    "town centre":   "town_center_icon.png",
-    "lumber camp":   "lumber_camp_icon.png",
-    "mining camp":   "command_build_mining_camp.png",
-    "great temple":  "great_temple_icon.png",
-    "tc":            "town_center_icon.png",
-    "granary":       "granary_icon.png",
-    "storehouse":    "command_build_storehouse.png",
-    "temple":        "great_temple_icon.png",
-    "farm":          "farm_icon.png",
-    "shrine":        "shrine_icon.png",
+    # ── Buildings ───────────────────────────────────────────────────────
+    "town center":        "fortified_town_center_icon.png",
+    "town centre":        "fortified_town_center_icon.png",
+    "tc":                 "fortified_town_center_icon.png",
+    "temple":             "temple_icon.png",
+    "farm":               "farm_icon.png",
+    "shrine":             "shrine_icon.png",
+    "dock":               "dock_icon.png",
+    "barracks":           "barracks_icon.png",
+    "market":             "market_icon.png",
+    "house":              "house_icon.png",
+    "armory":             "armory_icon.png",
+    "quarry":             "quarry_icon.png",
 
     # ── Resources ───────────────────────────────────────────────────────
-    "food":          "cost_food.png",
-    "berries":       "berry_bush_icon.png",
-    "berry":         "berry_bush_icon.png",
-    "hunt":          "cur_food_huntable.png",
-    "hunting":       "cur_food_huntable.png",
-    "wood":          "cost_wood.png",
-    "tree":          "cost_wood.png",
-    "trees":         "cost_wood.png",
-    "gold":          "cost_gold.png",
-    "mine":          "gold_mine_icon.png",
-    "favor":         "cost_favor.png",
-    "favour":        "cost_favor.png",
+    "food":               "res_food.png",
+    "berries":            "berry_bush_icon.png",
+    "berry":              "berry_bush_icon.png",
+    "hunt":               "great_hunt_icon.png",
+    "hunting":            "great_hunt_icon.png",
+    "wood":               "res_wood_2.png",
+    "gold":               "res_gold.png",
+    "favor":              "res_favor.png",
+    "favour":             "res_favor.png",
 
     # ── Units ───────────────────────────────────────────────────────────
-    "villagers":     "Icon_Villager.png",
-    "villager":      "Icon_Villager.png",
-    "vills":         "Icon_Villager.png",
-    "vils":          "Icon_Villager.png",
-    "vill":          "Icon_Villager.png",
-    "vil":           "Icon_Villager.png",
-    "miko":          "miko_icon.png",
+    "villagers":          "unit_type_villager.png",
+    "villager":           "unit_type_villager.png",
+    "vills":              "unit_type_villager.png",
+    "vils":               "unit_type_villager.png",
+    "vill":               "unit_type_villager.png",
+    "vil":                "unit_type_villager.png",
+    "miko":               "miko_icon.png",
+    "pegasus":            "pegasus_icon.png",
+    "pioneer":            "pioneer_icon.png",
+    "oracle":             "oracle_icon.png",
+    "pharaoh":            "pharaoh_icon.png",
 }
 
 # Words the auto-scan must NEVER iconize (common verbs/instruction words that
