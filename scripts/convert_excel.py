@@ -28,7 +28,16 @@ import pandas as pd
 # Icon configuration
 # ─────────────────────────────────────────────────────────────────────────────
 ICON_BASE = "https://kries-dev.github.io/BuildOrders/Build%20Orders/Icons/"
-LOGO_URL  = "https://kries-dev.github.io/BuildOrders/assets/DoD_logo.png"
+LOGO_URL  = "https://kries-dev.github.io/BuildOrders/Build%20Orders/Icons/DoDLogo.png"
+
+# Age name → icon filename (for section title decoration)
+AGE_ICONS = {
+    "archaic":   "archaic_age_icon.png",
+    "classical": "classical_age_icon.png",
+    "heroic":    "heroic_age_icon.png",
+    "mythic":    "mythic_age_icon.png",
+    "wonder":    "wonder_age_icon.png",
+}
 
 # CURATED MAP — keyword/phrase → actual icon filename in the repo.
 # Verified against the real Icons folder contents (June 2026).
@@ -262,6 +271,10 @@ img.ic {
   height: 26px; width: auto; vertical-align: middle;
   margin: 0 2px; position: relative; top: -1px;
 }
+img.age-ic {
+  height: 32px; width: auto; vertical-align: middle;
+  margin-right: 10px; position: relative; top: -2px;
+}
 .video-wrap { margin-top: 48px; }
 .video-wrap iframe {
   width: 100%; max-width: 920px; aspect-ratio: 16/9;
@@ -299,7 +312,18 @@ def render(title: str, sections, video_id, index) -> str:
     parts = []
     for sec in sections:
         if sec["title"]:
-            parts.append(f'<div class="section-title">{html.escape(sec["title"])}</div>')
+            title_text = html.escape(sec["title"])
+            # Check if this section title starts with an age name → add icon
+            age_img = ""
+            for age_key, age_file in AGE_ICONS.items():
+                if sec["title"].lower().startswith(age_key):
+                    age_img = (f'<img class="ic age-ic" '
+                               f'src="{ICON_BASE}{age_file}" '
+                               f'alt="{age_key}" title="{age_key}">')
+                    break
+            parts.append(
+                f'<div class="section-title">{age_img}{title_text}</div>'
+            )
         for r in sec["rows"]:
             alloc = html.escape(r["alloc"])
             instr = iconize(r["text"], index) if r["text"] else ""
