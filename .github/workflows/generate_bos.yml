@@ -32,23 +32,17 @@ jobs:
       - name: Install dependencies
         run: pip install pandas openpyxl
 
-      - name: Determine changed Excel files
-        id: changed
+      - name: Generate HTML
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            FILES=$(find ExcelUploads -name "*.xlsx" | grep -v "^~" | tr '\n' ' ')
+            find ExcelUploads -name "*.xlsx" -print0 | xargs -0 -I{} python scripts/convert_excel.py "{}" --outdir "BO"
           else
-            FILES=$(git diff --name-only HEAD^ HEAD -- "ExcelUploads/*.xlsx" | tr '\n' ' ')
+            git diff --name-only HEAD^ HEAD -- "ExcelUploads/*.xlsx" | while IFS= read -r f; do
+              [ -f "$f" ] && python scripts/convert_excel.py "$f" --outdir "BO"
+            done
           fi
-          echo "files=$FILES" >> "$GITHUB_OUTPUT"
-          echo "Changed files: $FILES"
-
-      - name: Generate HTML
-        if: steps.changed.outputs.files != ''
-        run: python scripts/convert_excel.py ${{ steps.changed.outputs.files }} --outdir "BO"
 
       - name: Commit and push generated files
-        if: steps.changed.outputs.files != ''
         run: |
           git config user.name "bo-generator[bot]"
           git config user.email "bo-generator[bot]@users.noreply.github.com"
