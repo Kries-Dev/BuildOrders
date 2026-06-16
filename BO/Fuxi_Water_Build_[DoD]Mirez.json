@@ -1,0 +1,86 @@
+{
+  "title": "Fuxi_Water_Build_[DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Fuxi - Water Build - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/1/0/0",
+          "text": "1 Peasants on Food\n1 Peasant Makes a Dock, a House, a Silo then goes on Gold\nKuafu makes a Silo then goes on Wood",
+          "note": ""
+        },
+        {
+          "alloc": "3/1/0/0",
+          "text": "2 Peasants on Food",
+          "note": "Autoqueue fishing ships\n\n(General rule of thumb considering FS:\n9 FS in archaic\n12 FS in advance, if there is no pressure\nClassical: 9-12 FS if you fight classical water\nClassical: 18-21 FS if you want to boom)"
+        },
+        {
+          "alloc": "3/4/0/0",
+          "text": "3 Peasants on Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3+2 / 4 / 2 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Peasant  on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3+6 / 4 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Kuafu on Gold",
+          "note": "Build a House"
+        }
+      ]
+    },
+    {
+      "title": "7+9 / 4 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 Peasants on Food",
+          "note": "Build a Temple"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:32)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0+9 / 8 / 6 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Move 4 Peasants from Food to Wood\nMove 3 Peasants from Food to Gold",
+          "note": "Builds 2 additional Docks"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:32)",
+      "rows": []
+    }
+  ]
+}

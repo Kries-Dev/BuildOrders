@@ -1,0 +1,115 @@
+{
+  "title": "Ra_Standard_Water_Cajocu_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Ra - Standard Water - Cajocu & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/3/0/0",
+          "text": "2 vill to Wood\n1 builds dock, then a house, then to Wood",
+          "note": "Pharaoh empowers Lumber Camp construction, then empowers TC\nAuto-Queue Fishing ships\n\n(General rule of thumb considering FS:\n- 9 FS in archaic\n- 12 FS in advance, if there is no pressure\n- Classical: 9-12 FS if you fight classical water\n- Classical: 18-21 FS if you want to boom)"
+        }
+      ]
+    },
+    {
+      "title": "3 (+1 FS) / 3 / 0 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 vill on Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3 (+3 FS) / 3 / 3 / 1",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 vill on Gold",
+          "note": "As soon as 50 gold and food, build Monument with a Food villager"
+        }
+      ]
+    },
+    {
+      "title": "5 (+ 6 FS) / 3 / 3 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 vill on Food",
+          "note": "Monument villager goes with priest to build docks, at least two, after that Houses"
+        }
+      ]
+    },
+    {
+      "title": "5 (+ 7 FS) / 3 / 4 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 vill build House, then to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "5  (+ 10 FS) / 3 / 7 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 vill on Gold",
+          "note": "When you have 150 gold, all Gold vill build Temple, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:58) - Bast",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0  (+ 10+ FS) / 7 / 8 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n4 Food vill to Wood\n1 Food vill to Gold",
+          "note": "Research Hand axe and Pickaxe"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:58)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0  (+ 10+ FS) / 8 / 8 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 vill to Wood",
+          "note": "Research Adze of Wepwawet"
+        },
+        {
+          "alloc": "",
+          "text": "",
+          "note": "Research Purse Seine"
+        }
+      ]
+    }
+  ]
+}

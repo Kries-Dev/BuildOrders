@@ -1,0 +1,61 @@
+{
+  "title": "Hades_3_50_Vault_of_Erebus_[DoD]Firefox_&_HUSKSUPPE",
+  "video": "AJfPlsJwGPE",
+  "sections": [
+    {
+      "title": "Hades - 3:50 Vault of Erebus - [DoD]Firefox & HUSKSUPPE",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/0/4/0",
+          "text": "4 Villagers make a Storehouse and go on Gold",
+          "note": "Herd food to the Town Center with the Scout"
+        },
+        {
+          "alloc": "3/0/4/0",
+          "text": "3 villagers to food",
+          "note": "After 150 gold: \n2 Villagers make a Temple, stay on favor\n2 Villagers make a Storehouse and go on Wood"
+        },
+        {
+          "alloc": "10/2/0/2",
+          "text": "7 villagers to food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:50)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/5/4/0",
+          "text": "For Classical Warfare",
+          "note": "Make a house"
+        },
+        {
+          "alloc": "3/7/4/0",
+          "text": "For a fast 2nd Town Center",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:50)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    }
+  ]
+}

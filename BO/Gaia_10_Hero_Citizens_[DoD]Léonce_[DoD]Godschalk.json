@@ -1,0 +1,86 @@
+{
+  "title": "Gaia_10_Hero_Citizens_[DoD]L\u00e9once_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Gaia - 10 Hero Citizens - [DoD]L\u00e9once & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "",
+          "note": "Cast Gaia Forest"
+        },
+        {
+          "alloc": "2/0/0/3",
+          "text": "2 initial vils to Food",
+          "note": "Build eco guild"
+        },
+        {
+          "alloc": "3/0/0/3",
+          "text": "1 to Food",
+          "note": "Heroize 1 Food vill"
+        },
+        {
+          "alloc": "3/0/1/3",
+          "text": "1 to Gold",
+          "note": "Heroize 1 Gold vill"
+        },
+        {
+          "alloc": "3/2/1/3",
+          "text": "2 to Wood",
+          "note": "Heroize 1 Wood vill"
+        },
+        {
+          "alloc": "8/1/1/3",
+          "text": "4 to Food",
+          "note": "When enough resources for Temple:\nGold villager makes Temple, then back to Gold\n1 Wood vill go to Food"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3.45)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/4/2/3",
+          "text": "Vill transition: \n1 Food vill to Gold\n3 Food vill to Wood",
+          "note": "Heroize the last vill"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.45)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "4 + / 3 / 2 / 3",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Villagers to Food",
+          "note": "2 Gold vill build 2 Military Barracks, then back to Gold"
+        },
+        {
+          "alloc": "",
+          "text": "",
+          "note": "1 Gold vill builds Manor, then back to Gold"
+        }
+      ]
+    }
+  ]
+}

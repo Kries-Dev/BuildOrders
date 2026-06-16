@@ -1,0 +1,62 @@
+{
+  "title": "Huitzilopochtli_Lurable_Hunt_2_Calpulli_4_07_[DoD]Mirez",
+  "video": "In5_TKjs2hQ",
+  "sections": [
+    {
+      "title": "Huitzilopochtli - Lurable Hunt 2 Calpulli 4:07 - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/3/0/0",
+          "text": "3 villager build a Calpulli on wood\n1 villager lures hunt to the town center",
+          "note": "Buy a Lumber Outpost"
+        },
+        {
+          "alloc": "4/3/0/0",
+          "text": "3 villager to food",
+          "note": ""
+        },
+        {
+          "alloc": "4/2/2/0",
+          "text": "1 villager builds a Calpulli and goes to gold",
+          "note": "more a villager from wood to gold"
+        },
+        {
+          "alloc": "10/2/2/0",
+          "text": "6 villager to food",
+          "note": "a food villager builds a house"
+        },
+        {
+          "alloc": "10/2/3/0",
+          "text": "1 villager to gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "6/4/5/0",
+          "text": "Optional: buy a Craft Shop",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": []
+    }
+  ]
+}

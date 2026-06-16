@@ -1,0 +1,82 @@
+{
+  "title": "Amaterasu_Standard_3_30_1_Miko_Cajocu",
+  "video": null,
+  "sections": [
+    {
+      "title": "Amaterasu - Standard 3:30 1 Miko - Cajocu",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/0/1",
+          "text": "3 starting villagers to food",
+          "note": "Miko builds shrine"
+        },
+        {
+          "alloc": "4/0/0/1",
+          "text": "1 villager to food",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/1/1",
+          "text": "1 villagers to gold",
+          "note": ""
+        },
+        {
+          "alloc": "9/0/1/1",
+          "text": "5 villagers to food",
+          "note": "Build temple as soon as 150 gold with gold vill, then back to gold"
+        },
+        {
+          "alloc": "9/1/1/1",
+          "text": "1 villager to wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:30)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 gold build vills house",
+          "note": "Miko builds shrine"
+        },
+        {
+          "alloc": "5/3/3/2",
+          "text": "Option 1: Military\nMove 2 food vils to gold, 2 food  vill to wood",
+          "note": ""
+        },
+        {
+          "alloc": "2/5/4/2",
+          "text": "Option 2: 2 TC\nMove 3 food vills to gold, 4 food vills to food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:30)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/5/4/2",
+          "text": "1 vill to food",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

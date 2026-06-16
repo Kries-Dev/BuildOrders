@@ -1,0 +1,82 @@
+{
+  "title": "Tsukuyomi_3_25_1_Miko_Cajocu",
+  "video": null,
+  "sections": [
+    {
+      "title": "Tsukuyomi - 3:25 1 Miko - Cajocu",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/1",
+          "text": "2 starting villagers to food 1 to gold",
+          "note": "Miko builds shrine"
+        },
+        {
+          "alloc": "7/0/1/1",
+          "text": "5 villagers to food",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/2/1",
+          "text": "1 villagers to gold",
+          "note": ""
+        },
+        {
+          "alloc": "8/0/2/1",
+          "text": "1 villager to food",
+          "note": "Build temple as soon as 150 gold with gold vill, then back to gold"
+        },
+        {
+          "alloc": "8/2/2/1",
+          "text": "2 villager to wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:40)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 gold build vills house",
+          "note": ""
+        },
+        {
+          "alloc": "5/3/4/1",
+          "text": "Option 1: Military\nMove 2 food vils to gold, 1 food  vill to wood",
+          "note": ""
+        },
+        {
+          "alloc": "2/5/5/1",
+          "text": "Option 2: 2 TC\nMove 3 food vills to gold, 3 food vills to food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:25)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 vill to food",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

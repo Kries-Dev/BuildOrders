@@ -1,0 +1,81 @@
+{
+  "title": "Poseidon_13_Pop_Fast_Atalanta_Into_2_TC_[CBB]Mosca_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Poseidon - 13 Pop Fast Atalanta into 2 TC - [CBB]Mosca & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/0/0/0",
+          "text": "4 initial vills to Food",
+          "note": "Use Lure on Hunt"
+        },
+        {
+          "alloc": "4/0/2/0",
+          "text": "2 to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "6/0/2/0",
+          "text": "2 to Food",
+          "note": "At 150 Gold 2 Gold Villager build a Temple,\nThen back to Gold once you have 2 Favor"
+        },
+        {
+          "alloc": "6/3/2/0",
+          "text": "3 to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "6/3/3/0",
+          "text": "1 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (when 13 pop)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/3/6/0",
+          "text": "Vill transition:\n3 Food to Gold",
+          "note": "Gold Villager makes House, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Classical",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "3+ / 3 / 6+  / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Villagers to Gold until enough for 2nd TC,\nAfter that Villagers to Food",
+          "note": "Build a TC with 6 Villagers from Gold"
+        },
+        {
+          "alloc": "",
+          "text": "2 villagers to Favor once eco is rebalanced around 2TC",
+          "note": "After TC, build 2 Stables"
+        }
+      ]
+    }
+  ]
+}

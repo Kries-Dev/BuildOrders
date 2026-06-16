@@ -1,0 +1,107 @@
+{
+  "title": "Isis_4_07_2_TC_+_2_Anubites_[DoD]Firefox_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Isis - 4:07 2 TC + 2 Anubites - [DoD]Firefox & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/0/1",
+          "text": "Initial 3 vills: \n2 to Food + \n1 Builds monument + Pharao empowers monument, after that Food",
+          "note": "Priest Scouts (Don't forget to make Obelisks)"
+        },
+        {
+          "alloc": "4/0/0/1",
+          "text": "1 to Food",
+          "note": "Pre-queue Flood of the Nile"
+        },
+        {
+          "alloc": "4/0/3/1",
+          "text": "3 to Gold",
+          "note": "Pre-queue Pickaxe"
+        }
+      ]
+    },
+    {
+      "title": "4 / 0(1) / 4 / 1",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 collect 8 wood, forcedrop, then to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/5/1",
+          "text": "1 to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/5/1",
+          "text": "3 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/6/1",
+          "text": "1 to Gold",
+          "note": "Vills transition when 150 gold \n- 3 Gold villagers build temple, then back to Gold"
+        },
+        {
+          "alloc": "7/0/7/1",
+          "text": "1 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance - Anubis (3.07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/11/2",
+          "text": "Vills transition:\nFirst gather 100 Food (Force-drop) needed for 2nd Monument\nThen, 4 Food vill build 2nd Monument, next to mining camp, after that to Gold",
+          "note": "Pharao:\n- Empower Granary for the 100 Food\n- Empower 2nd Monument when being build\n- Alternate empowering Mining Camp (when resources drop) and 2nd Monument"
+        },
+        {
+          "alloc": "3/0/11/2",
+          "text": "Food villager builds House when 150 Food (enough for villager production + 1 Anubite)",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/0/11/2",
+          "text": "1 to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 / 0 / 3 / 2 + 8 build TC",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n8 Gold villagers + Pharao make 2nd TC\n(should have enough Gold after first villager is produced in Classical)",
+          "note": "Pre-queue Feet of the Jackal (after placing 2nd TC)\nPre-queue Necropolis"
+        }
+      ]
+    }
+  ]
+}

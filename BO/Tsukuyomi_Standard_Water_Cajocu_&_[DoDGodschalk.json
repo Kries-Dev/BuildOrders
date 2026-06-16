@@ -1,0 +1,87 @@
+{
+  "title": "Tsukuyomi_Standard_Water_Cajocu_&_[DoDGodschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Tsukuyomi - Standard Water - Cajocu & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/3/0/1",
+          "text": "2 vill to Wood\n1 vill builds dock then Wood",
+          "note": "Miko builds shrine\nAuto-queue Fishing Ships\n\n(General rule of thumb considering FS:\n- 9 FS in archaic\n- 12 FS in advance, if there is no pressure\n- Classical: 9-12 FS if you fight classical water\n- Classical: 18-21 FS if you want to boom)"
+        },
+        {
+          "alloc": "4/3/0/1",
+          "text": "4 vill to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/5/0/1",
+          "text": "2 vill to Wood",
+          "note": "5th wood vill builds house then wood"
+        },
+        {
+          "alloc": "4/5/1/1",
+          "text": "1 vill to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "4/6/1/1",
+          "text": "1 vill to Wood",
+          "note": "1 wood vill builds house, then to Wood"
+        },
+        {
+          "alloc": "4/6/2/1",
+          "text": "1 vill to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "4/7/2/1",
+          "text": "1 vill goes to build second dock then goes to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "8/7/2/1",
+          "text": "4 vill to Food",
+          "note": "Build Temple with 2 Gold vill + Miko when enough resources, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:58)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/10/7/2",
+          "text": "Vills transition:\n5 food vill to Gold \n3 food vill to Wood",
+          "note": "1 Wood vill builds house, then back to Wood"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:43)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/10/8/2",
+          "text": "1 vill to Gold",
+          "note": "Make 1 Kamaitachi, raid with the 2 Myth units"
+        }
+      ]
+    }
+  ]
+}

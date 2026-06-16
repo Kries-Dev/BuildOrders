@@ -1,0 +1,66 @@
+{
+  "title": "Shennong_4_23_Eco_3x_Kuafu_[DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Shennong - 4:23 Eco 3x Kuafu - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/1/0/0",
+          "text": "1 Peasant builds a Silo then goes on Food\n1 Peasant makes a House, a Gold Silo then goes on Food\nKuafu on Wood",
+          "note": "Auto build the House and Gold Silo if you're playing N\u00fcwa"
+        },
+        {
+          "alloc": "7/1/0/0",
+          "text": "5 Peasants on Food",
+          "note": "Research Pickaxe"
+        },
+        {
+          "alloc": "7/1/1/0",
+          "text": "1 Kuafu on Gold",
+          "note": "After 150 Wood the Kuafu goes on Gold"
+        },
+        {
+          "alloc": "9/0/2/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        },
+        {
+          "alloc": "9/1/2/0",
+          "text": "1 Kuafu on Wood",
+          "note": "Kuafu builds Temple when you have 150 Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:23)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/5/2/0",
+          "text": "Redistribute peasants to wood and gold based on gameplan",
+          "note": "Optional: Buy Handaxe"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:23)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    }
+  ]
+}

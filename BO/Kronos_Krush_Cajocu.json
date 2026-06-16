@@ -1,0 +1,77 @@
+{
+  "title": "Kronos_Krush_Cajocu",
+  "video": null,
+  "sections": [
+    {
+      "title": "Kronos - Krush - Cajocu",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/0/1/3",
+          "text": "1 villager to food 1 to gold",
+          "note": "Send oracles to scout close to base"
+        },
+        {
+          "alloc": "4/0/1/3",
+          "text": "3 villagers to food",
+          "note": "Send 1 goat to Gold/Temple villager"
+        },
+        {
+          "alloc": "6/0/0/3",
+          "text": "1 villager to Food (Goat)",
+          "note": "Build temple with Gold villager as soon as you get 150 gold,\nThen to Food (Goat)"
+        },
+        {
+          "alloc": "6/0/0/3",
+          "text": "Stop Villager Auto-queue to have enough food for age-up",
+          "note": "Position Oracles to get vision of opponents temple and gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (1:58)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/0/2/3",
+          "text": "2 goat villagers to gold after aging up",
+          "note": "Build Manor with Gold villager"
+        },
+        {
+          "alloc": "1/3/2/3",
+          "text": "Send 3 food villagers to wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (2:58)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Resume Villager Auto- ueue",
+          "note": "Build counter barracks close to house range"
+        },
+        {
+          "alloc": "3/3/2/3",
+          "text": "2 villager to food",
+          "note": "Build cheiroballista, heroize with valor if needed"
+        }
+      ]
+    }
+  ]
+}

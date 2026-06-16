@@ -1,0 +1,111 @@
+{
+  "title": "Thor_5_15_Water_Boom_HUSKSUPPE_&_[DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Thor - 5:15 Water Boom - HUSKSUPPE & [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/3/0/0",
+          "text": "3 Gatherers + Ox Cart on Wood",
+          "note": "Berserk builds a Dock and a House"
+        },
+        {
+          "alloc": "2/3/0/0",
+          "text": "2 Gatherers to Food",
+          "note": "a Wood Gatherer makes an Ox Cart"
+        },
+        {
+          "alloc": "2/3/1/0",
+          "text": "1 Dwarf to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "2/5/1/0",
+          "text": "2 Gatherers to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "2 (+ 2 FS) / 5 / 2 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Dwarf to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "2 (+ 3 FS) / 7 / 2 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "2 Gatherers to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "2 (+ 5 FS) / 7 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Dwarf to Gold",
+          "note": "Berserk builds a Dock and a House"
+        }
+      ]
+    },
+    {
+      "title": "7 (+ 6 FS) / 7 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "5 Gatherers to Food",
+          "note": "Berserk builds a Temple"
+        }
+      ]
+    },
+    {
+      "title": "7 (+ 10 FS) / 13 / 4 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Dwarf to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (4:15)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 ( +16 FS) / 13 / 4 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Train Hersir",
+          "note": "Builds additional Docks"
+        }
+      ]
+    },
+    {
+      "title": "Classical (5:15)",
+      "rows": []
+    }
+  ]
+}

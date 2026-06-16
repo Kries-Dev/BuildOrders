@@ -1,0 +1,71 @@
+{
+  "title": "Thor_4_24_Water_Build_[DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Thor - 4:24 Water Build - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/3/0/0",
+          "text": "3 Dwarves + Ox Cart on Gold",
+          "note": "Build a Dock"
+        },
+        {
+          "alloc": "3/3/0/0",
+          "text": "3 Gatherers to Food",
+          "note": "After 150 Gold move Dwarves + Ox Cart to Wood"
+        }
+      ]
+    },
+    {
+      "title": "3 (+1 FS) / 6 / 0 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 Gatherers to Wood",
+          "note": "After 3rd fishing ship make a House"
+        }
+      ]
+    },
+    {
+      "title": "9 (+3 FS) / 6 / 0 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "6 Gatherers to Food",
+          "note": "Build a Temple and a House"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:24)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 + 10 (FS) / 9 / 6 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Move 3 Dwarves + Ox Cart back to Gold\nMove Food Gatheres to Wood and Gold",
+          "note": "Build Hersir"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:24)",
+      "rows": []
+    }
+  ]
+}

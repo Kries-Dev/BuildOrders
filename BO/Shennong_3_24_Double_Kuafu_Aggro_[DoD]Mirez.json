@@ -1,0 +1,56 @@
+{
+  "title": "Shennong_3_24_Double_Kuafu_Aggro_[DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Shennong - 3:24 Double Kuafu Aggro - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/0",
+          "text": "2 Peasants builds a Silo then go on Food\nKuafu makes a Silo then goes on Gold",
+          "note": ""
+        },
+        {
+          "alloc": "8/0/1/0",
+          "text": "6 Peasants on Food",
+          "note": "Once you have 250 Gold move Kuafu to Wood (build Silo)"
+        },
+        {
+          "alloc": "8/1/1/0",
+          "text": "Kuafu on Gold",
+          "note": "Kuafu builds Temple when you have 150 Wood"
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:24)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/3/2/0",
+          "text": "Redistrubite peasants to wood and gold based on gameplan",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:24)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    }
+  ]
+}

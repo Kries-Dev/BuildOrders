@@ -1,0 +1,92 @@
+{
+  "title": "Amaterasu_3_Miko_4_10_Cajocu",
+  "video": null,
+  "sections": [
+    {
+      "title": "Amaterasu - 3 Miko 4:10 - Cajocu",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/2/0/1",
+          "text": "3 villagers build wood camp, 1 goes to hunt after completing it",
+          "note": "Kitsune herds hunt to tc\nMiko builds shrine"
+        },
+        {
+          "alloc": "4/2/0/1",
+          "text": "3 villager to food",
+          "note": "Kitsune scouts"
+        },
+        {
+          "alloc": "4/2/0/2",
+          "text": "1 miko",
+          "note": "Miko builds shrine"
+        },
+        {
+          "alloc": "6/2/0/3",
+          "text": "2 villager to food",
+          "note": "Research Kagura, Miko builds a shrine"
+        },
+        {
+          "alloc": "7/1/1/3",
+          "text": "1 villager to gold",
+          "note": "wood villager builds house then goes to food"
+        },
+        {
+          "alloc": "9/1/1/3",
+          "text": "2 villagers to food",
+          "note": "2 miko and gold villager build temple, then back to gold"
+        },
+        {
+          "alloc": "9/2/2/3",
+          "text": "1 villager to  gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:10)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "6/3/4/3",
+          "text": "Move 2 food vills to gold\nMove 1 food villager to wood\n1 Gold villager makes House and walls, then back to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:10)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "",
+          "note": "Drop Goshinboku tree"
+        },
+        {
+          "alloc": "6/3/4/3",
+          "text": "Gold villager build stables, then back to gold",
+          "note": "Make 2 Kamaitachi"
+        },
+        {
+          "alloc": "",
+          "text": "Train Naginata Raider",
+          "note": "Research Wind Sickles"
+        }
+      ]
+    }
+  ]
+}

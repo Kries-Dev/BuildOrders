@@ -1,0 +1,57 @@
+{
+  "title": "Tezcatlipoca_1_Calpulli_Double_Scout_3_37_[DoD]Mirez",
+  "video": "In5_TKjs2hQ",
+  "sections": [
+    {
+      "title": "Tezcatlipoca - 1 Calpulli Double Scout 3:37 - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/1/1/0",
+          "text": "2 villager build a Calpulli between wood and gold\n2 villager lure hunt towards the town center",
+          "note": "1 villager goes to wood\n1 villager goes to gold"
+        },
+        {
+          "alloc": "2/1/1/0",
+          "text": "Quimichin Spy",
+          "note": ""
+        },
+        {
+          "alloc": "10/1/1/0",
+          "text": "8 villager to food",
+          "note": "At 150 wood move wood villager to gold"
+        },
+        {
+          "alloc": "10/0/3/0",
+          "text": "1 villager to gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:37)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/4/4/0",
+          "text": "build a house",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:37)",
+      "rows": []
+    }
+  ]
+}

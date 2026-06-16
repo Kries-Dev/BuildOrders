@@ -1,0 +1,67 @@
+{
+  "title": "Isis_2_50_Speedy_Classical_Into_2_TC_[DoD]Bqvh",
+  "video": null,
+  "sections": [
+    {
+      "title": "Isis Speedy Classical 2 TC - [DoD]BqvH",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/0/2/1",
+          "text": "Initial Villagers: \n1 villager goes on single tree (gathers 8 wood and then helps build mining camp)\n1 villager builds mining camp and then goes on gold\n1 villager builds monument near hunt or near TC if the hunt is aggressive",
+          "note": "Pharoah empowers building monument and then leave it on Granary\nAs a non necessary extra you can swap the Pharoah between Granary and Bonument between food drops\n- if you can do this for 2 rounds of drops you can immediately research Sacred Cats upon ageup"
+        },
+        {
+          "alloc": "8/0/2/1",
+          "text": "7 villagers go to food",
+          "note": "Research Pickaxe once you have 6 villagers on food"
+        },
+        {
+          "alloc": "8/0/2/1",
+          "text": "2 villagers go to gold",
+          "note": "At 150 gold. 2 gold villagers build a Temple"
+        }
+      ]
+    },
+    {
+      "title": "Advance (2.50~)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/11/1",
+          "text": "Transfer villagers from food to gold except for 2",
+          "note": "Use Prosperity"
+        },
+        {
+          "alloc": "2/0/11/1",
+          "text": "Set TC villager rally point back to food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3.50)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/4/1",
+          "text": "Send 7 villagers from gold and Pharoah to build 2nd TC\nBuild a House",
+          "note": "Research Sacred Cats"
+        }
+      ]
+    }
+  ]
+}

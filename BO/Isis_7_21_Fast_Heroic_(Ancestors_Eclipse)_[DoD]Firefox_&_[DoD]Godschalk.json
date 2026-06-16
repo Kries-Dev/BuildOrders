@@ -1,0 +1,139 @@
+{
+  "title": "Isis_7_21_Fast_Heroic_(Ancestors_Eclipse)_[DoD]Firefox_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Isis - 7:21 Fast Heroic (Ancestors Eclipse) - [DoD]Firefox & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/0/1",
+          "text": "2 to Food + \n1 Builds monument\nPharao empowers Monument when being build, after that Food",
+          "note": "Priest goes scouting (Obelisks)"
+        },
+        {
+          "alloc": "4/0/0/1",
+          "text": "1 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/3/1",
+          "text": "3 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 / 0(1) / 4 / 1",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 collect 8 Wood, then to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/5/1",
+          "text": "1 to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/5/1",
+          "text": "3 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "7/1/5/1",
+          "text": "1 to Wood",
+          "note": "when enough Gold (after 7th on F): 3 villagers build temple, then back to Gold"
+        },
+        {
+          "alloc": "7/2/5/1",
+          "text": "1 Build House, then Wood",
+          "note": ""
+        },
+        {
+          "alloc": "8/2/5/1",
+          "text": "1 Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance - Bast (3.24)",
+      "rows": [
+        {
+          "alloc": "8/2/5/2",
+          "text": "1 Gold vill makes 2nd Monument, then back to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.24)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "9/2/5/2",
+          "text": "1 to Food",
+          "note": "2 Wood villagers make an Armory, House, then back to Wood"
+        },
+        {
+          "alloc": "9/4/5/2",
+          "text": "2 to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "9/4/8/2",
+          "text": "3 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance - Nepthys (6.06)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "5 / 3 / 12 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n4 Food to Gold\nPharao from Food to Gold -> CAST PROSPERITY GOD POWER",
+          "note": "2 Wood vill build 2 Barracks, then 1 back to Wood, 1 builds Houses (Builder)\nMake a few Spearman to protect moving out of the base (secure second Gold Mine)"
+        }
+      ]
+    },
+    {
+      "title": "Heroic (7.21)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "7 / 3 / 10 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "After Prosperity GP:\nVills transition:\n2 Gold villagers to Food\n7 Gold vill + Pharao Build Migdol near second Gold Mine, then back to Gold",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "title": "Tsukuyomi_4_04_Double_Miko_[DoD]Mirez",
+  "video": "lKGpGUhKB-s",
+  "sections": [
+    {
+      "title": "Tsukuyomi - 4:04 Double Miko - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/1/1/1",
+          "text": "1 Commoner makes a Watermill and goes on Food\n1 Commoner makes a Watermill and goes on Wood\n1 Villager make a Mining Camp and goes on Gold\nMiko makes a Shrine",
+          "note": ""
+        },
+        {
+          "alloc": "1/1/1/2",
+          "text": "Miko makes a Shrine",
+          "note": ""
+        },
+        {
+          "alloc": "7/1/1/2",
+          "text": "6 Commoners on Food",
+          "note": ""
+        },
+        {
+          "alloc": "7/2/1/2",
+          "text": "1 Commoner on Wood",
+          "note": ""
+        },
+        {
+          "alloc": "9/2/1/2",
+          "text": "2 Commoners on Food",
+          "note": ""
+        },
+        {
+          "alloc": "9/2/3/2",
+          "text": "2 Commoners on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:04)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/5/4/2",
+          "text": "Redistrubite Commoners to wood and gold based on gameplan",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:04)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    }
+  ]
+}

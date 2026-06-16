@@ -1,0 +1,142 @@
+{
+  "title": "Set_6_13_Fast_Heroic_[DoD]Zoltraak_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Set - 6:13 Fast Heroic - [DoD]Zoltraak & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/2/0/1",
+          "text": "2 Wood straggler till 10 each, then to Food\n1 Build  Monument + Pharaoh Empower building Monument, then both to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/0/1",
+          "text": "1 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/2/1",
+          "text": "2 to Gold",
+          "note": "Queue Pickaxe (Force-Drop Food for continuous villager production)"
+        },
+        {
+          "alloc": "6/0/2/1",
+          "text": "2 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "6/0/3/1",
+          "text": "1 Builds House, then to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "6/0/5/1",
+          "text": "2 to Gold",
+          "note": "When enough resources\n3 Gold vill Build Temple, then back to Gold"
+        },
+        {
+          "alloc": "9/0/5/1",
+          "text": "3 to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "9/0/5/1",
+          "text": "1 Gold vill builds Houise, then back to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "10/0/5/1",
+          "text": "1 Food",
+          "note": "2 Gold vill Build Armory, then back to gold"
+        },
+        {
+          "alloc": "10/0/7/1",
+          "text": "2 Gold",
+          "note": "Send 3 Gazelles of Set from Age Up to Food vills"
+        }
+      ]
+    },
+    {
+      "title": "Advance Sekhmet (4:58)",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Option 1",
+          "note": "Option 2"
+        },
+        {
+          "alloc": "",
+          "text": "Chariot Opening",
+          "note": "Camels Opening"
+        },
+        {
+          "alloc": "",
+          "text": "1 / 7 / 8 / 1 + 1 Builder (Houses)",
+          "note": "6 / 0 / 10 / 1 + 1 Builder (Houses)"
+        },
+        {
+          "alloc": "",
+          "text": "Research Hand Axe",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Heroic (6:13)",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Option 1",
+          "note": "Option 2"
+        },
+        {
+          "alloc": "",
+          "text": "Rally TC to Food",
+          "note": "Rally TC: first 3 to Gold -- after that balance the eco out starting with Wood"
+        },
+        {
+          "alloc": "",
+          "text": "8 Gold Vills + Pharaoh build Migdol + Monument on 2nd Gold Mine, then back to Gold",
+          "note": "7 Gold Vills + Pharaoh Migdol build Migdol + Monument on 2nd Gold Mine, then back to Gold"
+        },
+        {
+          "alloc": "",
+          "text": "Pharao Empowers 3-4 Chariot Archers, then Gold Mine (can alternate)",
+          "note": "Pharao Empowers 3-4 Camels, then Gold Mine (can alternate)"
+        },
+        {
+          "alloc": "",
+          "text": "Prequeue Balistics + Bone Bow",
+          "note": "Research Copper Upgrades in Armory"
+        }
+      ]
+    }
+  ]
+}

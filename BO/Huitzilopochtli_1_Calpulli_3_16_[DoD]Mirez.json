@@ -1,0 +1,52 @@
+{
+  "title": "Huitzilopochtli_1_Calpulli_3_16_[DoD]Mirez",
+  "video": "In5_TKjs2hQ",
+  "sections": [
+    {
+      "title": "Huitzilopochtli - 1 Calpulli 3:16 - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/1/0",
+          "text": "1 villager builds a Calpulli between food and gold then goes to gold\n3 villager go to food",
+          "note": ""
+        },
+        {
+          "alloc": "3/0/2/0",
+          "text": "1 villager to gold",
+          "note": ""
+        },
+        {
+          "alloc": "10/0/2/0",
+          "text": "7 villager to food",
+          "note": "Build a temple with your 2 gold villagers"
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:16)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/4/4/0",
+          "text": "build a house",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:16)",
+      "rows": []
+    }
+  ]
+}

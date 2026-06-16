@@ -1,0 +1,63 @@
+{
+  "title": "Odin_3_30_[DoD]Leonce_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Odin - 3:30 - [DoD]L\u00e9once & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/0",
+          "text": "Initial vills:\n 2 + Ox Cart to Food\n 1 Build Ox Cart on gold and goes to gold",
+          "note": "Berserker scouts"
+        },
+        {
+          "alloc": "2/0/2/0",
+          "text": "1 Dwarf to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/2/0",
+          "text": "2 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/2/2/0",
+          "text": "1 Dwarf to Gold",
+          "note": "vills transition:\n2 gold villagers to wood"
+        },
+        {
+          "alloc": "8/0/2/0",
+          "text": "2 to Food",
+          "note": "when you have 135 wood, 2 wood vill to food"
+        },
+        {
+          "alloc": "8/2/2/0",
+          "text": "2 to Wood (strangler)",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance 2:30 (Freya)",
+      "rows": [
+        {
+          "alloc": "6/4/2/0",
+          "text": "vills transition: \n2 food to wood (make ox-cart on wood line after first house",
+          "note": "Build a house"
+        }
+      ]
+    },
+    {
+      "title": "Classical 3:30",
+      "rows": []
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "title": "Zeus_3_50_Beginner_Friendly_and_Strong_[DoD]CraggHack",
+  "video": null,
+  "sections": [
+    {
+      "title": "Zeus - 3:50 Beginner Friendly and Strong- By [DoD]CraggHack",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/0/0/0",
+          "text": "4 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/1/0/0",
+          "text": "1 to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "4/1/2/0",
+          "text": "2 to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "7/1/1/1",
+          "text": "3 to Food, until we have 7 on food",
+          "note": "Build temple when you have 150 gold 150 wood  with 2 Gold villagers.\nOne of them will go back to gold, and one will stay to gather favor."
+        },
+        {
+          "alloc": "7/4/1/1",
+          "text": "3 to wood",
+          "note": "Build a house with a gold villager"
+        },
+        {
+          "alloc": "7/4/2/1",
+          "text": "One last villager to gold.",
+          "note": "Move 2 gatherers from food to gold after you click advance, we need the gold to make Hercules as soon as we advance to the classical age."
+        }
+      ]
+    },
+    {
+      "title": "Advance 2:50 (Athena)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/4/4/1",
+          "text": "Option one - army focus: Train Jason. On advance make a stable and barracks and start producing as fast as possible.\nNew villagers are rallied to gold until 7, then more to food. Train Hercules as fast as you can. Aim for harrasment with your army and a good use of restoration. Bolt the enemy myth unit or hero.",
+          "note": ""
+        },
+        {
+          "alloc": "4/4/4/2",
+          "text": "Option two - early Minotaur raiding: Get Jason. On advance get Labyrinth of Minos (Minotaur upgrade).\nSend the minotaur to your enemy and the upgrade should be in just before you are raiding his villagers.\nNew villagers are ralled to gold until 7. Train Hercules as fast as possible. Follow up with a barracks and stable.\nAlternate new villagers to food and gold.\nTrain minotaurs whenever you have enough favor. Follow it up with hoplites, hippeus and heroes.",
+          "note": ""
+        },
+        {
+          "alloc": "3/4/7/0",
+          "text": "Option three - 2nd TC: Get Jason and Hercules -Aim to use your early heroes agressively early, while also grabbing a 2nd TC.\nMake the TC with all of the gold villagers when you have 350 gold.\nWhile you are building the TC, new villagers are rallied to hunt or other food in base.\nAlso move 2 of the wood villagers to food once building the TC starts, you need food to produce from two TCs.",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classic 3:50",
+      "rows": []
+    }
+  ]
+}

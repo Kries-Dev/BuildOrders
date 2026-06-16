@@ -1,0 +1,164 @@
+{
+  "title": "Set_4_07_Classical_Wadjet_Build_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Set - 4:07 Classical Wadjet Build - [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "1 / 1 / 0 / 1 -> 3 / 0 / 0 / 1",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Wood straggler till 20 Wood, then to Food\n1 Monument, then to Food\n1 to Food",
+          "note": "Pharaoh Empowers building monument, then Granary"
+        },
+        {
+          "alloc": "5/0/0/1",
+          "text": "2 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "5/0/2/1",
+          "text": "2 to Gold",
+          "note": "Research Pickaxe"
+        },
+        {
+          "alloc": "6/0/2/1",
+          "text": "1 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "6/0/3/1",
+          "text": "1 Builds House, then Gold",
+          "note": ""
+        },
+        {
+          "alloc": "6/1/3/1",
+          "text": "1 to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "7/1/3/1",
+          "text": "1 to Food",
+          "note": "3 Gold Villager build Temple, then back to Gold"
+        },
+        {
+          "alloc": "7/1/5/1",
+          "text": "2 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "7 / 1 / 5 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Builds Houses",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (Ptah) 3.07",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "7 / 1 / 5 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Builder builds 2nd Monument",
+          "note": "Pharaoh empowers Food"
+        }
+      ]
+    },
+    {
+      "title": "5 / 3 / 5 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n2 Food to Wood",
+          "note": "Research Hand of Pharao (after 2nd Monument)"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "5 / 3 / 4 / 2 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n1 Gold villager becomes a Builder: help with Houses/Barracks\nPharao Empowers building Barracks",
+          "note": "Make 1 Wadjet\nMake 1 Priest (after Barracks)"
+        }
+      ]
+    },
+    {
+      "title": "6 / 3 / 7 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 to Gold \nVill transition: \nOnce you have 2 Barracks, one Builder and Pharao to Food, other Builds makes Houses",
+          "note": "Make 1 Wadjet\nMake Spearman / Axeman\nOnce you have 3 Wadjets, mix in Slingers"
+        }
+      ]
+    },
+    {
+      "title": "9 / 3 / 7 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "9 / 3 / 8 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "9 / 4 / 8 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "",
+          "text": "After that: depends on your unit composition (you can add to Wood earlier if you want to focus on Slingers for example)",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

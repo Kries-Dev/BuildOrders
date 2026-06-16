@@ -1,0 +1,73 @@
+{
+  "title": "Freyr_Hill_Fort_Rush_HUSKSUPPE",
+  "video": "OvXfAAcfKZA",
+  "sections": [
+    {
+      "title": "Freyr - Hill Fort Rush - HUSKSUPPE",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/0/3/0",
+          "text": "Initial 3 vills on Gold,",
+          "note": "Berserk herds hunt towards the town center"
+        },
+        {
+          "alloc": "0/0/4/0",
+          "text": "1 dwarf on gold",
+          "note": "Move a herdable to the goldmine"
+        },
+        {
+          "alloc": "1/0/4/0",
+          "text": "1 gatherer on food",
+          "note": "At 2870 gold move 3 gatherer to Food"
+        },
+        {
+          "alloc": "4/0/2/0",
+          "text": "1 dwarf on gold",
+          "note": "Berserk builds a Temple forward"
+        },
+        {
+          "alloc": "7/0/2/0",
+          "text": "3 gatherer on food",
+          "note": "At 2770 gold move 2 dwarf to food from herdable"
+        },
+        {
+          "alloc": "9/0/1/0",
+          "text": "1 dwarf on gold",
+          "note": "Force drop to age up"
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:00)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/2/3/0",
+          "text": "Move dwarf back on gold and redistribute gatherer",
+          "note": "Train Hersir from Temple"
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:00)",
+      "rows": [
+        {
+          "alloc": "5/2/3/0",
+          "text": "Autoqueue both gatherer and dwarf",
+          "note": "Use Asgardian Bastion near the enemy goldmine"
+        }
+      ]
+    }
+  ]
+}

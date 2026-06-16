@@ -1,0 +1,71 @@
+{
+  "title": "Shennong_4_24_Early_Farms_3x_Kuafu_[DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Shennong - 4:24 Early Farms 3x Kuafu - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/1/1/0",
+          "text": "1 Peasant builds a Silo then goes on Food\n1 Peasant builds a House, a Gold Silo then goes on Gold\nKuafu builds a Silo then goes on Wood",
+          "note": "Place the Silo on the corner of the gold mine"
+        },
+        {
+          "alloc": "4/1/1/0",
+          "text": "3 Peasant on Food",
+          "note": ""
+        },
+        {
+          "alloc": "6/1/1/0",
+          "text": "2 Peasant on Fams",
+          "note": "Use Prosperous Seeds when both Farms are placed"
+        },
+        {
+          "alloc": "6/0/3/0",
+          "text": "1 Kuafu on Gold",
+          "note": "After 150 Wood put both Kuafu on Gold"
+        },
+        {
+          "alloc": "8/0/3/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        },
+        {
+          "alloc": "8/1/3/0",
+          "text": "1 Kuafu on Wood",
+          "note": "After 150 Gold a Kuafu makes a Temple"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:24)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/5/2/0",
+          "text": "Redistribute peasants to wood and gold based on gameplan",
+          "note": "Optional: buy Handaxe"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:24)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    }
+  ]
+}

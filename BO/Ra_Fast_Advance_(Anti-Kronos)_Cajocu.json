@@ -1,0 +1,77 @@
+{
+  "title": "Ra_Fast_Advance_(Anti-Kronos)_Cajocu",
+  "video": null,
+  "sections": [
+    {
+      "title": "Ra - Fast Advance (Anti-Kronos) - Cajocu",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/0/0",
+          "text": "3 villagers to food",
+          "note": "Pharaoh empowers granary or\n tc if hunt is aggresive"
+        },
+        {
+          "alloc": "3/0/2/0",
+          "text": "2 villagers to gold",
+          "note": "Build mining camp"
+        },
+        {
+          "alloc": "7/0/2/0",
+          "text": "4 villagers to food",
+          "note": "Build Temple as soon as you have\n150 gold with 2 vills, then back to gold"
+        },
+        {
+          "alloc": "7/0/3/0",
+          "text": "1 villager to temple, then gold",
+          "note": "Force drop food"
+        },
+        {
+          "alloc": "7/0/4/0",
+          "text": "1 villager to gold",
+          "note": "Age up through Ptah"
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:20)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/0/6/0",
+          "text": "Move 2 villagers from food to gold",
+          "note": "Build monument to the villagers with\n 1 food villager, then back to food"
+        },
+        {
+          "alloc": "5/0/6/0",
+          "text": "2 villager from gold build houses to close\n off gold mine then back to gold",
+          "note": "Build 2 priest"
+        }
+      ]
+    },
+    {
+      "title": "Classical (3.20)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "5/0/6/0",
+          "text": "1 villager from gold builds barracks",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

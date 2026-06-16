@@ -1,0 +1,177 @@
+{
+  "title": "Ra_7_21_Water_Fast_Heroic_Soka_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Ra - 7:21 Water Fast Heroic - Soka & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/0/0/0",
+          "text": "Initial 3 vills: \n2 to Food\n1 Builds Dock, then to Food",
+          "note": "Pharao empowers dock, after then empowers Food"
+        },
+        {
+          "alloc": "3/3/0/0",
+          "text": "3 to Wood",
+          "note": "Priest empowers Wood (when wood villager is produced)"
+        },
+        {
+          "alloc": "3/4/0/0",
+          "text": "1 Builds House, then to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "3/4/4/0",
+          "text": "4 to Gold",
+          "note": "Priest empowers Gold when 4 on Gold"
+        }
+      ]
+    },
+    {
+      "title": "3 / 4 / 4 / 0 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Builds a House then 2 Docks",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 / 4 / 4 / 0 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 / 4 / 4 / 0 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Builds Houses",
+          "note": "2 Gold villagers build Temple, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "4 / 4 / 5 / 0 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "6 / 4 / 5 / 0 + 2 Builder (+/- 10 FS)",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "2 to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance - Bast (3.58)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "3 / 4 / 9 / 2 + 1 Builder (+/- 14 FS)",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n1 Builder to Gold\n2 Food to Gold\n1 Food villager makes 2 Monuments (pharao empowers), then to Gold",
+          "note": "Pharao empowers Monument, Scout with Priest\nPre-queue Hand Axe and Pure Sein"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.58)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "3 / 4 / 10 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Builds Armory, then to Gold",
+          "note": "Research Hand of the Pharao"
+        }
+      ]
+    },
+    {
+      "title": "3 / 4 / 13 / 2 + 1 Builder  (+/- 18 FS)",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 to Gold",
+          "note": "Pre-Queue Pickaxe after Purse Sein Tech is researched"
+        }
+      ]
+    },
+    {
+      "title": "Advance - Sekhmet (6.06)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 / 7 / 13 / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Builder makes Barracks + Market + Houses\nVills transition:\n3 Food to Wood",
+          "note": "Research Copper Weapons"
+        }
+      ]
+    },
+    {
+      "title": "Heroic (7.21)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "8 Gold villagers + Pharao make Migdol + Barracks near forward Goldmine, then back to Gold",
+          "note": "Pre-Queue Shaft MIne + Adze of Wepwawet"
+        }
+      ]
+    },
+    {
+      "title": "0 / 7 / 13+ / 2 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Rally TC to Gold",
+          "note": "Pre-Queue Levy Migdol Soldiers (and/or Medium Axeman/Spearmen)\nPre-Queue Copper Armor and Copper Shield"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Set_Fast_Advance_(Anti-Kronos)_Cajocu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1017; --card: #151a23; --card-hover: #1a2030;
+  --accent: #ff4655; --white: #f4f6fa; --muted: #8b93a7;
+  --border: rgba(255,255,255,0.06);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--white);
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  padding: 32px clamp(16px, 5vw, 64px); line-height: 1.5;
+}
+.page-header {
+  display: flex; align-items: center; gap: 24px;
+  padding-bottom: 24px; margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.page-header img.logo { width: 84px; height: 84px; object-fit: contain; }
+.page-header h1 {
+  font-family: 'Rajdhani', 'Inter', sans-serif;
+  font-size: clamp(26px, 4vw, 44px); font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.section-title {
+  color: var(--accent); font-family: 'Rajdhani', sans-serif;
+  font-size: 20px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; margin: 40px 0 14px;
+}
+.bo-row {
+  display: grid; grid-template-columns: 160px 1fr 1fr;
+  gap: 24px; align-items: center;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 22px; margin-bottom: 10px;
+  animation: rowIn 0.35s ease both;
+}
+.bo-row:hover { background: var(--card-hover); }
+@keyframes rowIn { from { opacity: 0; transform: translateY(6px); }
+                   to   { opacity: 1; transform: none; } }
+.alloc {
+  color: var(--accent); font-family: 'Rajdhani', monospace;
+  font-size: 19px; font-weight: 700; letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.instr { font-size: 16px; }
+.note  { font-size: 15px; color: var(--muted); }
+img.ic {
+  height: 26px; width: auto; vertical-align: middle;
+  margin: 0 2px; position: relative; top: -1px;
+}
+img.age-ic {
+  height: 32px; width: auto; vertical-align: middle;
+  margin-right: 10px; position: relative; top: -2px;
+}
+.video-wrap { margin-top: 48px; }
+.video-wrap iframe {
+  width: 100%; max-width: 920px; aspect-ratio: 16/9;
+  border: 1px solid var(--border); border-radius: 12px;
+}
+@media (max-width: 760px) {
+  .bo-row { grid-template-columns: 90px 1fr; }
+  .note { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+<header class="page-header">
+  <img class="logo" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/DoDLogo.png" alt="DoD" onerror="this.style.display='none'">
+  <h1>Set_Fast_Advance_(Anti-Kronos)_Cajocu</h1>
+</header>
+<div class="section-title">Set Fast Advance (Anti-Kronos) - Cajocu</div>
+<div class="section-title"><img class="ic age-ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/archaic_age_icon.png" alt="archaic" title="archaic">Archaic</div>
+<div class="section-title">Food / Wood / Gold / Favor</div>
+<div class="bo-row"><div class="alloc">3/0/0/0</div><div class="instr">3 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villagers" title="villagers"> to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_food.png" alt="food" title="food"></div><div class="note"><img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/pharaoh_icon.png" alt="pharaoh" title="pharaoh"> empowers granery or <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/fortified_town_center_icon.png" alt="tc" title="tc"> if <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/great_hunt_icon.png" alt="hunt" title="hunt"> is aggresive</div></div>
+<div class="bo-row"><div class="alloc">3/0/2/0</div><div class="instr">2 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villagers" title="villagers"> to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"></div><div class="note">Build <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/mining_camp_icon.png" alt="mining camp" title="mining camp"></div></div>
+<div class="bo-row"><div class="alloc">7/0/2/0</div><div class="instr">4 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villagers" title="villagers"> to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_food.png" alt="food" title="food"></div><div class="note">Build <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/temple_icon.png" alt="temple" title="temple"> as soon as you have 150 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold">
+with 2 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="vills" title="vills">, then build a <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/house_icon.png" alt="house" title="house">, then back to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"></div></div>
+<div class="bo-row"><div class="alloc">8/0/2/0</div><div class="instr">1 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/house_icon.png" alt="house" title="house">, then to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_food.png" alt="food" title="food"></div><div class="note"><img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/priest_icon.png" alt="priest" title="priest"> + <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/set_icon_2.png" alt="set" title="set"> animals return to base</div></div>
+<div class="bo-row"><div class="alloc">8/0/4/0</div><div class="instr">2 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"></div><div class="note"><img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/temple_icon.png" alt="temple" title="temple"> <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="vills" title="vills"> builds <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/house_icon.png" alt="house" title="house"> then back to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"></div></div>
+<div class="section-title">Advance (2:35)</div>
+<div class="section-title">Food / Wood / Gold / Favor</div>
+<div class="bo-row"><div class="alloc"></div><div class="instr">2 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> from <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"> build <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/house_icon.png" alt="house" title="house"> to close off <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/gold_mine_icon.png" alt="gold mine" title="gold mine"> then back to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"></div><div class="note"></div></div>
+<div class="bo-row"><div class="alloc">5/0/7/0</div><div class="instr">Move 3 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villagers" title="villagers"> from <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_food.png" alt="food" title="food"> to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"></div><div class="note">Build monument to the <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villagers" title="villagers"> with 1 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_food.png" alt="food" title="food"> <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager">, then back to <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_food.png" alt="food" title="food"></div></div>
+<div class="bo-row"><div class="alloc">5/0/7/0</div><div class="instr"></div><div class="note">Build 2 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/priest_icon.png" alt="priest" title="priest"></div></div>
+<div class="section-title"><img class="ic age-ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/classical_age_icon.png" alt="classical" title="classical">Classical (3:35)</div>
+<div class="section-title">Food / Wood / Gold / Favor</div>
+<div class="bo-row"><div class="alloc">5/0/7/0</div><div class="instr">2 <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_villager.png" alt="villager" title="villager"> from <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/res_gold.png" alt="gold" title="gold"> builds <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/barracks_icon.png" alt="barracks" title="barracks"> close to monument</div><div class="note">Defend with <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/priest_icon.png" alt="priest" title="priest">, <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/pharaoh_icon.png" alt="pharaoh" title="pharaoh"> and free <img class="ic" src="https://raw.githubusercontent.com/Kries-Dev/BuildOrders/main/Build%20Orders/Icons/unit_type_myth_unit.png" alt="myth unit" title="myth unit"></div></div>
+
+</body>
+</html>

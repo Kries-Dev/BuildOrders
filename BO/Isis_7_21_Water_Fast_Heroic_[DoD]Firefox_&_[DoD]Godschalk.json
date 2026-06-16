@@ -1,0 +1,162 @@
+{
+  "title": "Isis_7_21_Water_Fast_Heroic_[DoD]Firefox_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Isis - 7:21 Water Fast Heroic - [DoD]Firefox & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/3/0/0",
+          "text": "Initial 3 vills: \n2 to Wood + Pharao to Wood\n1 Builds Dock, House, then to Wood",
+          "note": "Priest goes scouting (Obelisks when enough Gold)"
+        }
+      ]
+    },
+    {
+      "title": "4 (+1 FS) / 3 / 0 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 to Food (shoot boar to TC)",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 (+ 2FS) / 4 / 0 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 (+ 4FS) / 4 / 2 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "2 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 (+ 4FS) / 4 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Build House, then Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 (+ 6FS) / 4 / 5 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "2 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 (+ 7FS) / 4 / 5 / 0 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Builds Dock, House, Dock, Houses",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "8 (+11FS) / 4 / 5 / 0 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 to Food",
+          "note": "Vills transition (on 150 Gold):\n150 gold: 1 Gold villager builds a Temple, House, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance - Bast (4.15)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "4 (+14 FS) / 4 / 8 / 1 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n1 Gold villager builds monument, then back to Gold\n3 Food villagers to Gold\n1 Food villager becomes a Builder (Houses)\nPharao empowers Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (5.15)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "4 (+15 FS) / 5 / 8 / 1 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Build Armory (all Wood vills help), then to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "4 (+18 FS) / 5 / 10 / 1 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "2 to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance - Nepthys (6.06)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 (+21 FS) / 7 / 12 / 2 + 2 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n4 Food Build 2nd Monument, after that: 2 to Gold, 2 to Wood\nCAST PROSPERITY GOD POWER",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Heroic (7.21)",
+      "rows": []
+    }
+  ]
+}

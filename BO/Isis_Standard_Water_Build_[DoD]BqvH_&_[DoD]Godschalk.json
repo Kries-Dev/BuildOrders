@@ -1,0 +1,90 @@
+{
+  "title": "Isis_Standard_Water_Build_[DoD]BqvH_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Isis - Standard Water Build - [DoD]BqvH & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/2/0/3",
+          "text": "Initial 3 Villagers:\n1st Vill and Pharoah goes out and builds a Dock, then to Food\n2nd and 3rd Villagers go to wood and build a Lumber Camp",
+          "note": "Priest scouts the map and builds Obelisks.\nDock auto-queues Fishing Ships."
+        },
+        {
+          "alloc": "3/2/0/0",
+          "text": "2 Vill gather Food next to TC",
+          "note": ""
+        },
+        {
+          "alloc": "3/3/0/0",
+          "text": "1 Vill to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "2(+ 5FS) / 3 / 4 / 0 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 Vill to Gold",
+          "note": "Pharoah and Villager near Dock go to 2nd Fish location\nand build 2nd Dock, after that:\nPharao goes back to empower TC\nVill becomes a builder: build Houses"
+        }
+      ]
+    },
+    {
+      "title": "8(+ 10FS) / 3 / 4 / 0 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "6 Vill to Food",
+          "note": "At 150 Gold build a Temple with 2 of the Gold Vill, \nthen back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:51)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "2(+ 12+ FS) / 6 / 7 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vill transition:\n3 Food vill to Gold\n3 Food vill to Wood",
+          "note": "Build a Monument\nBuild a Granary"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.51)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "2(+ 12+FS) / 6 / 7 / 1 + 1 Builder",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Continue balancing your economy with reaching Heroic in mind.",
+          "note": "Continue building Docks and Fishing Ships on available fish sites.\nBuild an Armory and Market.\nBuild a 2nd Monument.\nOptional: Build Barracks with Spearmen+Anubite to scout the map and raid."
+        }
+      ]
+    }
+  ]
+}

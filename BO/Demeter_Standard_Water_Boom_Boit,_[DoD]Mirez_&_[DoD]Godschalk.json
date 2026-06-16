@@ -1,0 +1,100 @@
+{
+  "title": "Demeter_Standard_Water_Boom_Boit,_[DoD]Mirez_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Demeter - Standard Water Boom - Boit,  [DoD]Mirez & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/3/0/0",
+          "text": "3 Villagers build a Storehouse and go on Wood\n1 Villager builds a Dock, a House then goes to Wood",
+          "note": "Auto-queue Fishing ships\n\n(General rule of thumb considering FS:\n9 FS in archaic\n12 FS in advance, if there is no pressure\nClassical: 9-12 FS if you fight classical water\nClassical: 18-21 FS if you want to boom)"
+        },
+        {
+          "alloc": "3/3/0/0",
+          "text": "3 Villagers to Food",
+          "note": ""
+        },
+        {
+          "alloc": "3/3/1/0",
+          "text": "1 Villager makes a Dock, a House then goes on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3 (+ 1 FS) / 7 / 1 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 Villagers to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3 (+ 6 FS) / 7 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "2 Villagers build a Storehouse and go on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "7 (+ 9 FS) / 7 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 Villagers to Food",
+          "note": "Build Temple with 3 Gold Villagers once you have 150 Gold\nOne Villager prays for 2 Favor, then back to Gold\n2 Villagers go back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance 3:58",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 (+ 12 FS) / 12 / 5 / 1",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Villager transition:\n- 2 Food Villagers to Gold\n- 5 Food villagers to Wood",
+          "note": "Build 2 extra Docks\nTrain First Hero"
+        }
+      ]
+    },
+    {
+      "title": "Classical 4:58",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 (+ 18 FS) / 12 / 5+ / 1",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Villagers to Gold",
+          "note": "Pre-queue Second Hero"
+        }
+      ]
+    }
+  ]
+}

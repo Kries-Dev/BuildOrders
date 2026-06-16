@@ -1,0 +1,87 @@
+{
+  "title": "Zeus_4_07_Pickaxe_&_Hand_Axe_[DoD]CraggHack_&_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Zeus - 4:07 Pickaxe & Hand Axe - [DoD]CraggHack & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "4/0/0/0",
+          "text": "4 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "4/0/1/0",
+          "text": "1 to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "4/2/1/0",
+          "text": "2 to Wood",
+          "note": "Research Hand Axe after 1 vill on Wood\n(be sure to have enough Food for villager production before researching)"
+        },
+        {
+          "alloc": "4/2/2/0",
+          "text": "1 to Gold",
+          "note": ""
+        },
+        {
+          "alloc": "5/2/2/0",
+          "text": "1 to Food",
+          "note": "Research Pickaxe after 1 vill on Food (5 Food)\n(Force Drop Food after making the Food villager, so you can make Pickaxe right after the villager and have enough Food by the time the next villager is produced)"
+        },
+        {
+          "alloc": "8/2/2/0",
+          "text": "3 to Food",
+          "note": "After 8th Food vill: \nBuild temple when you have 150 gold 150 wood  with 2 Gold vill (Force drop Gold if needed), 1 vill back to Gold after Temple is done"
+        },
+        {
+          "alloc": "10/2/1/1",
+          "text": "2 to Food",
+          "note": "2 Wood vill build House when 50 wood, then back to Wood\n(make the house right after 10th villager on Food)"
+        },
+        {
+          "alloc": "10/2/2/1",
+          "text": "1 to Gold",
+          "note": "Force-drop Food to age-up"
+        }
+      ]
+    },
+    {
+      "title": "Advance 3:07 (Athena)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "7/4/3/1",
+          "text": "Option one - army focus: Train Jason. On advance make a stable and barracks and start producing as fast as possible.\nNew villagers are ralled to gold until 7, then more to food. Train Hercules as fast as you can. Aim for harrasment with your army and a good use of restoration. Bolt the enemy myth unit or hero.",
+          "note": ""
+        },
+        {
+          "alloc": "5/4/4/2",
+          "text": "Option two - early Minotaur raiding: Get Jason. On advance get Labyrinth of Minos (Minotaur upgrade).\nSend the minotaur to your enemy and the upgrade should be in just before you are raiding his villagers.\nNew villagers are ralled to gold until 7. Train Hercules as fast as possible. Follow up with a barracks and stable.\nAlternate new villagers to food and gold.\nTrain minotaurs whenever you have enough favor. Follow it up with hoplites, hippeus and heroes.",
+          "note": ""
+        },
+        {
+          "alloc": "3/6/6/0",
+          "text": "Option three - 2nd TC: Get Jason - Then shift Transition into 2nd TC.\nMake the TC with all of the gold villagers.\nWhile you are building the TC, new villagers are rallied to hunt or other food in base.\nAlso move 3 of the wood villagers to food once building the TC starts, you need food to produce from two TCs.",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classic 4:07",
+      "rows": []
+    }
+  ]
+}

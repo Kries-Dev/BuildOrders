@@ -1,0 +1,91 @@
+{
+  "title": "Hades_4_07_Vault_of_Erebus_Into_2_TC_(Without Herding)_[DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Hades - 4:07 Vault of Erebus Into 2 TC (Without Herding) - [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/2/0",
+          "text": "Initial vills: 2 to Gold and 2 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "2/2/2/0",
+          "text": "2 to Wood",
+          "note": "Pre-queue Vault of Erebus"
+        },
+        {
+          "alloc": "5/2/0/2",
+          "text": "3 to Food",
+          "note": "Once enough resources: 2 Gold vill make temple and pray"
+        },
+        {
+          "alloc": "5/3/0/2",
+          "text": "1 to Wood",
+          "note": ""
+        },
+        {
+          "alloc": "6/3/0/2",
+          "text": "1 to Food",
+          "note": ""
+        },
+        {
+          "alloc": "7/3/0/2",
+          "text": "1 Builds House, then Food",
+          "note": ""
+        },
+        {
+          "alloc": "10/3/0/2",
+          "text": "3 to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3.07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/6/7/0",
+          "text": "Vills transition:\n3 Food to Wood\n5 Food to Gold\n2 Favor to Gold (once VoE is researching and you have 2 extra favor)",
+          "note": "Make Ajax"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4.07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "2 / 3 / 3 / 0 + 7 Build TC",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n7 Gold villagers Build 2nd TC \n(move on 320 gold (depending on where 2nd TC is)\n3 Wood vills to Gold (Build a House)",
+          "note": "Pre-queue Achilles"
+        },
+        {
+          "alloc": "12/3/3/0",
+          "text": "One TC: 3 villagers on Food, then alternate Wood/Gold villagers\n(+ at least 2 Favor villagers when economy allows)\n2nd TC: Builders go on Food + make Food villagers",
+          "note": "When possibile:\nPre-queue Hand Axe\nPre-queue Pickaxe"
+        }
+      ]
+    }
+  ]
+}

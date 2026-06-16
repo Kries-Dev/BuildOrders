@@ -1,0 +1,73 @@
+{
+  "title": "Quetzalcoatl_Eco_Boom_HUSKSUPPE",
+  "video": "o2omgjgnB28",
+  "sections": [
+    {
+      "title": "Quetzalcoatl - Eco Boom - HUSKSUPPE",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/3/0/0",
+          "text": "1 villager make a Calpulli on Food\n3 villager make a Calpulli on Wood",
+          "note": "Get Lumber Outpost for your wood Calpulli"
+        },
+        {
+          "alloc": "4/3/0/0",
+          "text": "3 villager to food",
+          "note": "Get Livestock Pen for your food Calpulli"
+        },
+        {
+          "alloc": "4/3/2/0",
+          "text": "2 villager makes a Calpulli on Gold",
+          "note": "Get Craft Workshop for your gold Calpulli"
+        },
+        {
+          "alloc": "5/3/2/0",
+          "text": "villager builds a house and goes to food",
+          "note": ""
+        },
+        {
+          "alloc": "8/3/2/0",
+          "text": "3 villagers to food",
+          "note": "2 gold villager build a temple"
+        },
+        {
+          "alloc": "8/3/4/0",
+          "text": "2 villagers help build the temple then go to gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "6/3/6/0",
+          "text": "Train priest for bloodletting",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": [
+        {
+          "alloc": "6/3/4/0",
+          "text": "add villagers to gold",
+          "note": "Build 2 Noble's Hut"
+        }
+      ]
+    }
+  ]
+}
