@@ -6,10 +6,10 @@ on:
     paths:
       - 'ExcelUploads/**.xlsx'
       - 'scripts/convert_excel.py'
-  workflow_dispatch:        # manual trigger from the Actions tab
+  workflow_dispatch:
 
 permissions:
-  contents: write           # allow the workflow to push commits
+  contents: write
 
 concurrency:
   group: bo-generation
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2    # needed to diff against previous commit
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -36,18 +36,16 @@ jobs:
         id: changed
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            # Manual run → process everything
-            FILES=$(find ExcelUploads -name '*.xlsx' -not -name '~$*' | tr '\n' ' ')
+            FILES=$(find ExcelUploads -name "*.xlsx" | grep -v "^~" | tr '\n' ' ')
           else
-            FILES=$(git diff --name-only HEAD^ HEAD -- 'ExcelUploads/**.xlsx' | tr '\n' ' ')
+            FILES=$(git diff --name-only HEAD^ HEAD -- "ExcelUploads/*.xlsx" | tr '\n' ' ')
           fi
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
           echo "Changed files: $FILES"
 
       - name: Generate HTML
         if: steps.changed.outputs.files != ''
-        run: |
-          python scripts/convert_excel.py ${{ steps.changed.outputs.files }} --outdir "BO"
+        run: python scripts/convert_excel.py ${{ steps.changed.outputs.files }} --outdir "BO"
 
       - name: Commit and push generated files
         if: steps.changed.outputs.files != ''
