@@ -1,0 +1,62 @@
+{
+  "title": "Huitzilopochtli - Fast 2TC - DoD]Mirez - ECO",
+  "video": null,
+  "sections": [
+    {
+      "title": "Huitzilopochtli - Fast 2TC - [DoD]Mirez - ECO",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/2/2/0",
+          "text": "2 villager build a Calpulli and go on wood\n2 villager build a Calpulli and go on Gold",
+          "note": "Scout herds hunt to TC if it doesn't spawn next to a Calpulli"
+        },
+        {
+          "alloc": "10/2/2/0",
+          "text": "10 villager on food",
+          "note": "Wood villager builds a House"
+        },
+        {
+          "alloc": "10/3/2/0",
+          "text": "1 villager on wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/5/7/0",
+          "text": "move villagers from food to wood and gold",
+          "note": "If you've only built 1 Calpulli distribute villager 3F/4W/8G"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/2/4/0",
+          "text": "Build a 2nd TC with 6 villagers",
+          "note": "Train War Priests"
+        }
+      ]
+    }
+  ]
+}
