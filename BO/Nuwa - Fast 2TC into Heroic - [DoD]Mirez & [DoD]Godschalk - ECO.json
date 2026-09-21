@@ -1,0 +1,109 @@
+{
+  "title": "Nuwa - Fast 2TC into Heroic - [DoD]Mirez & [DoD]Godschalk - ECO",
+  "video": null,
+  "sections": [
+    {
+      "title": "Nuwa - Fast 2TC into Heroic - [DoD]Mirez & [DoD]Godschalk - ECO",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/0",
+          "text": "2 Peasants builds a Silo then go on Food\nKuafu makes a Silo then goes on Gold",
+          "note": "Build a Silo on Wood and a House (Autobuild)"
+        },
+        {
+          "alloc": "9/1/0/0",
+          "text": "7 Peasants on Food",
+          "note": "Once you have 150 Gold move Kuafu to Wood\nWood Kuafu builds Temple when you have enough resources, then back to Wood"
+        },
+        {
+          "alloc": "9/1/1/0",
+          "text": "Kuafu Chieftain on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:40)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/4/5/0",
+          "text": "Vills transition:\n4 Food Peasants to Gold\n3 Food Peasants to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:40)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "8/4/1/0",
+          "text": "2 Peasant on Food\n\nWhen around 300 Wood: \n1 Wood Kuafu walk to second TC (after building 2nd TC, back to Wood)\n\nWhen TC is being build: \n4 Gold Peasants to Food",
+          "note": "Cast Clay Peasants: Build second TC (after that to Food, build a Silo)\nAuto-Build a House + Silo on Berries"
+        },
+        {
+          "alloc": "8/4/2/0",
+          "text": "1 Kuafu to Gold\n\nAfter TC is build: Clay Peasants go to Food (make Silo if needed)",
+          "note": "Wood Kuafu Build Armory, then back to Wood"
+        },
+        {
+          "alloc": "18/1/5",
+          "text": "1 TC: 3 Kuafu to Gold\n2 TC: 7 Peasant to Food ' \nAt 75 Wood before making Armory: 3 Wood Peasants to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (6:54)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "18/3/3/0",
+          "text": "Vills transition:\n2 Gold Kuafu to Wood",
+          "note": "Pre-Queue Hand Axe\nPre-Queue Pickaxe\nPre-Queue Husbandry"
+        },
+        {
+          "alloc": "18/5/3/0",
+          "text": "1 TC: 2 Kuafu to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Heroic (8:09)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "16+ / 8+ / 7+ / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 TC: Rally Kuafu to Gold \n1 TC: Rally Peasants to Food",
+          "note": "1 Wood Kuafu build a Baolei, then back to Wood"
+        }
+      ]
+    }
+  ]
+}

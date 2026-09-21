@@ -1,0 +1,95 @@
+{
+  "title": "Fuxi - Fast 2TC - DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Fuxi - Fast 2TC - [DoD]Mirez - ECO",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/1/0/0",
+          "text": "1 Peasants to Food (Silo)\n1 Peasant Build House, then to Food\nKuafu to Wood (Silo)",
+          "note": ""
+        },
+        {
+          "alloc": "3/1/0/0",
+          "text": "1 Peasant Build Gold Silo, then to Food",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/1/0",
+          "text": "4 Peasants on Food",
+          "note": "Once you have 150 Wood, move Kuafu to Gold"
+        },
+        {
+          "alloc": "7/0/2/0",
+          "text": "1 Kuafu on Gold",
+          "note": ""
+        },
+        {
+          "alloc": "8/0/2/0",
+          "text": "1 Peasant on Food",
+          "note": ""
+        },
+        {
+          "alloc": "8/1/2/0",
+          "text": "1 Kuafu on Wood",
+          "note": "Gold Kuafu builds Temple when you have enough resources, then back to Gold"
+        },
+        {
+          "alloc": "4/5/2/0",
+          "text": "At 400 Food: transition:\n4 Food Peasants to Wood",
+          "note": "Pre-Queue Hand Axe (after enough food for Age Up)"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "4 / 5(+2) / 0 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "When enough resources:\n2 Gold Kuafu walk to second TC (to Wood after 2nd TC is build)",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "4 / 4(+2) / 4 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "3 Peasant to Gold\nWhen 2nd TC ts building:\n1 Wood Kuafu to Gold",
+          "note": "1 Wood Peasant Build House, then back to Wood"
+        },
+        {
+          "alloc": "4/6/5/0",
+          "text": "1 Kuafu on Gold",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

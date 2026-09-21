@@ -1,0 +1,114 @@
+{
+  "title": "Shennong - Fast 2TC into Heroic -  [DoD]Mirez & [DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Shennong - Fast 2TC into Heroic - [DoD]Mirez & [DoD]Godschalk",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/0",
+          "text": "1 Peasant builds a Silo then go on Food\n1 Peasant build a House, then on Food\nKuafu makes a Silo then goes on Gold",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/1/0",
+          "text": "5 Peasants on Food",
+          "note": "Once you have 250 Gold move Kuafu to Wood (build Silo)"
+        },
+        {
+          "alloc": "7/1/1/0",
+          "text": "1 Kuafu on Gold",
+          "note": "Gold Kuafu builds Temple when you have 150 Wood"
+        },
+        {
+          "alloc": "9/1/1/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:43)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/4/4/0",
+          "text": "At 400 Food: transition:\n3 Food Peasants  to Gold\n3 Food Peasants to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:43)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "6/4/4/0",
+          "text": "3 Peasant to Food\nWhen enough resources: \n1 Gold Kuafu + 1 Wood Kuafu walk to second TC \n(after that: one to Wood, one to Gold)",
+          "note": ""
+        },
+        {
+          "alloc": "8/5/2/0",
+          "text": "1 Kuafu on Gold\nVills transition:\n2 Gold Peasants build 2 farms after 200 Gold (needed for Kuafu)\n1 Gold Peasant to Wood\n CAST PROSPEROUS SEEDS",
+          "note": ""
+        },
+        {
+          "alloc": "18/3/4/0",
+          "text": "1 TC: 2 Kuafu on Gold + 1 Peasant on Food\n1 TC: Peasants on Food",
+          "note": "Gold Kuafu makes Armory, then bck to Gold\n2 Wood Peasants make Farm + CAST PROSPEROUS SEEDS"
+        }
+      ]
+    },
+    {
+      "title": "Advance (6:50)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "18/5/2/0",
+          "text": "2 Gold Kuafu to Wood",
+          "note": "Food Peasant build House, then back to Food"
+        },
+        {
+          "alloc": "18/5/2/0",
+          "text": "1 TC: Peasants on Food",
+          "note": "2 Food Peasants make Farm + CAST PROSPEROUS SEEDS"
+        }
+      ]
+    },
+    {
+      "title": "Heroic (8:05)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "18+ / 5 / 2+ / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 TC: Peasants to food\n2 TC: Kuafu to Gold (alternate with Wood when needed, Peasants when not enough Favor)",
+          "note": "Gold Kuafu makes Baolei, then back to Gold\nWood Kuafu makes House, then back to Wood"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "title": "Shennong - Fast 2TC -  [DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Shennong - Fast 2TC - [DoD]Mirez",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/0",
+          "text": "1 Peasant builds a Silo then go on Food\n1 Peasant build a House, then on Food\nKuafu makes a Silo then goes on Gold",
+          "note": ""
+        },
+        {
+          "alloc": "7/0/1/0",
+          "text": "5 Peasants on Food",
+          "note": "Once you have 250 Gold move Kuafu to Wood (build Silo)"
+        },
+        {
+          "alloc": "7/1/1/0",
+          "text": "1 Kuafu on Gold",
+          "note": "Gold Kuafu builds Temple when you have 150 Wood"
+        },
+        {
+          "alloc": "9/1/1/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:43)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/4/4/0",
+          "text": "At 400 Food: transition:\n3 Food Peasants  to Gold\n3 Food Peasants to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:43)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/4/6/0",
+          "text": "2 Peasant to Gold\nWhen enough resources: \n1 Gold Kuafu + 1 Wood Kuafu walk to second TC \n(after that: one to Wood, one to Gold)",
+          "note": "1 Wood Peasant Build House, then back to Wood"
+        },
+        {
+          "alloc": "3/4/6/0",
+          "text": "1 Kuafu on Gold",
+          "note": ""
+        },
+        {
+          "alloc": "",
+          "text": "Redistribute Peasants / Kuafu based on needs",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

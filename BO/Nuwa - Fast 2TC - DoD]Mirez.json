@@ -1,0 +1,77 @@
+{
+  "title": "Nuwa - Fast 2TC - DoD]Mirez",
+  "video": null,
+  "sections": [
+    {
+      "title": "Nuwa - Fast 2TC - [DoD]Mirez - ECO",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/0/1/0",
+          "text": "2 Peasants builds a Silo then go on Food\nKuafu makes a Silo then goes on Gold",
+          "note": "Build a Silo on Wood and a House (Autobuild)"
+        },
+        {
+          "alloc": "9/1/0/0",
+          "text": "7 Peasants on Food",
+          "note": "Once you have 150 Gold move Kuafu to Wood\nWood Kuafu builds Temple when you have enough resources, then back to Wood"
+        },
+        {
+          "alloc": "9/1/1/0",
+          "text": "Kuafu Chieftain on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (2:40)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/4/5/0",
+          "text": "Vills transition:\n4 Food Peasants to Gold\n3 Food Peasants to Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (3:40)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "3/4/5/0",
+          "text": "1 Peasant on Food\nWhen around 300 Wood: \n1 Wood Kuafu walk to second TC (after building 2nd TC, back to Wood)",
+          "note": "Cast Clay Peasants: Build second TC (after that to Food)"
+        },
+        {
+          "alloc": "4/4/5/0",
+          "text": "1 Peasant on Food",
+          "note": "1 Wood Peasant Build House, then back to Wood"
+        },
+        {
+          "alloc": "4/5/5/0",
+          "text": "1 Peasant on Wood",
+          "note": ""
+        },
+        {
+          "alloc": "4/6/5/0",
+          "text": "1 Kuafu on Wood",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

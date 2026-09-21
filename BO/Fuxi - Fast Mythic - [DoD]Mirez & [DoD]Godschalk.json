@@ -1,0 +1,148 @@
+{
+  "title": "Fuxi - Fast Mythic - [DoD]Mirez & [DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Fuxi - Fast Mythic - [DoD]Mirez & [DoD]Godschalk - ECO",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/1/0/0",
+          "text": "1 Peasant builds a Silo then goes on Food\n1 Peasant makes a House, a Gold Silo then goes on Food\nKuafu on Wood",
+          "note": ""
+        },
+        {
+          "alloc": "7/1/0/0",
+          "text": "5 Peasants on Food",
+          "note": "Research Pickaxe"
+        },
+        {
+          "alloc": "7/1/1/0",
+          "text": "1 Kuafu on Gold",
+          "note": "After 150 Wood the Kuafu goes on Gold"
+        },
+        {
+          "alloc": "9/0/2/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        },
+        {
+          "alloc": "9/1/2/0",
+          "text": "1 Kuafu on Wood",
+          "note": "Kuafu builds Temple when you have 150 Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:23)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "9/1/2/0",
+          "text": "Food peasant build House, then back to food",
+          "note": "Research Hand Axe"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:23)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "11/1/2/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        },
+        {
+          "alloc": "11/2/2/0",
+          "text": "1 Kuafu on Wood",
+          "note": "1 Gold Kuafu build Armory, House, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (5:40)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "",
+          "note": "Research Husbandry"
+        },
+        {
+          "alloc": "11/0/4/0",
+          "text": "Vills tranistion:\nWhen 300 wood: 2 Wood Kuafu to Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Heroic (6:55)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "11/0/5/0",
+          "text": "1 Kuafu on Gold\nFood villagers eat the 'Peach Blossom Spring'",
+          "note": "1 Gold Kuafa make Baolei, then back to Gold"
+        },
+        {
+          "alloc": "14/0/5/0",
+          "text": "3 Peasants to Food",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (8:37)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "12/5/2/0",
+          "text": "Vills tranistion:\n3 Kuafu from Gold to Wood\n2 Food Peasants to Wood",
+          "note": "Research Bow Saw"
+        },
+        {
+          "alloc": "14/3/2/0",
+          "text": "Vills transition:\n2 Wood Peasants to Food",
+          "note": "Research Plow (after transition to Farms)"
+        }
+      ]
+    },
+    {
+      "title": "Mythic (10:37)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "14/3/3/0",
+          "text": "1 Kuafu on Gold",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

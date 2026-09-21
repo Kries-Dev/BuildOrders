@@ -1,0 +1,99 @@
+{
+  "title": "Fuxi - Super Fast Heroic - [DoD]Mirez - ECO",
+  "video": null,
+  "sections": [
+    {
+      "title": "Fuxi - Super Fast Heroic - [DoD]Mirez - ECO",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "2/1/0/0",
+          "text": "1 Peasant builds a Silo then goes on Food\n1 Peasant makes a House, a Gold Silo then goes on Food\nKuafu on Wood",
+          "note": ""
+        },
+        {
+          "alloc": "8/1/0/0",
+          "text": "6 Peasants on Food",
+          "note": ""
+        },
+        {
+          "alloc": "8/0/2/0",
+          "text": "1 Kuafu on Gold",
+          "note": "After 150 Wood the Wood Kuafu goes on Gold"
+        },
+        {
+          "alloc": "8/1/2/0",
+          "text": "1 Kuafu on Wood",
+          "note": "1 Gold Kuafu builds Temple when you have 150 Gold, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "8/1/2/0",
+          "text": "/",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "8/2/2/0",
+          "text": "1 Kuafu on Wood",
+          "note": "1 Wood Kuafu builds an Armory, then back to Wood"
+        }
+      ]
+    },
+    {
+      "title": "Advance (4:50)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "8/2/2/0",
+          "text": "/",
+          "note": "1 Food Peasant builds a House, then back to Food"
+        }
+      ]
+    },
+    {
+      "title": "Heroic (6:05)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "8 / 2+ / 4 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Rally Peasants on Wood (Houses when needed)",
+          "note": "2 Wood Kuafa make Baolei, then back to Gold"
+        }
+      ]
+    }
+  ]
+}

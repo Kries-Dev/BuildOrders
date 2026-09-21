@@ -1,0 +1,146 @@
+{
+  "title": "Shennong - Water Fast Heroic - [DoD]Mirez & [DoD]Godschalk",
+  "video": null,
+  "sections": [
+    {
+      "title": "Shennong_Water_Fast_Heroic_[DoD]Mirez & [DoD]Godschalk - WATER",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "1/1/1/0",
+          "text": "1 Peasants on Food\n1 Peasant Makes a Dock, a House, a Silo then goes on Gold\nKuafu makes a Silo then goes on Wood",
+          "note": ""
+        },
+        {
+          "alloc": "3/1/1/0",
+          "text": "2 Peasants on Food",
+          "note": ""
+        },
+        {
+          "alloc": "3/4/1/0",
+          "text": "3 Peasants on Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3 (+2FS) / 4 / 2 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Peasant  on Gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "3 (+6FS) / 4 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Kuafu on Gold",
+          "note": "Build a House with Wood Peasant, then back to Wood"
+        }
+      ]
+    },
+    {
+      "title": "7 (+9FS) / 4 / 3 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "4 Peasants on Food",
+          "note": "Build a Temple with Gold Kuafu, then back to Gold"
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:32)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "3 (+11FS) / 5 / 6 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n3 Food Peasant to Gold\n1 Food Peasant to Wood",
+          "note": "Build a House with Wood Peasant, then back to Wood"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:32)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "3 (+12FS) / 5 / 7 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Kuafu on Gold",
+          "note": "Wood Kuafu Build an Armory, then to Wood"
+        }
+      ]
+    },
+    {
+      "title": "3 (+12FS) / 6 / 7 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Peasant on Wood",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (5:32)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 (+12FS) / 10 / 6 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "Vills transition:\n1 Food Peasant build 2 docks, then to Gold\n2 Food Peasant to Wood\n2 Gold Peasant to Wood",
+          "note": "Build a House with Wood Peasant, then back to Wood"
+        }
+      ]
+    },
+    {
+      "title": "Heroic (6:47)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": []
+    },
+    {
+      "title": "0 (+16FS) / 10 / 7 / 0",
+      "rows": [
+        {
+          "alloc": "",
+          "text": "1 Kuafu on Gold",
+          "note": "Build a House with Wood Peasant, then back to Wood"
+        }
+      ]
+    }
+  ]
+}

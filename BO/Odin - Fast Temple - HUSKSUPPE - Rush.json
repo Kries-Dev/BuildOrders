@@ -1,0 +1,82 @@
+{
+  "title": "Odin - Fast Temple - HUSKSUPPE - Rush",
+  "video": "xGFblJAsis8",
+  "sections": [
+    {
+      "title": "Odin - Fast Temple - HUSKSUPPE - Rush",
+      "rows": []
+    },
+    {
+      "title": "Archaic",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "0/0/3/0",
+          "text": "3 villager and ox cart on gold",
+          "note": "Berserk herds hunt to TC"
+        },
+        {
+          "alloc": "0/0/4/0",
+          "text": "Dwarf Gold",
+          "note": ""
+        },
+        {
+          "alloc": "3/0/4/0",
+          "text": "3 villager on food",
+          "note": "Berserk builds a Temple"
+        },
+        {
+          "alloc": "6/1/1/0",
+          "text": "1 villager on food",
+          "note": "2 gold villager go on food"
+        },
+        {
+          "alloc": "6/1/2/0",
+          "text": "1 dwarf on gold",
+          "note": "Train a Hersir"
+        },
+        {
+          "alloc": "10/1/2/0",
+          "text": "4 villager on food",
+          "note": "Train a Hersir"
+        },
+        {
+          "alloc": "10/1/3/0",
+          "text": "1 dwarf on gold",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "title": "Advance (3:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "7/4/3/0",
+          "text": "Move 3 villagers from Food to Wood",
+          "note": "Build an Ox Cart for Wood"
+        }
+      ]
+    },
+    {
+      "title": "Classical (4:07)",
+      "rows": []
+    },
+    {
+      "title": "Food / Wood / Gold / Favor",
+      "rows": [
+        {
+          "alloc": "7/4/3/0",
+          "text": "Add dwarves to gold",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}
