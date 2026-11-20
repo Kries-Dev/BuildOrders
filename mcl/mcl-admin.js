@@ -192,8 +192,10 @@ function overview() {
   const fx = Object.values(state.fixtures), playedFx = fx.filter(C.played).length;
   const { matches } = resolveSafe();
   const gf = matches.GF;
-  const champ = gf?.winner ? C.nameOf(state, gf.winner === 1 ? gf.t1 : gf.t2) : null;
-  const decided = Object.values(matches).filter((m) => m.winner).length;
+  const champId = gf?.winner ? (gf.winner === 1 ? gf.t1 : gf.t2) : null;
+  const champ = champId && champId !== 'BYE' ? C.nameOf(state, champId) : null;
+  const real = Object.values(matches).filter((m) => m.t1 && m.t2 && m.t1 !== 'BYE' && m.t2 !== 'BYE');
+  const decided = real.filter((m) => m.winner).length;
   const step = (done, title, text, go) => `<div class="step${done ? ' done' : ''}"><div><b>${title}</b><span class="muted">${text}</span></div><button class="btn sm" data-goto="${go}">Open</button></div>`;
   const s = state.settings;
   return `<div class="head"><div><h1>Mythic Clan League · ${esc(s.season_name)}</h1>
@@ -201,10 +203,10 @@ function overview() {
     ${champ ? `<div class="notice"><b>Champion: ${esc(champ)}</b></div>` : ''}
     <div class="steps">
       ${step(nTeams > 0, 'Add teams and rosters', nTeams ? `${nTeams} teams, ${Object.values(state.teams).reduce((n, t) => n + t.players.length, 0)} players` : 'Paste them from your sign-up sheet', 'teams')}
-      ${step(nTeams > 0 && unassigned === 0, 'Put teams in groups', unassigned ? `${unassigned} teams not in a group yet` : `${s.groups.length} groups ready`, 'groups')}
+      ${step(nTeams > 0 && unassigned === 0, 'Put teams in groups', !nTeams ? `${s.groups.length} groups set up, no teams yet` : unassigned ? `${unassigned} teams not in a group yet` : `${s.groups.length} groups ready`, 'groups')}
       ${step(fx.length > 0, 'Create the group fixtures', fx.length ? `${fx.length} games` : 'One click on the Groups tab', 'groups')}
       ${step(fx.length > 0 && playedFx === fx.length, 'Enter group results', `${playedFx} of ${fx.length} played`, 'results')}
-      ${step(!!champ, 'Run the playoffs', `${decided} of ${Object.keys(matches).length} matches decided`, 'playoffs')}
+      ${step(!!champ, 'Run the playoffs', real.length ? `${decided} of ${real.length} matches ready to play decided` : 'Starts when the group stage is done', 'playoffs')}
     </div>
     <div class="grid" style="--min:320px;margin-top:24px">
       <div class="card stack" style="--gap:10px"><h3>Captain access</h3>

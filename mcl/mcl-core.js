@@ -171,7 +171,8 @@ export function resolveBracket(s) {
   for (let pass = 0; pass < 4; pass++) {
     for (const id of order) {
       const team = (x) => {
-        if (x.seed) return seeds[x.seed - 1] ?? 'BYE';
+        // Nobody qualified yet: leave the bracket empty instead of filling it with byes.
+        if (x.seed) return seeds.length ? (seeds[x.seed - 1] ?? 'BYE') : null;
         const m = out[x.winner || x.loser];
         if (!m || !m.winner) return null;
         return x.winner ? (m.winner === 1 ? m.t1 : m.t2) : (m.winner === 1 ? m.t2 : m.t1);
