@@ -700,6 +700,20 @@
   const app      = initializeApp(firebaseConfig);
   const database = getDatabase(app);
 
+  // ── Season ──
+  // bracket.html            → Season 1 (Firebase node "tournament", unchanged)
+  // bracket.html?season=2   → Season 2 (node "mcl_s2", managed in mcl-admin.html), and so on.
+  const SEASON = new URLSearchParams(location.search).get('season') || '1';
+  const ROOT   = SEASON === '1' ? 'tournament' : `mcl_s${SEASON}`;
+  window.MCL_ROOT = ROOT;
+  function setSeasonTitle(name) {
+    const label = name || (SEASON === '1' ? 'Season 1' : `Season ${SEASON}`);
+    document.title = `Mythic Clan League ${label}`;
+    const span = document.querySelector('.header-title span');
+    if (span) span.textContent = label;
+  }
+  setSeasonTitle();
+
   // ── Logo helpers ──
   function slugify(name) {
     return name.toLowerCase().trim()
@@ -715,7 +729,7 @@
   }
 
   // ── Live listener ──
-  const tournamentRef = ref(database, 'tournament');
+  const tournamentRef = ref(database, ROOT);
   onValue(tournamentRef, (snapshot) => {
     const data = snapshot.val();
     if (!data) {
@@ -723,6 +737,8 @@
       return;
     }
     setStatus(true);
+    setSeasonTitle(data.settings && data.settings.season_name);
+    _advancePerGroup = Number(data.settings && data.settings.advance_per_group) || 2;
     renderGroups(data.groups || {}, data.settings || {}, data.group_match_log || []);
     renderBracket(data.matches || {});
     renderUpcoming(data.upcoming || []);
@@ -776,12 +792,17 @@
   }
 
   let _seedMap = {};
+  let _advancePerGroup = 2;
 
   function renderBracket(matches) {
     const loading = document.getElementById('bracket-loading');
     const content = document.getElementById('bracket-content');
     loading.style.display = 'none';
     content.style.display = 'block';
+
+    // Season 2+: the admin app stores each match's section and round, so any bracket size lays itself out.
+    const fromData = bracketRoundsFromData(matches);
+    if (fromData) return renderBracketSections(fromData, matches, loading, content);
 
     const rounds = [
       { label: 'Quarter Finals', ids: ['UB1','UB2','UB3','UB4'] },
@@ -814,6 +835,28 @@
     html += `</div></div>`;
 
     content.innerHTML = html;
+    attachHoverListeners();
+  }
+
+  function bracketRoundsFromData(matches) {
+    const list = Object.values(matches || {}).filter(m => m && m.section);
+    if (!list.length) return null;
+    const out = { upper: [], lower: [], grand: [] };
+    for (const m of list) {
+      const sec = out[m.section]; if (!sec) continue;
+      const ri = Number(m.round_index) || 0;
+      (sec[ri] = sec[ri] || { label: m.round || '', ids: [] }).ids[Number(m.order) || 0] = m.id;
+    }
+    for (const k of Object.keys(out)) out[k] = out[k].filter(Boolean).map(r => ({ ...r, ids: r.ids.filter(Boolean), gf: k === 'grand' }));
+    return out;
+  }
+
+  function renderBracketSections(sec, matches, loading, content) {
+    loading.style.display = 'none';
+    content.style.display = 'block';
+    const block = (title, rounds, first) => rounds.length ? `<div class="bracket-section-label"${first ? '' : ' style="margin-top:32px"'}>${title}</div>
+      <div class="bracket-scroll"><div class="bracket">${rounds.map(r => renderRound(r, matches)).join('')}</div></div>` : '';
+    content.innerHTML = block('Upper Bracket', sec.upper, true) + block('Lower Bracket', sec.lower) + block('Grand Final', sec.grand);
     attachHoverListeners();
   }
 
@@ -935,7 +978,7 @@
 
       sorted.forEach((team, i) => {
         const isPlaceholder = !team.name || _placeholder.test(team.name.trim());
-        const qualified = i < 2 && !isPlaceholder;
+        const qualified = i < _advancePerGroup && !isPlaceholder;
         const seedNum   = team.seed || 0;
         const seedLabel = seedNum ? seedNum : '';
         const seedClass = seedNum ? 'seed-badge has-seed' : 'seed-badge';
@@ -1716,11 +1759,11 @@
       _schedWriting = true;
       for (const [key, added] of entries) {
         const safeKey = key.replace(/[^a-zA-Z0-9]/g, '_');
-        const path = `tournament/availability/${safeTeam}/${safeKey}`;
+        const path = `${ROOT}/availability/${safeTeam}/${safeKey}`;
         writes.push(fbSet(fbRef(database, path), added ? true : null));
       }
       // Single audit entry for the batch
-      writes.push(fbPush(fbRef(database, 'tournament/audit_log'), {
+      writes.push(fbPush(fbRef(database, `${ROOT}/audit_log`), {
         team: myTeam,
         action: 'batch_availability_update',
         slots_added:   entries.filter(([,v]) =>  v).map(([k]) => k),
@@ -1829,8 +1872,8 @@
     };
 
     try {
-      await fbSet(fbRef(database, `tournament/scheduled_games/${matchKey}`), gameData);
-      await fbPush(fbRef(database, 'tournament/audit_log'), auditEntry);
+      await fbSet(fbRef(database, `${ROOT}/scheduled_games/${matchKey}`), gameData);
+      await fbPush(fbRef(database, `${ROOT}/audit_log`), auditEntry);
 
       // If both confirmed, push to upcoming games
       if (bothConfirmed) {
@@ -1847,7 +1890,7 @@
         };
         if (existingIdx >= 0) upcoming[existingIdx] = newEntry;
         else upcoming.push(newEntry);
-        await fbSet(fbRef(database, 'tournament/upcoming'), upcoming);
+        await fbSet(fbRef(database, `${ROOT}/upcoming`), upcoming);
       }
     } catch(e) {
       console.error('Firebase confirm error:', e);
