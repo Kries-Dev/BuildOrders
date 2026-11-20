@@ -5,7 +5,7 @@
 // Captain-written data (availability, scheduled_games, audit_log) is never overwritten.
 //
 // ?season=3   manage another season      ?demo   try everything without Firebase (saved in this browser only)
-import * as C from './mcl-core.js?v=202611201840';
+import * as C from './mcl-core.js?v=202611201910';
 
 const FIREBASE = {
   apiKey: 'AIzaSyBxXo4fibhtI5cU7ozHETq_hPPya32FlSE',
@@ -33,7 +33,14 @@ async function firebaseStore() {
   const db = D.getDatabase(app), auth = A.getAuth(app);
   return {
     onUser: (cb) => A.onAuthStateChanged(auth, cb),
-    signIn: () => A.signInWithPopup(auth, new A.GoogleAuthProvider()),
+    signIn: (which) => {
+      if (which === 'microsoft') {
+        const ms = new A.OAuthProvider('microsoft.com');
+        ms.setCustomParameters({ prompt: 'select_account' });
+        return A.signInWithPopup(auth, ms);
+      }
+      return A.signInWithPopup(auth, new A.GoogleAuthProvider());
+    },
     signOut: () => A.signOut(auth),
     isAdmin: (u) => D.get(D.ref(db, `admins/${u.uid}`)).then((s) => s.val() === true).catch(() => false),
     onData: (cb, onErr) => D.onValue(D.ref(db, ROOT), (s) => cb(s.val()), onErr),
@@ -137,8 +144,11 @@ async function boot() {
     renderUser();
     if (!u) {
       gate(`<img src="mcl/mcl-logo.webp" alt="Mythic Clan League" onerror="this.remove()"><h2>MCL Control</h2>
-        <p class="muted">Sign in with the Google account that is listed as an MCL admin.</p>
-        <button class="btn primary" data-act="signin">Sign in with Google</button>
+        <p class="muted">Sign in with the Google or Microsoft account that is listed as an MCL admin.</p>
+        <div class="row" style="justify-content:center">
+          <button class="btn primary" data-act="signin" data-provider="google">Sign in with Google</button>
+          <button class="btn" data-act="signin" data-provider="microsoft">Sign in with Microsoft</button>
+        </div>
         <a class="dim" href="?demo">Or try it in demo mode (nothing is published)</a>`);
       setPill('', 'Signed out');
       return;
@@ -481,7 +491,10 @@ document.addEventListener('click', async (e) => {
   if (el.dataset.filter) { results.filter = el.dataset.filter; render(); return; }
   const id = el.dataset.id;
   switch (el.dataset.act) {
-    case 'signin': store.signIn().catch((err) => toast(err.message)); break;
+    case 'signin': store.signIn(el.dataset.provider).catch((err) => toast(
+      /account-exists-with-different-credential/.test(err.code) ? 'This email already signs in with Google — use that button.'
+      : /operation-not-allowed/.test(err.code) ? 'Microsoft sign-in is not switched on in Firebase yet.'
+      : /popup-closed|cancelled-popup/.test(err.code) ? 'Sign-in cancelled.' : err.message)); break;
     case 'signout': store.signOut(); break;
     case 'copy-uid': navigator.clipboard?.writeText($('#uid-box').value).then(() => toast('Copied'), () => $('#uid-box').select()); break;
     case 'add-team': openTeam(null); break;
