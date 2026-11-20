@@ -5,7 +5,7 @@
 // Captain-written data (availability, scheduled_games, audit_log) is never overwritten.
 //
 // ?season=3   manage another season      ?demo   try everything without Firebase (saved in this browser only)
-import * as C from './mcl-core.js';
+import * as C from './mcl-core.js?v=202611201040';
 
 const FIREBASE = {
   apiKey: 'AIzaSyBxXo4fibhtI5cU7ozHETq_hPPya32FlSE',

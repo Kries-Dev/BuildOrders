@@ -41,6 +41,9 @@
     align-items: center;
     justify-content: space-between;
   }
+  .header-brand { display: flex; align-items: center; gap: 14px; }
+  .header-logo { width: 56px; height: auto; flex: none; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
+  @media (max-width: 520px) { .header-logo { width: 42px; } }
   .header-left { display: flex; flex-direction: column; gap: 3px; }
   .header-title { font-size: 20px; font-weight: 900; letter-spacing: 0.04em; color: var(--white); }
   .header-title span { color: var(--accent); }
@@ -615,9 +618,12 @@
 
 
 <div class="header">
-  <div class="header-left">
-    <div class="header-title">Mythic Clan League <span>Season 1</span></div>
-    <div class="header-subtitle">Age of Mythology: Retold</div>
+  <div class="header-brand">
+    <img class="header-logo" src="mcl/mcl-logo.webp" alt="Mythic Clan League logo" width="56" height="49">
+    <div class="header-left">
+      <div class="header-title">Mythic Clan League <span>Season 1</span></div>
+      <div class="header-subtitle">Age of Mythology: Retold</div>
+    </div>
   </div>
   <div class="header-right">
     <span class="status-dot" id="dot"></span>
