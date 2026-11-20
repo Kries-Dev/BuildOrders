@@ -23,15 +23,16 @@ and next to it exactly what `bracket.html?season=2` reads. What captains write f
 2. **Authentication → Settings → Authorized domains → Add domain:** `kries-dev.github.io` (done 20 Nov 2026)
 3. **Realtime Database → Rules:** the rules in `database.rules.json` (Season 1's `tournament` block as it was,
    plus `admins` and `mcl_s2`). Done on 20 Nov 2026.
-4. Open `mcl-admin.html`, sign in with Google or Microsoft. The page shows your user ID with a Copy button.
+4. Open `mcl-admin.html`, sign in with Google or email. The page shows your user ID with a Copy button.
    **Realtime Database → Data:** add `admins` → `<your user ID>`: `true`. Reload. Do the same for co-admins.
 
-## Microsoft sign-in
+## Signing in
 
-Firebase → Authentication → Sign-in method → Microsoft, with the Application (client) ID and a client secret from an
-app registration in portal.azure.com (Microsoft Entra ID → App registrations). Redirect URI in that registration:
-`https://bracket-4b8cc.firebaseapp.com/__/auth/handler`. Client secrets expire: renew them in Azure before the end date
-and paste the new one into Firebase, or Microsoft sign-in stops working (Google keeps working).
+Google, or email and password (both switched on in Firebase → Authentication → Sign-in method).
+With email: type an email and a password and press **Create account** once; after that, **Sign in**.
+**Forgot password?** sends a reset link. A new account can't change anything until its user ID is added under `admins`.
+
+(Microsoft sign-in was tried and dropped: Microsoft no longer lets personal accounts register apps without an Azure directory.)
 
 ## Next season
 

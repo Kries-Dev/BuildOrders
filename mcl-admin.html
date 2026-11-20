@@ -65,7 +65,7 @@ h1 { font-size: 40px; } h2 { font-size: 28px; } h3 { font-size: 20px; }
 .btn:focus-visible { outline: 2px solid var(--red-text); outline-offset: 2px; }
 
 label.f { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
-input[type=text], input[type=url], input[type=number], input[type=datetime-local], select, textarea {
+input[type=text], input[type=email], input[type=password], input[type=url], input[type=number], input[type=datetime-local], select, textarea {
   background: var(--bg); border: 1px solid var(--line-strong); padding: 8px 10px; min-height: 38px; width: 100%; font-size: 14px; }
 input:focus, select:focus, textarea:focus { border-color: var(--red-text); outline: none; }
 textarea { min-height: 160px; resize: vertical; font-family: ui-monospace, Consolas, monospace; font-size: 13px; }
@@ -160,6 +160,6 @@ dialog .body { padding: 20px; overflow: auto; max-height: calc(100vh - 200px); }
 <main id="main"><div class="gate"><p class="muted">Loading…</p></div></main>
 <dialog id="dlg"></dialog>
 <div class="toast" id="toast" hidden></div>
-<script type="module" src="mcl/mcl-admin.js?v=202611201910"></script>
+<script type="module" src="mcl/mcl-admin.js?v=202611201930"></script>
 </body>
 </html>

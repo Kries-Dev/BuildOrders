@@ -5,7 +5,7 @@
 // Captain-written data (availability, scheduled_games, audit_log) is never overwritten.
 //
 // ?season=3   manage another season      ?demo   try everything without Firebase (saved in this browser only)
-import * as C from './mcl-core.js?v=202611201910';
+import * as C from './mcl-core.js?v=202611201930';
 
 const FIREBASE = {
   apiKey: 'AIzaSyBxXo4fibhtI5cU7ozHETq_hPPya32FlSE',
@@ -33,14 +33,10 @@ async function firebaseStore() {
   const db = D.getDatabase(app), auth = A.getAuth(app);
   return {
     onUser: (cb) => A.onAuthStateChanged(auth, cb),
-    signIn: (which) => {
-      if (which === 'microsoft') {
-        const ms = new A.OAuthProvider('microsoft.com');
-        ms.setCustomParameters({ prompt: 'select_account' });
-        return A.signInWithPopup(auth, ms);
-      }
-      return A.signInWithPopup(auth, new A.GoogleAuthProvider());
-    },
+    signIn: () => A.signInWithPopup(auth, new A.GoogleAuthProvider()),
+    signInEmail: (email, pw) => A.signInWithEmailAndPassword(auth, email, pw),
+    createEmail: (email, pw) => A.createUserWithEmailAndPassword(auth, email, pw),
+    resetPassword: (email) => A.sendPasswordResetEmail(auth, email),
     signOut: () => A.signOut(auth),
     isAdmin: (u) => D.get(D.ref(db, `admins/${u.uid}`)).then((s) => s.val() === true).catch(() => false),
     onData: (cb, onErr) => D.onValue(D.ref(db, ROOT), (s) => cb(s.val()), onErr),
@@ -144,11 +140,18 @@ async function boot() {
     renderUser();
     if (!u) {
       gate(`<img src="mcl/mcl-logo.webp" alt="Mythic Clan League" onerror="this.remove()"><h2>MCL Control</h2>
-        <p class="muted">Sign in with the Google or Microsoft account that is listed as an MCL admin.</p>
-        <div class="row" style="justify-content:center">
-          <button class="btn primary" data-act="signin" data-provider="google">Sign in with Google</button>
-          <button class="btn" data-act="signin" data-provider="microsoft">Sign in with Microsoft</button>
-        </div>
+        <p class="muted">Sign in with the Google or email account that is listed as an MCL admin.</p>
+        <button class="btn primary" data-act="signin">Sign in with Google</button>
+        <div class="row" style="width:100%;gap:12px;color:var(--dim);font-size:13px"><span style="flex:1;height:1px;background:var(--line)"></span>or with email<span style="flex:1;height:1px;background:var(--line)"></span></div>
+        <form id="auth-form" class="stack" style="--gap:10px;width:100%;text-align:left" novalidate>
+          <label class="f">Email<input type="email" id="auth-email" autocomplete="username" required></label>
+          <label class="f">Password<input type="password" id="auth-pw" autocomplete="current-password" required minlength="6"></label>
+          <p class="dim" id="auth-msg" role="status" style="min-height:1.2em;margin:0"></p>
+          <div class="row" style="justify-content:space-between">
+            <button class="btn" type="submit">Sign in</button>
+            <span class="row" style="gap:4px"><button class="btn ghost sm" type="button" data-act="email-create">Create account</button><button class="btn ghost sm" type="button" data-act="email-reset">Forgot password?</button></span>
+          </div>
+        </form>
         <a class="dim" href="?demo">Or try it in demo mode (nothing is published)</a>`);
       setPill('', 'Signed out');
       return;
@@ -483,6 +486,30 @@ function openPaste() {
   dlg.showModal();
 }
 
+// ── Email sign-in ────────────────────────────────────────────────────────────
+const AUTH_ERRORS = {
+  'auth/invalid-email': 'That email address doesn\'t look right.',
+  'auth/missing-password': 'Type your password.',
+  'auth/invalid-credential': 'Email or password is wrong. New here? Use Create account.',
+  'auth/wrong-password': 'Email or password is wrong.',
+  'auth/user-not-found': 'No account with this email yet. Use Create account.',
+  'auth/email-already-in-use': 'This email already has an account. Sign in instead, or use Forgot password.',
+  'auth/weak-password': 'Use a password of at least 6 characters.',
+  'auth/too-many-requests': 'Too many tries. Wait a few minutes, or use Forgot password.',
+};
+async function emailAuth(mode) {
+  const email = $('#auth-email')?.value.trim(), pw = $('#auth-pw')?.value || '';
+  const msg = $('#auth-msg');
+  const say = (t, err) => { if (msg) { msg.textContent = t; msg.style.color = err ? 'var(--red-text)' : ''; } };
+  if (!email) return say('Type your email address first.', true);
+  try {
+    if (mode === 'reset') { await store.resetPassword(email); say(`If ${email} has an account, a reset link is on its way. Check your spam folder too.`); return; }
+    if (mode === 'create') { if (pw.length < 6) return say('Choose a password of at least 6 characters.', true); say('Creating your account…'); await store.createEmail(email, pw); return; }
+    say('Signing in…'); await store.signInEmail(email, pw);
+  } catch (err) { say(AUTH_ERRORS[err.code] || err.message, true); }
+}
+document.addEventListener('submit', (e) => { if (e.target.id === 'auth-form') { e.preventDefault(); emailAuth('signin'); } });
+
 // ── Events ───────────────────────────────────────────────────────────────────
 document.addEventListener('click', async (e) => {
   const el = e.target.closest('[data-tab],[data-goto],[data-act],[data-filter]');
@@ -491,10 +518,9 @@ document.addEventListener('click', async (e) => {
   if (el.dataset.filter) { results.filter = el.dataset.filter; render(); return; }
   const id = el.dataset.id;
   switch (el.dataset.act) {
-    case 'signin': store.signIn(el.dataset.provider).catch((err) => toast(
-      /account-exists-with-different-credential/.test(err.code) ? 'This email already signs in with Google — use that button.'
-      : /operation-not-allowed/.test(err.code) ? 'Microsoft sign-in is not switched on in Firebase yet.'
-      : /popup-closed|cancelled-popup/.test(err.code) ? 'Sign-in cancelled.' : err.message)); break;
+    case 'signin': store.signIn().catch((err) => toast(/popup-closed|cancelled-popup/.test(err.code) ? 'Sign-in cancelled.' : err.message)); break;
+    case 'email-create': emailAuth('create'); break;
+    case 'email-reset': emailAuth('reset'); break;
     case 'signout': store.signOut(); break;
     case 'copy-uid': navigator.clipboard?.writeText($('#uid-box').value).then(() => toast('Copied'), () => $('#uid-box').select()); break;
     case 'add-team': openTeam(null); break;
