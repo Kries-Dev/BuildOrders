@@ -17,13 +17,12 @@ Every change is saved straight away to Firebase node `mcl_s2`: the app's own dat
 and next to it exactly what `bracket.html?season=2` reads. What captains write from the Scheduling tab
 (availability, scheduled games, audit log) is never overwritten.
 
-## One-time Firebase setup (console.firebase.google.com → project bracket-4b8cc)
+## One-time Firebase setup (console.firebase.google.com → project bracket-4b8cc, owned by the Christophe account)
 
-1. **Authentication → Sign-in method → Google → Enable.**
-2. **Authentication → Settings → Authorized domains → Add domain:** `kries-dev.github.io`
-3. **Realtime Database → Rules:** add the `admins` and `mcl_s2` blocks from `database.rules.json` to your
-   current rules. Keep your existing rule for `tournament` as it is. Make sure there is no `".write": true`
-   at the very top level, or anyone could change Season 2.
+1. **Authentication → Sign-in method → Google → Enable.** (done 20 Nov 2026)
+2. **Authentication → Settings → Authorized domains → Add domain:** `kries-dev.github.io` (done 20 Nov 2026)
+3. **Realtime Database → Rules:** the rules in `database.rules.json` (Season 1's `tournament` block as it was,
+   plus `admins` and `mcl_s2`). Done on 20 Nov 2026.
 4. Open `mcl-admin.html`, sign in with Google. The page shows your user ID with a Copy button.
    **Realtime Database → Data:** add `admins` → `<your user ID>`: `true`. Reload. Do the same for co-admins.
 
