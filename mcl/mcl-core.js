@@ -18,6 +18,7 @@ export const DEFAULT_SETTINGS = {
   final_bo: 5,
   points: { w_clean: 3, w: 2, l: 1, l_clean: -1 },
   admin_code: '',
+  round_names: {},   // custom playoff round names, keyed like "8_ub0" (bracket size _ section+round index)
 };
 
 export const emptyState = () => ({ settings: structuredClone(DEFAULT_SETTINGS), teams: {}, fixtures: {}, playoff: { seeds: null, results: {} } });
@@ -27,6 +28,7 @@ export function normalise(raw) {
   const s = emptyState();
   if (!raw) return s;
   s.settings = { ...s.settings, ...(raw.settings || {}), points: { ...s.settings.points, ...((raw.settings || {}).points || {}) } };
+  s.settings.round_names = { ...((raw.settings || {}).round_names || {}) };
   s.settings.groups = arr(s.settings.groups);
   s.teams = raw.teams || {};
   for (const t of Object.values(s.teams)) t.players = arr(t.players);
@@ -120,15 +122,21 @@ export function bracketOrder(n) {
   return order;
 }
 
-export function bracketStructure(n) {
+// Default round names (DoD's naming). Counted from the final backwards, so they fit any bracket size.
+const UB_NAMES = ['Upper Final', 'Upper Semifinals', 'Upper Quarterfinals'];
+const LB_NAMES = ['Lower Final', 'Lower Semifinals', 'Lower Quarterfinals'];
+export const roundKey = (n, sec, i) => `${n}_${sec}${i}`;
+
+export function bracketStructure(n, names = {}) {
   const k = Math.log2(n);
   if (!Number.isInteger(k) || k < 2) throw new Error('Playoff size must be 4, 8, 16 or 32');
   const ub = [], lb = [];
   let u = 0, l = 0;
-  const ubLabel = (c) => (c === 1 ? 'Upper Final' : c === 2 ? 'Semi Finals' : c === 4 ? 'Quarter Finals' : `Round of ${c * 2}`);
   for (let r = 1; r <= k; r++) {
     const count = n / 2 ** r;
-    ub.push({ label: ubLabel(count), ids: Array.from({ length: count }, () => `UB${++u}`) });
+    const fromEnd = k - r;
+    const label = UB_NAMES[fromEnd] || `Upper Round ${r}`;
+    ub.push({ key: roundKey(n, 'ub', r - 1), default: label, label, ids: Array.from({ length: count }, () => `UB${++u}`) });
   }
   // Lower bracket
   const lr = [];
@@ -150,20 +158,23 @@ export function bracketStructure(n) {
   lr.forEach((round, r) => {
     const ids = round.map(() => `LB${++l}`);
     round.forEach((m, j) => { m.id = ids[j]; });
-    lb.push({ label: r === lr.length - 1 ? 'Lower Final' : `Lower Round ${r + 1}`, ids });
+    const label = LB_NAMES[lr.length - 1 - r] || `Lower Round ${r + 1}`;
+    lb.push({ key: roundKey(n, 'lb', r), default: label, label, ids });
   });
   lr.forEach((round) => round.forEach((m) => {
     const res = (x) => (x.winnerOf ? { winner: x.winnerOf[x.j].id } : x);
     src[m.id] = { a: res(m.a), b: res(m.b) };
   }));
   src.GF = { a: { winner: ub[k - 1].ids[0] }, b: { winner: lb[lb.length - 1].ids[0] } };
-  return { ub, lb, gf: [{ label: 'Grand Final', ids: ['GF'] }], src };
+  const gf = [{ key: roundKey(n, 'gf', 0), default: 'Grand Final', label: 'Grand Final', ids: ['GF'] }];
+  for (const round of [...ub, ...lb, ...gf]) if (names[round.key]) round.label = names[round.key];
+  return { ub, lb, gf, src };
 }
 
 // Resolve every match: who plays, the stored result (dropped if the teams have since changed), the winner.
 export function resolveBracket(s) {
   const n = s.settings.playoff_size;
-  const st = bracketStructure(n);
+  const st = bracketStructure(n, s.settings.round_names || {});
   const seeds = currentSeeds(s);
   const out = {};
   const order = [...st.ub.flatMap((r) => r.ids), ...st.lb.flatMap((r) => r.ids), 'GF'];

@@ -5,7 +5,7 @@
 // Captain-written data (availability, scheduled_games, audit_log) is never overwritten.
 //
 // ?season=3   manage another season      ?demo   try everything without Firebase (saved in this browser only)
-import * as C from './mcl-core.js?v=202611201040';
+import * as C from './mcl-core.js?v=202611201840';
 
 const FIREBASE = {
   apiKey: 'AIzaSyBxXo4fibhtI5cU7ozHETq_hPPya32FlSE',
@@ -234,6 +234,7 @@ function settings() {
     <div class="card stack"><h3>Best of</h3>
       ${num('group_bo', 'Group games', s.group_bo, 1, 9)}${num('playoff_bo', 'Playoff games', s.playoff_bo, 1, 9)}${num('final_bo', 'Grand Final', s.final_bo, 1, 9)}
     </div>
+${roundNamesCard()}
     <div class="card stack"><h3>Group points</h3>
       ${num('p_w_clean', 'Win without dropping a game (2-0)', s.points.w_clean, -9, 9)}
       ${num('p_w', 'Win after dropping a game (2-1)', s.points.w, -9, 9)}
@@ -242,6 +243,17 @@ function settings() {
       <span class="dim">Ties: points, head-to-head, match difference, game difference, wins.</span>
     </div>
   </div>`;
+}
+
+function roundNamesCard() {
+  let st;
+  try { st = C.bracketStructure(state.settings.playoff_size, state.settings.round_names); } catch { return ''; }
+  const row = (r) => `<label class="f">${esc(r.default)}<input type="text" id="rn-${r.key}" data-round="${r.key}" value="${esc(state.settings.round_names[r.key] || '')}" placeholder="${esc(r.default)}"></label>`;
+  return `<div class="card stack"><h3>Round names</h3>
+    <span class="dim">Names for the ${state.settings.playoff_size}-team bracket, shown on the public page and in the game records. Leave a box empty to use the name in grey.</span>
+    <span class="dim" style="text-transform:uppercase;letter-spacing:.06em">Upper bracket</span>${st.ub.map(row).join('')}
+    <span class="dim" style="text-transform:uppercase;letter-spacing:.06em">Lower bracket</span>${st.lb.map(row).join('')}
+    ${st.gf.map(row).join('')}</div>`;
 }
 
 function teams() {
@@ -515,6 +527,10 @@ document.addEventListener('change', (e) => {
       else s.settings[d.set] = Math.max(1, Math.round(+v || 1));
     });
   }
+  if (d.round) change((s) => {
+    const v = el.value.trim();
+    if (v) s.settings.round_names[d.round] = v; else delete s.settings.round_names[d.round];
+  });
   if (d.move) change((s) => { s.teams[d.move].group = el.value; s.teams[d.move].order = 999; if (Object.keys(s.fixtures).length) C.generateGroupFixtures(s); });
   if (d.score) {
     const other = $(`#s${d.side === '1' ? 2 : 1}-${d.score}`);
